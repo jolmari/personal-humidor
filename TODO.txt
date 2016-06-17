@@ -1,0 +1,5 @@
+First iteration MVP:
+- API to receive humidity data
+- UI that shows top 50 humidity measurements in a table
+- Python project that connects to the API and reads the sensor
+- CI to deploy both the ASP.NET UI to Azure, Python app to RaspberryPI + run unit & integration tests.
