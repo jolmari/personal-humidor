@@ -20,9 +20,17 @@ namespace HumidorClient.Controllers
         }
 
         // GET: Cigars
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Cigar.ToListAsync());
+            // TODO: Direct data access sucks. Create service layer.
+            var cigars = _context.Cigar.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                cigars = cigars.Where(c => c.Name.Contains(searchString));
+            }
+
+            return View(await cigars.ToListAsync());
         }
 
         // GET: Cigars/Details/5
