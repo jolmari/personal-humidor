@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HumidorClient.Models
 {
@@ -6,8 +7,11 @@ namespace HumidorClient.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime ManufacturingDate { get; set; }
         public string Country { get; set; }
         public decimal Price { get; set; }
+
+        [Display(Name="Manufacturing Date")]
+        [DataType(DataType.Date)]
+        public DateTime ManufacturingDate { get; set; }
     }
 }
