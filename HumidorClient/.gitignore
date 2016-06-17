@@ -1,0 +1,33 @@
+## Refresh with git rm -r --cached .
+
+# Always allow gitignore files
+!.gitignore
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Other local files
+.vs/**
+
+# Build and published files
+[Pp]roperties/
+[Bb]in/
+[Oo]bj/
+
+# Package manager folders
+node_modules/
+packages/
+
+# Project.json related files
+*project.lock.json
+*project.fragment.lock.json
+
+# Minified CSS & JS files
+*.min.css
+*.min.css.map
+*.css.map
+*.min.js
+
