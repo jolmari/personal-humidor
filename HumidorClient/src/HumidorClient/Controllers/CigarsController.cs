@@ -73,7 +73,7 @@ namespace HumidorClient.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Country,ManufacturingDate,Name,Price")] Cigar cigar)
+        public async Task<IActionResult> Create([Bind("Id,Country,ManufacturingDate,Name,Price,Rating")] Cigar cigar)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace HumidorClient.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Country,ManufacturingDate,Name,Price")] Cigar cigar)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Country,ManufacturingDate,Name,Price,Rating")] Cigar cigar)
         {
             if (id != cigar.Id)
             {

@@ -9,7 +9,8 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Cigar</h4>
-    <hr />
+    <hr/>
+    <!-- TODO: Make a partial view out of these repeating listings. Generics possible? -->
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Country)
@@ -34,6 +35,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
         </dd>
     </dl>
     
