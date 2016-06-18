@@ -1,4 +1,4 @@
-@model IEnumerable<HumidorClient.Models.Cigar>
+@model HumidorClient.Models.CountryViewModel.CountryViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -12,31 +12,35 @@
 
 <form asp-controller="Cigars" asp-action="Index">
     <p>
+        <select asp-for="SelectedCountry" asp-items="Model.Countries">
+            <option value="">All</option>
+        </select>
+
         Title: <input type="text" name="searchstring"/>
-        <input type="submit" value="filter" />
+        <input type="submit" value="filter"/>
     </p>
 </form>
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ManufacturingDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cigars[0].Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cigars[0].ManufacturingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cigars[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cigars[0].Price)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Cigars) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Country)

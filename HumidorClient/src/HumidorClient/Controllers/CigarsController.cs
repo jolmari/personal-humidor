@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HumidorClient.Data;
 using HumidorClient.Models;
+using HumidorClient.Models.CountryViewModel;
 
 namespace HumidorClient.Controllers
 {
@@ -20,17 +19,30 @@ namespace HumidorClient.Controllers
         }
 
         // GET: Cigars
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string selectedCountry, string searchString)
         {
             // TODO: Direct data access sucks. Create service layer.
+            var countries = _context.Cigar.AsQueryable().Select(cig => cig.Country).Distinct();
             var cigars = _context.Cigar.AsQueryable();
+
+            if (!string.IsNullOrEmpty(selectedCountry))
+            {
+                cigars = cigars.Where(c => c.Country.Contains(selectedCountry));
+            }
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 cigars = cigars.Where(c => c.Name.Contains(searchString));
             }
 
-            return View(await cigars.ToListAsync());
+            var viewModel = new CountryViewModel
+            {
+                Cigars = await cigars.ToListAsync(),
+                Countries = new SelectList(await countries.ToListAsync()),
+                SelectedCountry = selectedCountry
+            };
+
+            return View(viewModel);
         }
 
         // GET: Cigars/Details/5
