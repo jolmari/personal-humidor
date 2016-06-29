@@ -6,16 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Models.CountryViewModel;
+using HumidorClient.Services.CigarServices;
 
 namespace HumidorClient.Controllers
 {
     public class CigarsController : Controller
     {
+        private readonly ICigarService cigarService;
         private readonly ApplicationDbContext _context;
 
-        public CigarsController(ApplicationDbContext context)
+        public CigarsController(ICigarService cigarService, ApplicationDbContext context)
         {
-            _context = context;    
+            this.cigarService = cigarService;
+            _context = context;
         }
 
         // GET: Cigars
@@ -77,8 +80,7 @@ namespace HumidorClient.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cigar);
-                await _context.SaveChangesAsync();
+                await cigarService.AddNewCigar(cigar); 
                 return RedirectToAction("Index");
             }
             return View(cigar);
