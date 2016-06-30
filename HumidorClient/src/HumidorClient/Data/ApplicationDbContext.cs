@@ -23,6 +23,6 @@ namespace HumidorClient.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Cigar> Cigar { get; set; }
+        public virtual DbSet<Cigar> Cigar { get; set; }
     }
 }

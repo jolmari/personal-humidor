@@ -9,6 +9,8 @@ using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services;
 using HumidorClient.Services.CigarServices;
+using HumidorClient.Services.Repositories;
+using HumidorClient.Services.Repositories.Interfaces;
 
 namespace HumidorClient
 {
@@ -58,8 +60,11 @@ namespace HumidorClient
             // Add custom services
             services.AddTransient<ISeedData, SeedData>();
             services.AddTransient<ICigarService, CigarService>();
-        }
 
+            // repositories
+            
+        }
+            
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ISeedData seedData)
         {
