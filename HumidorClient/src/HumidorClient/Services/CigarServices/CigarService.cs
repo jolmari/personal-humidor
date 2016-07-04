@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using HumidorClient.Data;
 using HumidorClient.Models;
 
@@ -11,6 +12,11 @@ namespace HumidorClient.Services.CigarServices
         public CigarService(ApplicationDbContext context)
         {
             this.context = context;
+        }
+
+        public Task<IEnumerable<Cigar>> GetCigars()
+        {
+            throw new System.NotImplementedException();
         }
 
         public async Task<int> AddNewCigar(Cigar cigar )

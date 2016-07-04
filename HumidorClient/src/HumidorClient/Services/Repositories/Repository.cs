@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,9 @@ namespace HumidorClient.Services.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
-        private DbContext context;
+        private IApplicationDbContext context;
         
-        public Repository(DbContext context)
+        public Repository(IApplicationDbContext context)
         {
             this.context = context;
         }

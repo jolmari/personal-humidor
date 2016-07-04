@@ -10,7 +10,7 @@
     "HumidorClient": "1.0.0-*",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "moq.netcore": "4.4.0-beta8", /* Needs aspnet-contrib nuget repo connection */
-    "System.Diagnostics.TraceSource": "4.0.0-rc2-24027" /* moq has a bug related to referring this package, remove after bug is fixed */
+    "System.Diagnostics.TraceSource": "4.0.0" /* moq has a bug related to referring this package, remove after bug is fixed */
   },
   "frameworks": {
     "netcoreapp1.0": {

@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services;
-using HumidorClient.Services.CigarServices;
 using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
+using HumidorClient.Services.UnitOfWorkService;
 
 namespace HumidorClient
 {
@@ -53,16 +53,19 @@ namespace HumidorClient
 
             services.AddMvc();
 
+            // Context
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // Add custom services
             services.AddTransient<ISeedData, SeedData>();
-            services.AddTransient<ICigarService, CigarService>();
-
-            // repositories
             
+            // data-access
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICigarRepository, CigarRepository>();
         }
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
