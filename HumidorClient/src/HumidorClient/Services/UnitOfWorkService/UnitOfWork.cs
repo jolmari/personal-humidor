@@ -16,8 +16,8 @@ namespace HumidorClient.Services.UnitOfWorkService
             CountryRepository = countryRepository;
         }
 
-        public ICigarRepository CigarRepository { get; }
-        public ICountryRepository CountryRepository { get; }
+        public virtual ICigarRepository CigarRepository { get; }
+        public virtual ICountryRepository CountryRepository { get; }
 
         public Task<int> SaveChangesAsync()
         {

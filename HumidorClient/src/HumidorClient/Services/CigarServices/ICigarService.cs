@@ -6,9 +6,10 @@ namespace HumidorClient.Services.CigarServices
 {
     public interface ICigarService
     {
-        Task<IEnumerable<Cigar>> GetCigars();
-        Task<int> AddNewCigar(Cigar cigar);
-        void EditCigar(Cigar cigar);
-        bool DeleteCigar(int id);
+        Task<List<Cigar>> GetCigars(string searchString, string selectedCountry);
+        Task<List<string>> GetCountries();
+        Task<int> AddNewCigar(Cigar item);
+        Task<int> EditCigar(Cigar item);
+        Task<int> RemoveCigar(Cigar item);
     }
 }

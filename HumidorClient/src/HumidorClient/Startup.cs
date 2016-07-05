@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services;
+using HumidorClient.Services.CigarServices;
 using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
 using HumidorClient.Services.UnitOfWorkService;
@@ -62,6 +63,7 @@ namespace HumidorClient
 
             // Add custom services
             services.AddTransient<ISeedData, SeedData>();
+            services.AddScoped<ICigarService, CigarService>();
             
             // data-access
             services.AddScoped<IUnitOfWork, UnitOfWork>();

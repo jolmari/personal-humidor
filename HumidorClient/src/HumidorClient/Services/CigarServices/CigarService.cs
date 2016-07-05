@@ -1,38 +1,50 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using HumidorClient.Data;
 using HumidorClient.Models;
+using HumidorClient.Services.Repositories;
+using HumidorClient.Services.UnitOfWorkService;
+using Microsoft.EntityFrameworkCore;
 
 namespace HumidorClient.Services.CigarServices
 {
     public class CigarService : ICigarService
     {
-        private readonly ApplicationDbContext context;
+        private readonly IUnitOfWork unitOfWork;
 
-        public CigarService(ApplicationDbContext context)
+        public CigarService(IUnitOfWork unitOfWork)
         {
-            this.context = context;
+            this.unitOfWork = unitOfWork;
         }
 
-        public Task<IEnumerable<Cigar>> GetCigars()
+        public async Task<List<string>> GetCountries()
         {
-            throw new System.NotImplementedException();
+            var countries = unitOfWork.CountryRepository.GetAllDistinct();
+            return await Task.Run(() => countries.ToList());
         }
 
-        public async Task<int> AddNewCigar(Cigar cigar )
+        public async Task<List<Cigar>> GetCigars(string searchString, string selectedCountry)
         {
-            context.Add(cigar);
-            return await context.SaveChangesAsync();
+            var cigars = unitOfWork.CigarRepository.GetFiltered(searchString, selectedCountry);
+            return await Task.Run(() => cigars.ToList());
         }
 
-        public void EditCigar(Cigar cigar)
+        public async Task<int> AddNewCigar(Cigar item )
         {
-            throw new System.NotImplementedException();
+            unitOfWork.CigarRepository.Add(item);
+            return await unitOfWork.SaveChangesAsync();
         }
 
-        public bool DeleteCigar(int id)
+        public async Task<int> EditCigar(Cigar item)
         {
-            throw new System.NotImplementedException();
+            unitOfWork.CigarRepository.Update(item);
+            return await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<int> RemoveCigar(Cigar item)
+        {
+            unitOfWork.CigarRepository.Delete(item);
+            return await unitOfWork.SaveChangesAsync();
         }
     }
 }
