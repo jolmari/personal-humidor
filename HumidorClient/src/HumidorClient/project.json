@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-HumidorClient-777bc4dc-8a6d-4eff-a746-7d6df639f228",
 
   "dependencies": {
@@ -26,7 +26,9 @@
     "Microsoft.Extensions.Logging": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "System.Linq": "4.1.0",
+    "Microsoft.EntityFrameworkCore": "1.0.0"
   },
 
   "tools": {

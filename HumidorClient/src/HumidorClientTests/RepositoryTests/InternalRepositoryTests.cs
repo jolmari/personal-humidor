@@ -4,11 +4,12 @@ using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
+using HumidorClientTests.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 
-namespace HumidorClientTests
+namespace HumidorClientTests.RepositoryTests
 {
     public class InternalRepositoryTests
     {
@@ -25,15 +26,8 @@ namespace HumidorClientTests
                 new Cigar {Id = 3}
             }.AsQueryable();
 
-            mockDbSet = new Mock<DbSet<Cigar>>();
-            mockDbSet.As<IQueryable<Cigar>>().Setup(x => x.Provider).Returns(data.Provider);
-            mockDbSet.As<IQueryable<Cigar>>().Setup(x => x.Expression).Returns(data.Expression);
-            mockDbSet.As<IQueryable<Cigar>>().Setup(x => x.ElementType).Returns(data.ElementType);
-            mockDbSet.As<IQueryable<Cigar>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator());
-
-            mockContext = new Mock<ApplicationDbContext>(new DbContextOptions<ApplicationDbContext>());
-            mockContext.Setup(x => x.Set<Cigar>()).Returns(mockDbSet.Object);
-
+            mockDbSet = DbContextHelpers.CreateMockDbSet(data);
+            mockContext = DbContextHelpers.CreateMockDbContext(mockDbSet.Object);
             repository = new Repository<Cigar>(mockContext.Object);
         }
 

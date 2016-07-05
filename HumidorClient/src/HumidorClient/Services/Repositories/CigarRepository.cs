@@ -1,6 +1,9 @@
-﻿using HumidorClient.Data;
+﻿using System;
+using System.Collections.Generic;
+using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services.Repositories.Interfaces;
+using System.Linq;
 
 namespace HumidorClient.Services.Repositories
 {
@@ -8,6 +11,23 @@ namespace HumidorClient.Services.Repositories
     {
         public CigarRepository(IApplicationDbContext context) : base(context)
         {
+        }
+
+        public IEnumerable<Cigar> GetFiltered(string nameFilter, string countryFilter)
+        {
+            var cigars = AsQueryable();
+
+            if (!string.IsNullOrEmpty(countryFilter))
+            {
+                cigars = cigars.Where(c => c.Country.Contains(countryFilter));
+            }
+
+            if (!string.IsNullOrEmpty(nameFilter))
+            {
+                cigars = cigars.Where(c => c.Name.Contains(nameFilter));
+            }
+
+            return cigars.AsEnumerable();
         }
     }
 }
