@@ -9,15 +9,17 @@ namespace HumidorClient.Services.UnitOfWorkService
     {
         private readonly IApplicationDbContext context;
 
-        public UnitOfWork(IApplicationDbContext context, ICigarRepository cigarRepository)
+        public UnitOfWork(IApplicationDbContext context, ICigarRepository cigarRepository, ICountryRepository countryRepository)
         {
             this.context = context;
             CigarRepository = cigarRepository;
+            CountryRepository = countryRepository;
         }
 
         public ICigarRepository CigarRepository { get; }
+        public ICountryRepository CountryRepository { get; }
 
-        public Task<int> SaveChanges()
+        public Task<int> SaveChangesAsync()
         {
             return context.SaveChangesAsync(default(CancellationToken));
         }

@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using HumidorClient.Data;
-using HumidorClient.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 

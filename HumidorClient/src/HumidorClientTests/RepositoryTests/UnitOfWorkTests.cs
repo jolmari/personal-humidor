@@ -12,19 +12,21 @@ namespace HumidorClientTests.RepositoryTests
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly Mock<IApplicationDbContext> mockContext;
-        private readonly Mock<CigarRepository> mockRepository;
+        private readonly Mock<CigarRepository> mockCigarRepository;
+        private readonly Mock<CountryRepository> mockCountryRepository;
 
         public UnitOfWorkTests()
         {
             mockContext = new Mock<IApplicationDbContext>();
-            mockRepository = new Mock<CigarRepository>(mockContext.Object);
-            unitOfWork = new UnitOfWork(mockContext.Object, mockRepository.Object);
+            mockCigarRepository = new Mock<CigarRepository>(mockContext.Object);
+            mockCountryRepository = new Mock<CountryRepository>(mockContext.Object);
+            unitOfWork = new UnitOfWork(mockContext.Object, mockCigarRepository.Object, mockCountryRepository.Object);
         }
 
         [Fact]
         public void SaveChangesShouldInvokeContextSaveChanges()
         {
-            unitOfWork.SaveChanges();
+            unitOfWork.SaveChangesAsync();
             mockContext.Verify(x => x.SaveChangesAsync(CancellationToken.None));
         }
     }
