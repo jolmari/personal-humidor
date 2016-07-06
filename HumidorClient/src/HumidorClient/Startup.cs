@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services;
+using HumidorClient.Services.CigarInventoryServices;
 using HumidorClient.Services.CigarServices;
 using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
@@ -64,11 +65,13 @@ namespace HumidorClient
             // Add custom services
             services.AddTransient<ISeedData, SeedData>();
             services.AddScoped<ICigarService, CigarService>();
+            services.AddScoped<ICigarInventoryService, CigarInventoryService>();
             
             // data-access
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICigarRepository, CigarRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
         }
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,6 +2,7 @@
 using System.Threading;
 using HumidorClient.Data;
 using HumidorClient.Services.Repositories;
+using HumidorClient.Services.Repositories.Interfaces;
 using HumidorClient.Services.UnitOfWorkService;
 using Moq;
 using Xunit;
@@ -12,15 +13,15 @@ namespace HumidorClientTests.RepositoryTests
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly Mock<IApplicationDbContext> mockContext;
-        private readonly Mock<CigarRepository> mockCigarRepository;
-        private readonly Mock<CountryRepository> mockCountryRepository;
 
         public UnitOfWorkTests()
         {
             mockContext = new Mock<IApplicationDbContext>();
-            mockCigarRepository = new Mock<CigarRepository>(mockContext.Object);
-            mockCountryRepository = new Mock<CountryRepository>(mockContext.Object);
-            unitOfWork = new UnitOfWork(mockContext.Object, mockCigarRepository.Object, mockCountryRepository.Object);
+            var mockCigarRepository = new Mock<ICigarRepository>();
+            var mockCountryRepository = new Mock<ICountryRepository>();
+            var mockInventoryRepository = new Mock<IInventoryItemRepository>();
+            unitOfWork = new UnitOfWork(mockContext.Object, mockCigarRepository.Object, 
+                mockCountryRepository.Object, mockInventoryRepository.Object);
         }
 
         [Fact]
