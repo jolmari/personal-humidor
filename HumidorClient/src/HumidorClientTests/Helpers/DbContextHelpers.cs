@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using HumidorClient.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Extensions.Internal;
 using Moq;
+using System.Collections.Generic;
 
 namespace HumidorClientTests.Helpers
 {
@@ -10,7 +12,15 @@ namespace HumidorClientTests.Helpers
         public static Mock<DbSet<TEntity>> CreateMockDbSet<TEntity>(IQueryable<TEntity> data) where TEntity : class
         {
             var mockDbSet = new Mock<DbSet<TEntity>>();
-            mockDbSet.As<IQueryable<TEntity>>().Setup(x => x.Provider).Returns(data.Provider);
+
+            mockDbSet.As<IAsyncEnumerable<TEntity>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(new TestAsyncEnumerator<TEntity>(data.GetEnumerator()));
+
+            mockDbSet.As<IQueryable<TEntity>>()
+                .Setup(m => m.Provider)
+                .Returns(new TestAsyncQueryProvider<TEntity>(data.Provider));
+
             mockDbSet.As<IQueryable<TEntity>>().Setup(x => x.Expression).Returns(data.Expression);
             mockDbSet.As<IQueryable<TEntity>>().Setup(x => x.ElementType).Returns(data.ElementType);
             mockDbSet.As<IQueryable<TEntity>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator());
