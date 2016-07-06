@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HumidorClient.Data;
@@ -22,6 +23,11 @@ namespace HumidorClient.Services.Repositories
         protected IQueryable<TEntity> AsQueryable()
         {
             return DbSet.AsQueryable();
+        }
+
+        public IAsyncEnumerable<TEntity> GetAll()
+        {
+            return DbSet.ToAsyncEnumerable();
         }
 
         public async Task<TEntity> GetById(int id)

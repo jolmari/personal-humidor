@@ -32,6 +32,13 @@ namespace HumidorClientTests.RepositoryTests
         }
 
         [Fact]
+        public async void GetAllShouldReturnAllEntities()
+        {
+            var actual = await repository.GetAll().ToList();
+            Assert.Equal(3, actual.Count);
+        }
+
+        [Fact]
         public async void GetByIdShouldReturnEntityWithCorrectIdTest()
         {
             var actual = await repository.GetById(1);
