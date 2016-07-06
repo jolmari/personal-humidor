@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using HumidorClient.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Extensions.Internal;
 using Moq;
 using System.Collections.Generic;
 
@@ -27,9 +26,9 @@ namespace HumidorClientTests.Helpers
             return mockDbSet;
         }
 
-        public static Mock<ApplicationDbContext> CreateMockDbContext<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
+        public static Mock<IApplicationDbContext> CreateMockDbContext<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
         {
-            var mock = new Mock<ApplicationDbContext>(new DbContextOptions<ApplicationDbContext>());
+            var mock = new Mock<IApplicationDbContext>();
             mock.Setup(x => x.Set<TEntity>()).Returns(dbSet);
             return mock;
         }

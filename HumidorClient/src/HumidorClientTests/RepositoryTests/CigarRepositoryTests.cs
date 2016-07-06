@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
 using HumidorClientTests.Helpers;
-using Microsoft.EntityFrameworkCore;
-using Moq;
 using Xunit;
 
 namespace HumidorClientTests.RepositoryTests
@@ -14,8 +11,6 @@ namespace HumidorClientTests.RepositoryTests
     public class CigarRepositoryTests
     {
         private readonly ICigarRepository cigarRepository;
-        private readonly Mock<ApplicationDbContext> mockContext;
-        private readonly Mock<DbSet<Cigar>> mockDbSet;
 
         public CigarRepositoryTests()
         {
@@ -27,8 +22,8 @@ namespace HumidorClientTests.RepositoryTests
                 new Cigar {Id = 4, Name = "Temp3", Country = "Finland"}
             }.AsQueryable();
 
-            mockDbSet = DbContextHelpers.CreateMockDbSet(data);
-            mockContext = DbContextHelpers.CreateMockDbContext(mockDbSet.Object);
+            var mockDbSet = DbContextHelpers.CreateMockDbSet(data);
+            var mockContext = DbContextHelpers.CreateMockDbContext(mockDbSet.Object);
             cigarRepository = new CigarRepository(mockContext.Object);
         }
 

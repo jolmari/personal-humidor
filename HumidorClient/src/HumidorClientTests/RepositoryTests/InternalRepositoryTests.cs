@@ -13,7 +13,7 @@ namespace HumidorClientTests.RepositoryTests
 {
     public class InternalRepositoryTests
     {
-        private readonly Mock<ApplicationDbContext> mockContext;
+        private readonly Mock<IApplicationDbContext> mockContext;
         private readonly Mock<DbSet<Cigar>> mockDbSet;
         private readonly IRepository<Cigar> repository;
 

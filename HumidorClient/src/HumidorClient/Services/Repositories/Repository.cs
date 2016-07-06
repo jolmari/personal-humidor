@@ -18,19 +18,19 @@ namespace HumidorClient.Services.Repositories
             this.context = context;
         }
 
-        private DbSet<TEntity> DbSet => context.Set<TEntity>();
+        protected DbSet<TEntity> DbSet => context.Set<TEntity>();
 
         protected IQueryable<TEntity> AsQueryable()
         {
             return DbSet.AsQueryable();
         }
 
-        public IAsyncEnumerable<TEntity> GetAll()
+        public virtual IAsyncEnumerable<TEntity> GetAll()
         {
             return DbSet.ToAsyncEnumerable();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public virtual async Task<TEntity> GetById(int id)
         {
             return await DbSet.FirstOrDefaultAsync(i => i.Id == id);
         }

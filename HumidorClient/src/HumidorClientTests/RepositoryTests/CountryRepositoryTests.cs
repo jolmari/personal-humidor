@@ -4,9 +4,6 @@ using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
 using HumidorClientTests.Helpers;
 using System.Linq;
-using HumidorClient.Data;
-using Microsoft.EntityFrameworkCore;
-using Moq;
 using Xunit;
 
 namespace HumidorClientTests.RepositoryTests
@@ -14,9 +11,7 @@ namespace HumidorClientTests.RepositoryTests
     public class CountryRepositoryTests
     {
         private readonly ICountryRepository countryRepository;
-        private Mock<DbSet<Cigar>> mockDbSet;
-        private Mock<ApplicationDbContext> mockContext;
-        
+
         public CountryRepositoryTests()
         {
             var data = new List<Cigar>
@@ -26,8 +21,8 @@ namespace HumidorClientTests.RepositoryTests
                 new Cigar {Id = 3, Country = "Finland"}
             }.AsQueryable();
 
-            mockDbSet = DbContextHelpers.CreateMockDbSet(data);
-            mockContext = DbContextHelpers.CreateMockDbContext(mockDbSet.Object);
+            var mockDbSet = DbContextHelpers.CreateMockDbSet(data);
+            var mockContext = DbContextHelpers.CreateMockDbContext(mockDbSet.Object);
             countryRepository = new CountryRepository(mockContext.Object);
         }
 
