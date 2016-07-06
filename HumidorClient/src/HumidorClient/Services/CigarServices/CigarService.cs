@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using HumidorClient.Models;
-using HumidorClient.Services.Repositories;
 using HumidorClient.Services.UnitOfWorkService;
-using Microsoft.EntityFrameworkCore;
 
 namespace HumidorClient.Services.CigarServices
 {
@@ -20,7 +18,17 @@ namespace HumidorClient.Services.CigarServices
         public async Task<List<string>> GetCountries()
         {
             var countries = unitOfWork.CountryRepository.GetAllDistinct();
-            return await Task.Run(() => countries.ToList());
+            return await countries.ToList();
+        }
+
+        public async Task<Cigar> GetCigarById(int id)
+        {
+            return await unitOfWork.CigarRepository.GetById(id);
+        }
+
+        public async Task<bool> CigarExists(int id)
+        {
+            return await unitOfWork.CigarRepository.Exists(id);
         }
 
         public async Task<List<Cigar>> GetCigars(string searchString, string selectedCountry)

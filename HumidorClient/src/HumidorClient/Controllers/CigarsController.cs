@@ -13,39 +13,24 @@ namespace HumidorClient.Controllers
     public class CigarsController : Controller
     {
         private readonly ICigarService cigarService;
-        private readonly ApplicationDbContext _context;
-
-        public CigarsController(ICigarService cigarService, ApplicationDbContext context)
+        
+        public CigarsController(ICigarService cigarService)
         {
             this.cigarService = cigarService;
-            _context = context;
         }
 
         // GET: Cigars
         public async Task<IActionResult> Index(string selectedCountry, string searchString)
         {
-            // TODO: Direct data access sucks. Create service layer.
-            var countries = _context.Cigar.AsQueryable().Select(cig => cig.Country).Distinct();
-            var cigars = _context.Cigar.AsQueryable();
+            var cigars = await cigarService.GetCigars(searchString, selectedCountry);
+            var countries = await cigarService.GetCountries();
 
-            if (!string.IsNullOrEmpty(selectedCountry))
+            return View(new CountryViewModel
             {
-                cigars = cigars.Where(c => c.Country.Contains(selectedCountry));
-            }
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                cigars = cigars.Where(c => c.Name.Contains(searchString));
-            }
-
-            var viewModel = new CountryViewModel
-            {
-                Cigars = await cigars.ToListAsync(),
-                Countries = new SelectList(await countries.ToListAsync()),
+                Cigars = cigars,
+                Countries = new SelectList(countries),
                 SelectedCountry = selectedCountry
-            };
-
-            return View(viewModel);
+            });
         }
 
         // GET: Cigars/Details/5
@@ -56,7 +41,8 @@ namespace HumidorClient.Controllers
                 return NotFound();
             }
 
-            var cigar = await _context.Cigar.SingleOrDefaultAsync(m => m.Id == id);
+            var cigar = await cigarService.GetCigarById(id.Value);
+
             if (cigar == null)
             {
                 return NotFound();
@@ -94,11 +80,13 @@ namespace HumidorClient.Controllers
                 return NotFound();
             }
 
-            var cigar = await _context.Cigar.SingleOrDefaultAsync(m => m.Id == id);
+            var cigar = await cigarService.GetCigarById(id.Value);
+
             if (cigar == null)
             {
                 return NotFound();
             }
+
             return View(cigar);
         }
 
@@ -118,19 +106,16 @@ namespace HumidorClient.Controllers
             {
                 try
                 {
-                    _context.Update(cigar);
-                    await _context.SaveChangesAsync();
+                    await cigarService.EditCigar(cigar);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CigarExists(cigar.Id))
+                    if (!await cigarService.CigarExists(cigar.Id))
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+
+                    throw;
                 }
                 return RedirectToAction("Index");
             }
@@ -145,7 +130,7 @@ namespace HumidorClient.Controllers
                 return NotFound();
             }
 
-            var cigar = await _context.Cigar.SingleOrDefaultAsync(m => m.Id == id);
+            var cigar = await cigarService.GetCigarById(id.Value);
             if (cigar == null)
             {
                 return NotFound();
@@ -159,15 +144,9 @@ namespace HumidorClient.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cigar = await _context.Cigar.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Cigar.Remove(cigar);
-            await _context.SaveChangesAsync();
+            var cigar = await cigarService.GetCigarById(id);
+            await cigarService.RemoveCigar(cigar);
             return RedirectToAction("Index");
-        }
-
-        private bool CigarExists(int id)
-        {
-            return _context.Cigar.Any(e => e.Id == id);
         }
     }
 }

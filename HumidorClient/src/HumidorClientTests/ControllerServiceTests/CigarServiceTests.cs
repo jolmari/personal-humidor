@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using HumidorClient.Models;
 using HumidorClient.Services.CigarServices;
-using HumidorClient.Services.Repositories;
 using HumidorClient.Services.Repositories.Interfaces;
 using HumidorClient.Services.UnitOfWorkService;
 using Moq;
@@ -14,22 +14,25 @@ namespace HumidorClientTests.ControllerServiceTests
     {
         private readonly ICigarService cigarService;
         private readonly Mock<IUnitOfWork> mockUnitOfWork;
-        private Mock<ICigarRepository> mockCigarRepository;
-        private Mock<ICountryRepository> mockCountryRepository;
+        private readonly Mock<ICigarRepository> mockCigarRepository;
+        private readonly Mock<ICountryRepository> mockCountryRepository;
 
         public CigarServiceTests()
         {
             mockCigarRepository = new Mock<ICigarRepository>();
-            mockCigarRepository.Setup(x => x.GetFiltered(It.IsAny<string>(), It.IsAny<string>())).Returns(new List<Cigar>
+            mockCigarRepository.Setup(x => x.GetFiltered(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new List<Cigar>
             {
-                new Cigar(), new Cigar()
-            });
-
+                new Cigar(),
+                new Cigar()
+            }.ToAsyncEnumerable());
+            mockCigarRepository.Setup(x => x.Exists(It.IsAny<int>())).Returns(Task.FromResult(true));
+                                                                                                                                         ;
             mockCountryRepository = new Mock<ICountryRepository>();
             mockCountryRepository.Setup(x => x.GetAllDistinct()).Returns(new List<string>
             {
                 "test1", "test2"
-            });
+            }.ToAsyncEnumerable());
 
             mockUnitOfWork = new Mock<IUnitOfWork>();
             mockUnitOfWork.SetupGet(x => x.CigarRepository).Returns(mockCigarRepository.Object);
@@ -106,6 +109,28 @@ namespace HumidorClientTests.ControllerServiceTests
         {
             await cigarService.RemoveCigar(new Cigar());
             mockUnitOfWork.Verify(x => x.SaveChangesAsync());
+        }
+
+        [Fact]
+        public void GetCigarByIdShouldInvokeGetById()
+        {
+            cigarService.GetCigarById(It.IsAny<int>());
+            mockCigarRepository.Verify(x => x.GetById(It.IsAny<int>()));
+        }
+
+        [Fact]
+        public void CigarExistsShouldCallRepositoryExists()
+        {
+            cigarService.CigarExists(1);
+            mockCigarRepository.Verify(x => x.Exists(It.IsAny<int>()));
+        }
+
+        [Fact]
+        public async void CigarExistsShouldReturnRepositoryResult()
+        {
+            var actual = await cigarService.CigarExists(1);
+            var expected = await mockCigarRepository.Object.Exists(1);
+            Assert.Equal(expected, actual);
         }
     }
 }
