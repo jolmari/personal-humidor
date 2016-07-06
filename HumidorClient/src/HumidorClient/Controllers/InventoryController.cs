@@ -1,22 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using HumidorClient.Services.CigarInventoryServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumidorClient.Controllers
 {
     public class InventoryController : Controller
     {
-        // GET: /Inventory/
-        public IActionResult Index()
+        private readonly ICigarInventoryService inventoryService;
+
+        public InventoryController(ICigarInventoryService inventoryService)
         {
-            return View();
+            this.inventoryService = inventoryService;
         }
 
-        // GET: /Inventory/Welcome
-        public IActionResult Welcome(string name, int numtimes = 1)
+        // GET: /Inventory/
+        public async Task<IActionResult> Index()
         {
-            ViewData["message"] = $"Hello {name}";
-            ViewData["numtimes"] = numtimes;
-
-            return View();
+            var items = await inventoryService.GetInventory();
+            return View(items);
         }
     }
 }
