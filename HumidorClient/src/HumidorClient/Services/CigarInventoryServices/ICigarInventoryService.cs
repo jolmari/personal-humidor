@@ -6,6 +6,6 @@ namespace HumidorClient.Services.CigarInventoryServices
 {
     public interface ICigarInventoryService
     {
-        Task<List<Cigar>> GetInventory();
+        Task<List<InventoryItem>> GetInventory();
     }
 }

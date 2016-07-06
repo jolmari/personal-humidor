@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HumidorClient.Models;
 using HumidorClient.Services.UnitOfWorkService;
@@ -14,9 +15,9 @@ namespace HumidorClient.Services.CigarInventoryServices
             this.unitOfWork = unitOfWork;
         }
 
-        public Task<List<Cigar>> GetInventory()
+        public async Task<List<InventoryItem>> GetInventory()
         {
-            throw new System.NotImplementedException();
+            return await unitOfWork.InventoryItemRepository.GetAll().ToList();
         }
     }
 }
