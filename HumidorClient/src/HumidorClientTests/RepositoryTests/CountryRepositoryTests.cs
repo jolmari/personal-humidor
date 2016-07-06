@@ -32,10 +32,10 @@ namespace HumidorClientTests.RepositoryTests
         }
 
         [Fact]
-        public void GetAllDistinctShouldReturnOnlyDistinctCountries()
+        public async void GetAllDistinctShouldReturnOnlyDistinctCountries()
         {
             var results = countryRepository.GetAllDistinct();
-            Assert.Equal(2, results.Count());
+            Assert.Equal(2, await results.Count());
         }
     }
 }

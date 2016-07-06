@@ -32,17 +32,31 @@ namespace HumidorClientTests.RepositoryTests
         }
 
         [Fact]
-        public void GetByIdShouldReturnEntityWithCorrectIdTest()
+        public async void GetByIdShouldReturnEntityWithCorrectIdTest()
         {
-            var actual = repository.GetById(1);
+            var actual = await repository.GetById(1);
             Assert.Equal(1, actual.Id);
         }
 
         [Fact]
-        public void GetByIdShouldReturnNullWithIncorrectIdTest()
+        public async void GetByIdShouldReturnNullWithIncorrectIdTest()
         {
-            var actual = repository.GetById(10);
+            var actual = await repository.GetById(10);
             Assert.Null(actual);
+        }
+
+        [Fact]
+        public async void ExistsShouldReturnTrueWithExistingItem()
+        {
+            var actual = await repository.Exists(1);
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public async void ExistsShouldReturnFalseWithMissingItem()
+        {
+            var actual = await repository.Exists(10);
+            Assert.False(actual);
         }
 
         [Fact]

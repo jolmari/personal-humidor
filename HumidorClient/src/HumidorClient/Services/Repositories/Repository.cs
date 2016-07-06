@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using HumidorClient.Data;
 using HumidorClient.Models;
 using HumidorClient.Services.Repositories.Interfaces;
@@ -23,9 +24,14 @@ namespace HumidorClient.Services.Repositories
             return DbSet.AsQueryable();
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return DbSet.FirstOrDefault(i => i.Id == id);
+            return await DbSet.FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await DbSet.AnyAsync(i => i.Id == id);
         }
 
         public void Add(TEntity item)

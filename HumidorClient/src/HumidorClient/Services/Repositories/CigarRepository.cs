@@ -13,7 +13,7 @@ namespace HumidorClient.Services.Repositories
         {
         }
 
-        public IEnumerable<Cigar> GetFiltered(string nameFilter, string countryFilter)
+        public IAsyncEnumerable<Cigar> GetFiltered(string nameFilter, string countryFilter)
         {
             var cigars = AsQueryable();
 
@@ -27,7 +27,7 @@ namespace HumidorClient.Services.Repositories
                 cigars = cigars.Where(c => c.Name.Contains(nameFilter));
             }
 
-            return cigars.AsEnumerable();
+            return cigars.ToAsyncEnumerable();
         }
     }
 }

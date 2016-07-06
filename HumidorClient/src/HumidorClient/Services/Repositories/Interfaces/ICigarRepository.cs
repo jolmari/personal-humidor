@@ -5,6 +5,6 @@ namespace HumidorClient.Services.Repositories.Interfaces
 {
     public interface ICigarRepository : IRepository<Cigar>
     {
-        IEnumerable<Cigar> GetFiltered(string nameFilter = null, string countryFilter = null);
+        IAsyncEnumerable<Cigar> GetFiltered(string nameFilter = null, string countryFilter = null);
     }
 }

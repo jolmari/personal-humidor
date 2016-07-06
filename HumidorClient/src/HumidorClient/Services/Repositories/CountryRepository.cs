@@ -12,9 +12,10 @@ namespace HumidorClient.Services.Repositories
         {
         }
         
-        public IEnumerable<string> GetAllDistinct()
+        public IAsyncEnumerable<string> GetAllDistinct()
         {
-            return AsQueryable().Select(c => c.Country).Distinct().AsEnumerable();
+            var source = AsQueryable().Select(c => c.Country).Distinct();
+            return source.ToAsyncEnumerable();
         }
     }
 }

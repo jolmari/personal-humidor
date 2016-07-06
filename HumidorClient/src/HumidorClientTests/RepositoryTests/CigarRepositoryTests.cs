@@ -36,20 +36,20 @@ namespace HumidorClientTests.RepositoryTests
         [InlineData("Test", 2)]
         [InlineData("", 4)]
         [InlineData("NotAny", 0)]
-        public void GetFilteredWithNameFilterShouldReturnFilteredCigars(string nameFilter, int expectedResults)
+        public async void GetFilteredWithNameFilterShouldReturnFilteredCigars(string nameFilter, int expectedResults)
         {
             var results = cigarRepository.GetFiltered(nameFilter);
-            Assert.Equal(expectedResults, results.Count());
+            Assert.Equal(expectedResults, await results.Count());
         }
 
         [Theory]
         [InlineData("Finland", 2)]
         [InlineData("", 4)]
         [InlineData("NotAny", 0)]
-        public void GetFilteredWithCountryFilterShouldReturnFilteredCigars(string countryFilter, int expectedResults)
+        public async void GetFilteredWithCountryFilterShouldReturnFilteredCigars(string countryFilter, int expectedResults)
         {
             var results = cigarRepository.GetFiltered(countryFilter: countryFilter);
-            Assert.Equal(expectedResults, results.Count());
+            Assert.Equal(expectedResults, await results.Count());
         }
 
         [Theory]
@@ -57,11 +57,11 @@ namespace HumidorClientTests.RepositoryTests
         [InlineData("","Finland", 2)]
         [InlineData("Temp4","France", 1)]
         [InlineData("NotAny", "NotAny", 0)]
-        public void GetFilteredWithNameAndCountryFiltersShouldReturnFilteredCigars(string nameFilter,
+        public async void GetFilteredWithNameAndCountryFiltersShouldReturnFilteredCigars(string nameFilter,
             string countryFilter, int expectedResults)
         {
             var results = cigarRepository.GetFiltered(nameFilter, countryFilter);
-            Assert.Equal(expectedResults, results.Count());
+            Assert.Equal(expectedResults, await results.Count());
         }
     }
 }
