@@ -8,9 +8,10 @@ using HumidorClient.Data;
 namespace HumidorClient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160706103033_add-inventoryitem")]
+    partial class addinventoryitem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -95,10 +96,6 @@ namespace HumidorClient.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("CigarId");
-
-                    b.Property<DateTime>("PurchaseDate");
-
-                    b.Property<int>("Quantity");
 
                     b.HasKey("Id");
 
