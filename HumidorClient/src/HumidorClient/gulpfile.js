@@ -1,15 +1,18 @@
-﻿/// <binding Clean='clean' />
-"use strict";
+﻿"use strict";
 
 var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
-    uglify = require("gulp-uglify");
+    uglify = require("gulp-uglify"),
+    watch = require("gulp-watch"),
+    browserSync = require("browser-sync");
 
 var webroot = "./wwwroot/";
+var projectRoot = "./";
 
 var paths = {
+    html: projectRoot + "Views/**/*.cshtml",
     js: webroot + "js/**/*.js",
     minJs: webroot + "js/**/*.min.js",
     css: webroot + "css/**/*.css",
@@ -18,6 +21,7 @@ var paths = {
     concatCssDest: webroot + "css/site.min.css"
 };
 
+// Cleaning
 gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);
 });
@@ -28,6 +32,7 @@ gulp.task("clean:css", function (cb) {
 
 gulp.task("clean", ["clean:js", "clean:css"]);
 
+// Minifying
 gulp.task("min:js", function () {
     return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
         .pipe(concat(paths.concatJsDest))
@@ -43,3 +48,15 @@ gulp.task("min:css", function () {
 });
 
 gulp.task("min", ["min:js", "min:css"]);
+
+// Minify css + js and sync browser
+gulp.task("watch", function () {
+
+    browserSync.init({
+        proxy: "http://localhost:56293/"
+    });
+
+    gulp.watch(paths.js, ["min:js", browserSync.reload]);
+    gulp.watch(paths.css, ["min:css", browserSync.reload]);
+    gulp.watch(paths.html, [browserSync.reload]);
+});
