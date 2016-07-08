@@ -31,3 +31,5 @@ packages/
 *.css.map
 *.min.js
 
+# Client-side libraries
+[Ll]ib/

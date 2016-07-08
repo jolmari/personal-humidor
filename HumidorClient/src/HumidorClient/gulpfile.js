@@ -53,6 +53,7 @@ gulp.task("min", ["min:js", "min:css"]);
 gulp.task("watch", function () {
 
     browserSync.init({
+        //TODO: This has to be user-specific. Find a way to move it to some personal config file.
         proxy: "http://localhost:56293/"
     });
 
