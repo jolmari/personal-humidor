@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width"/>
     <title>@ViewBag.Title</title>
 
+    <base href="/" />
+
     <environment names="Development">
         <link rel="stylesheet" href="lib/materialize/dist/css/materialize.css" type="text/css"/>
         <link rel="stylesheet" href="css/site.css" type="text/css"/>
@@ -15,9 +17,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
               asp-fallback-href="lib/materialize/dist/css/materialize.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>>
-        <link rel="stylesheet" href="css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="css/site.min.css" asp-append-version="true"/>
     </environment>
-
+    
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
@@ -49,6 +51,28 @@
         <script src="js/site.min.js" asp-append-version="true"></script>
     </environment>
 
+    <!-- Temporary place, move to their respective environment tags -->
+    <script src="lib/npmlibs/es6-shim/es6-shim.js"></script>
+    <script src="lib/npmlibs/es6-promise/es6-promise.js"></script>
+    <script src="lib/npmlibs/systemjs/system-polyfills.src.js"></script>
+    <script src="lib/npmlibs/angular2/angular2-polyfills.js"></script>
+    <script src="lib/npmlibs/systemjs/system.src.js"></script>
+    <script src="lib/npmlibs/rxjs/Rx.js"></script>
+    <script src="lib/npmlibs/angular2/angular2.js"></script>
+    <script src="lib/npmlibs/angular2/router.js"></script>
+    <script src="lib/npmlibs/angular2/http.js"></script>
+
+    <script>
+        System.config({
+            packages: {
+                'app': { defaultExtension: 'js' },
+                'lib': { defaultExtension: 'js' },
+            }
+        });
+
+        System.import('app/boot')
+            .then(null, console.error.bind(console));
+    </script>
 </div>
 
 

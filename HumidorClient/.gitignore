@@ -33,3 +33,6 @@ packages/
 
 # Client-side libraries
 [Ll]ib/
+
+# Log files
+*.log
