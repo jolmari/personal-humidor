@@ -12,7 +12,7 @@ var projectPaths = {
     webroot: "./wwwroot/",
     projectRoot: "./",
     npmSrc: "./node_modules/",
-    npmLibs: "./wwwroot/lib/npmLibs/"
+    npmLibs: "./wwwroot/lib/npmlibs/"
 };
 
 var filePaths = {
@@ -67,30 +67,40 @@ gulp.task("watch", function () {
 });
 
 // Tasks to copy NPM dependencies to the frontend library folder
+gulp.task("copy-deps:@angular", function () {
+    return gulp.src(projectPaths.npmSrc + "/@angular/**/*.js", { base: projectPaths.npmSrc + "/@angular/" })
+         .pipe(gulp.dest(projectPaths.npmLibs + "/@angular/"));
+});
+
+gulp.task("copy-deps:rxjs", function () {
+    return gulp.src(projectPaths.npmSrc + "/rxjs/**/*.js", { base: projectPaths.npmSrc + "/rxjs/" })
+         .pipe(gulp.dest(projectPaths.npmLibs + "/rxjs/"));
+});
+
+gulp.task("copy-deps:in-memory-webapi", function () {
+    return gulp.src(projectPaths.npmSrc + "/angular2-in-memory-web-api/**/*.js", { base: projectPaths.npmSrc + "/angular2-in-memory-web-api/" })
+         .pipe(gulp.dest(projectPaths.npmLibs + "/angular2-in-memory-web-api/"));
+});
+
 gulp.task("copy-deps:systemjs", function() {
     return gulp.src(projectPaths.npmSrc + "/systemjs/dist/**/*.*", { base: projectPaths.npmSrc + "/systemjs/dist/" })
          .pipe(gulp.dest(projectPaths.npmLibs + "/systemjs/"));
 });
 
-gulp.task("copy-deps:angular2", function () {
-    return gulp.src(projectPaths.npmSrc + "/angular2/bundles/**/*.js", { base: projectPaths.npmSrc + "/angular2/bundles/" })
-         .pipe(gulp.dest(projectPaths.npmLibs + "/angular2/"));
+gulp.task("copy-deps:shim", function () {
+    return gulp.src(projectPaths.npmSrc + "/core-js/client/**/*.*", { base: projectPaths.npmSrc + "/core-js/client/" })
+         .pipe(gulp.dest(projectPaths.npmLibs + "/core-js/"));
 });
 
-gulp.task("copy-deps:es6-shim", function () {
-    return gulp.src(projectPaths.npmSrc + '/es6-shim/es6-sh*', { base: projectPaths.npmSrc + '/es6-shim/' })
-         .pipe(gulp.dest(projectPaths.npmLibs + '/es6-shim/'));
+gulp.task("copy-deps:zonejs", function () {
+    return gulp.src(projectPaths.npmSrc + "/zone.js/dist/**/*.*", { base: projectPaths.npmSrc + "/zone.js/dist/" })
+         .pipe(gulp.dest(projectPaths.npmLibs + "/zone.js/"));
 });
 
-gulp.task("copy-deps:es6-promise", function () {
-    return gulp.src(projectPaths.npmSrc + '/es6-promise/dist/**/*.*', { base: projectPaths.npmSrc + '/es6-promise/dist/' })
-         .pipe(gulp.dest(projectPaths.npmLibs + '/es6-promise/'));
+gulp.task("copy-deps:reflect-metadata", function () {
+    return gulp.src(projectPaths.npmSrc + "/reflect-metadata/*.js", { base: projectPaths.npmSrc + "/reflect-metadata/" })
+         .pipe(gulp.dest(projectPaths.npmLibs + "/reflect-metadata/"));
 });
 
-gulp.task("copy-deps:rxjs", function () {
-    return gulp.src(projectPaths.npmSrc + '/rxjs/bundles/*.*', { base: projectPaths.npmSrc + '/rxjs/bundles/' })
-         .pipe(gulp.dest(projectPaths.npmLibs + '/rxjs/'));
-});
-
-gulp.task("copy-deps", [
-    "copy-deps:systemjs", "copy-deps:angular2", "copy-deps:es6-shim", "copy-deps:es6-promise", "copy-deps:rxjs"]);
+gulp.task("copy-deps", [ "copy-deps:@angular", "copy-deps:rxjs", "copy-deps:in-memory-webapi",
+    "copy-deps:systemjs", "copy-deps:shim", "copy-deps:zonejs", "copy-deps:reflect-metadata"]);

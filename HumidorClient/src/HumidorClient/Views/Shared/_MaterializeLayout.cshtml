@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width"/>
     <title>@ViewBag.Title</title>
 
-    <base href="/" />
+    <base href="/"/>
 
     <environment names="Development">
         <link rel="stylesheet" href="lib/materialize/dist/css/materialize.css" type="text/css"/>
@@ -19,62 +19,28 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>>
         <link rel="stylesheet" href="css/site.min.css" asp-append-version="true"/>
     </environment>
-    
-    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
-</head>
-<body>
-
-<script>
-    $(document).ready(function() {
-        $(".dropdown-button").dropdown();
-    });
-</script>
-
-<div>
-    @RenderBody()
 
     <environment names="Development">
         <script src="lib/jquery/dist/jquery.js"></script>
         <script src="lib/materialize/dist/js/materialize.js"></script>
-        <script src="js/site.js" asp-append-version="true"></script>
+
+        <script src="lib/npmlibs/core-js/shim.js"></script>
+        <script src="lib/npmlibs/zone.js/zone.js"></script>
+        <script src="lib/npmlibs/reflect-metadata/Reflect.js"></script>
+        <script src="lib/npmlibs/systemjs/system.src.js"></script>
+
+        <script src="app/systemjs.config.js"></script>
+        <script>
+            System.import('app').catch(function(err){ console.error(err); });
+        </script>
     </environment>
 
-    <environment names="Staging,Production">
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"
-                asp-fallback-src="lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
-                asp-fallback-src="lib/materialize/dist/js/materialize.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="js/site.min.js" asp-append-version="true"></script>
-    </environment>
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+</head>
+<body>
 
-    <!-- Temporary place, move to their respective environment tags -->
-    <script src="lib/npmlibs/es6-shim/es6-shim.js"></script>
-    <script src="lib/npmlibs/es6-promise/es6-promise.js"></script>
-    <script src="lib/npmlibs/systemjs/system-polyfills.src.js"></script>
-    <script src="lib/npmlibs/angular2/angular2-polyfills.js"></script>
-    <script src="lib/npmlibs/systemjs/system.src.js"></script>
-    <script src="lib/npmlibs/rxjs/Rx.js"></script>
-    <script src="lib/npmlibs/angular2/angular2.js"></script>
-    <script src="lib/npmlibs/angular2/router.js"></script>
-    <script src="lib/npmlibs/angular2/http.js"></script>
-
-    <script>
-        System.config({
-            packages: {
-                'app': { defaultExtension: 'js' },
-                'lib': { defaultExtension: 'js' },
-            }
-        });
-
-        System.import('app/boot')
-            .then(null, console.error.bind(console));
-    </script>
+<div>
+    @RenderBody()
 </div>
-
-
 </body>
 </html>
