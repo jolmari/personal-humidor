@@ -6,6 +6,8 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "../wwwroot/app/"
-  }
+    "outDir": "../wwwroot/app/",
+    "watch": true
+  },
+  "compileOnSave": true
 }

@@ -1,4 +1,5 @@
-﻿"use strict";
+﻿/// <binding ProjectOpened='watch' />
+"use strict";
 
 var gulp = require("gulp"),
     rimraf = require("rimraf"),
@@ -16,33 +17,33 @@ var projectPaths = {
 };
 
 var filePaths = {
-    js: projectPaths.webroot + "js/**/*.js",
-    minJs: projectPaths.webroot + "js/**/*.min.js",
+    js: projectPaths.webroot + "app/**/*.js",
+    minJs: projectPaths.webroot + "app/**/*.min.js",
     css: projectPaths.webroot + "css/**/*.css",
     minCss: projectPaths.webroot + "css/**/*.min.css",
-    concatJsDest: projectPaths.webroot + "js/site.min.js",
+    //concatJsDest: projectPaths.webroot + "app/site.min.js",
     concatCssDest: projectPaths.webroot + "css/site.min.css",
     html: projectPaths.projectRoot + "Views/**/*.cshtml"
 };
 
 // Cleaning
-gulp.task("clean:js", function (cb) {
-    rimraf(filePaths.concatJsDest, cb);
-});
+//gulp.task("clean:js", function (cb) {
+//    rimraf(filePaths.concatJsDest, cb);
+//});
 
-gulp.task("clean:css", function (cb) {
-    rimraf(filePaths.concatCssDest, cb);
-});
+//gulp.task("clean:css", function (cb) {
+//    rimraf(filePaths.concatCssDest, cb);
+//});
 
-gulp.task("clean", ["clean:js", "clean:css"]);
+//gulp.task("clean", ["clean:js", "clean:css"]);
 
 // Minifying
-gulp.task("min:js", function () {
-    return gulp.src([filePaths.js, "!" + filePaths.minJs], { base: "." })
-        .pipe(concat(filePaths.concatJsDest))
-        .pipe(uglify())
-        .pipe(gulp.dest("."));
-});
+//gulp.task("min:js", function () {
+//    return gulp.src([filePaths.js, "!" + filePaths.minJs], { base: "." })
+//        //.pipe(concat(filePaths.concatJsDest))
+//        .pipe(uglify())
+//        .pipe(gulp.dest("."));
+//});
 
 gulp.task("min:css", function () {
     return gulp.src([filePaths.css, "!" + filePaths.minCss])
@@ -51,7 +52,7 @@ gulp.task("min:css", function () {
         .pipe(gulp.dest("."));
 });
 
-gulp.task("min", ["min:js", "min:css"]);
+//gulp.task("min", ["min:js", "min:css"]);
 
 // Minify css + js and sync browser
 gulp.task("watch", function () {
@@ -61,7 +62,7 @@ gulp.task("watch", function () {
         proxy: "http://localhost:56293/"
     });
 
-    gulp.watch(filePaths.js, ["min:js", browserSync.reload]);
+    gulp.watch(filePaths.js, [browserSync.reload]);
     gulp.watch(filePaths.css, ["min:css", browserSync.reload]);
     gulp.watch(filePaths.html, [browserSync.reload]);
 });

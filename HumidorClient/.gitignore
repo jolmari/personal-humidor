@@ -37,6 +37,7 @@ packages/
 # Client-side libraries and compiled files
 [Ll]ib/
 [Aa]pp/
+[Cc]ss/
 
 # Log files
 *.log
