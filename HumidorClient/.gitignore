@@ -31,8 +31,12 @@ packages/
 *.css.map
 *.min.js
 
-# Client-side libraries
+# Typings
+[Tt]ypings/
+
+# Client-side libraries and compiled files
 [Ll]ib/
+[Aa]pp/
 
 # Log files
 *.log
