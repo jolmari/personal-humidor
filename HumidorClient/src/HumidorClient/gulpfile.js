@@ -1,4 +1,4 @@
-﻿/// <binding ProjectOpened='watch' />
+﻿/// <binding AfterBuild='min:css' ProjectOpened='watch' />
 "use strict";
 
 var gulp = require("gulp"),
