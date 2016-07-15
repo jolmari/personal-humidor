@@ -114,7 +114,7 @@ gulp.task("clean:css",
 
 gulp.task("clean:js",
     function () {
-        return gulp.src(filePaths.js, { read: false })
+        return gulp.src([filePaths.js, "./wwwroot/app/**/"], { read: false })
             .pipe(rimraf());
     });
 

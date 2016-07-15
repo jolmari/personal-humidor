@@ -138,27 +138,44 @@
 
     <div id="main">
         <div class="section first">
-            <h2>This application makes use of</h2>
+            <h2>Backend</h2>
             <ul>
                 <li>ASP.NET Core</li>
                 <li>Entity Framework Core</li>
-				<li>Data annotations</li>
+                <li>Data annotations</li>
                 <li>Azure Deployment</li>
                 <li>Azure SQL Database</li>
                 <li>Application Insights</li>
                 <li>Code-first database migrations</li>
             </ul>
-			<h2>This stuff is still pending</h2>
+            <h2>Frontend</h2>
+            <ul>
+                <li>Angular2</li>
+                <li>Bower</li>
+                <li>NPM</li>
+                <li>Typescript</li>
+                <li>Gulp with BrowserSync</li>
+            </ul>
+            <h2>This stuff is still pending</h2>
             <ul>
                 <li><a href="https://azure.microsoft.com/en-us/documentation/articles/app-insights-analytics/">Analytics for Application Insights</a></li>
 				<li><a href="http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/ConfigureFiddler">Fiddler debugging support</a></li>
 			</ul>
         </div>
         <div class="section">
-            <h2>Remember this</h2>
+            <h2>Learned stuff</h2>
             <ul>
-                <li><a href="https://msdn.microsoft.com/en-us/data/jj591621.aspx?f=255&MSPPError=-2147217396">EF Code first migration</a></li>
-            </ul>
+                <li>
+                    <p><b>EF Migration</b></p>
+                    <a href="https://msdn.microsoft.com/en-us/data/jj591621.aspx?f=255&MSPPError=-2147217396">EF Code first migration</a>
+                </li>
+                <li>
+                    <p><b>Typescript problems</b>
+                    </p>
+                    <p>Typescript compilation failure can happen when ex. bower or ts files are copied to the /lib folder. Make sure that gulp's vendor library copy tasks only copy JS files.</p>
+                    <p>Typescript & VS2015 support for tsconfig.json is still broken in some places. Ts won't compile when watch: true is on.</p>
+                </li>
+                </ul>
         </div>
         <div class="section">
             <h2>Overview</h2>
