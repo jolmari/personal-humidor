@@ -1,22 +1,33 @@
-﻿import { Component, Input } from "@angular/core";
+﻿import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+import { CigarService } from "../services/cigar.service";
 import { Cigar } from "../models/cigar";
 
 @Component({
     selector: "cigar-detail",
-    template: `
-    <div *ngIf="cigar">
-        <h2>{{cigar.name}} details!</h2>
-        <div><label>id:</label>{{cigar.id}}</div>
-        <div><label>name:</label>{{cigar.name}}</div>
-        <div>
-            <label>Name: </label>
-            <input [(ngModel)]="cigar.name" placeholder="Name" />
-        </div>
-    </div>
-    `
+    templateUrl: "views/cigar-detail-component.html"
 })
 
-export class CigarDetailComponent {
-    @Input()
+export class CigarDetailComponent implements OnInit, OnDestroy{
     cigar: Cigar;
+    subscription : any;
+
+    constructor(private cigarService: CigarService, private route: ActivatedRoute) {}
+
+    ngOnInit(): void {
+        this.subscription =
+            this.route.params.subscribe((params: any) => {
+                let id = +params["id"]; // + operator does a type conversion from string to int
+                this.cigarService.getCigar(id).then((cigar:Cigar) => this.cigar = cigar);
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
+
+    goBack(): void {
+        window.history.back();
+    }
 }

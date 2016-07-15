@@ -6,16 +6,7 @@ import {CigarService} from "../services/cigar.service";
 
 @Component({
     selector: "my-cigars",
-    template: `
-        <h1>{{title}}</h1>
-        <h2>Cigars</h2>
-        <ul class="cigars">
-            <li *ngFor="let cigar of cigars" (click)="onSelect(cigar)" [class.selected]="cigar === selectedCigar">
-                <span class="badge">{{cigar.id}}</span>{{cigar.name}}
-            </li>
-        </ul>
-        <cigar-detail [cigar]="selectedCigar"></cigar-detail>
-    `,
+    templateUrl: "views/cigars-component.html",
     directives: [CigarDetailComponent]
 })
 

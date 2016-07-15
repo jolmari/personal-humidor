@@ -1,0 +1,8 @@
+<h3>Top cigars</h3>
+<div class="grid">
+    <div *ngFor="let cigar of cigars" (click)="goToDetail(cigar)">
+        <div class="module cigar">
+            <h4>{{cigar.name}}</h4>
+        </div>
+    </div>
+</div>

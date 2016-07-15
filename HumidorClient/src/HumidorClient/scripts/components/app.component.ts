@@ -1,14 +1,19 @@
 import { Component } from "@angular/core";
+import { ROUTER_DIRECTIVES } from "@angular/router";
+
 import { CigarService } from "../services/cigar.service";
-import { CigarsComponent } from "./cigars.component";
 
 @Component({
     selector: "my-app",
     template: `
         <h1>{{title}}</h1>
-        <my-cigars></my-cigars>
+        <div>
+            <a [routerLink]="['/dashboard']">Dashboard</a>
+            <a [routerLink]="['/cigars']">Cigars</a>
+            <router-outlet></router-outlet>
+        </div>
     `,
-    directives: [CigarsComponent],
+    directives: [ROUTER_DIRECTIVES],
     providers: [CigarService]
 })
 
