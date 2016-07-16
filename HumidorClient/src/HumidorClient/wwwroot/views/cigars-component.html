@@ -5,4 +5,7 @@
         <span class="badge">{{cigar.id}}</span>{{cigar.name}}
     </li>
 </ul>
-<cigar-detail [cigar]="selectedCigar"></cigar-detail>
+<div *ngIf="selectedCigar">
+    <h2>{{selectedCigar.name | uppercase}} is stored in the humidor.</h2>
+    <button (click)="goToDetail()">View details</button>
+</div>

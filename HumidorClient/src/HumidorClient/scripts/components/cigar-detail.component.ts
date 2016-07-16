@@ -9,7 +9,7 @@ import { Cigar } from "../models/cigar";
     templateUrl: "views/cigar-detail-component.html"
 })
 
-export class CigarDetailComponent implements OnInit, OnDestroy{
+export class CigarDetailComponent implements OnInit, OnDestroy {
     cigar: Cigar;
     subscription : any;
 
@@ -18,7 +18,7 @@ export class CigarDetailComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
         this.subscription =
             this.route.params.subscribe((params: any) => {
-                let id = +params["id"]; // + operator does a type conversion from string to int
+                const id:number = +params["id"]; // + operator does a type conversion from string to int
                 this.cigarService.getCigar(id).then((cigar:Cigar) => this.cigar = cigar);
             });
     }

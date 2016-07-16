@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
     }
 
     goToDetail(cigar: Cigar):void {
-        let link = ["/details", cigar.id];
+        const link:any = ["/details", cigar.id];
         this.router.navigate(link);
     }
 }
