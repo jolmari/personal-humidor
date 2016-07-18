@@ -106,7 +106,7 @@ namespace HumidorClient
 
                 if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path))
                 {
-                    context.Request.Path = "/index.html"; // Redirect to angular main page
+                    context.Request.Path = "/Inventory"; // Redirect to angular main page
                     await next();
                 }
             });

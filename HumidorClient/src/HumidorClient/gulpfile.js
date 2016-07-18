@@ -23,7 +23,7 @@ var filePaths = {
     css: projectPaths.webroot + "css/**/*.css",
     concatMinCssDest: projectPaths.webroot + "css/site.min.css",
     concatCssDest: projectPaths.webroot + "css/site.css",
-    html: projectPaths.projectRoot + "Views/**/*.cshtml",
+    html: [projectPaths.projectRoot + "Views/**/*.cshtml", projectPaths.webroot + "views/**/*.html"],
     scss: projectPaths.projectRoot + "Styles/**/*.scss",
     scssMain: projectPaths.projectRoot + "Styles/site.scss"
 };

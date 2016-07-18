@@ -1,4 +1,4 @@
-<div *ngIf="cigar">
+<div id="cigar-details" *ngIf="cigar">
     <h2>{{cigar.name}} details!</h2>
     <div><label>id:</label>{{cigar.id}}</div>
     <div><label>name:</label>{{cigar.name}}</div>
@@ -7,4 +7,5 @@
         <input [(ngModel)]="cigar.name" placeholder="Name"/>
     </div>
     <button (click)="goBack()">Back</button>
+    <button (click)="save()">Save</button>
 </div>

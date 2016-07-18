@@ -3,9 +3,15 @@
 <ul class="cigars">
     <li *ngFor="let cigar of cigars" (click)="onSelect(cigar)" [class.selected]="cigar === selectedCigar">
         <span class="badge">{{cigar.id}}</span>{{cigar.name}}
+        <button class="delete-button" (click)="deleteCigar(cigar, $event)">Delete</button>
     </li>
 </ul>
 <div *ngIf="selectedCigar">
     <h2>{{selectedCigar.name | uppercase}} is stored in the humidor.</h2>
     <button (click)="goToDetail()">View details</button>
+</div>
+<div class="error" *ngIf="error">{{error}}</div>
+<button (click)="addCigar()">Add new Cigar</button>
+<div *ngIf="addingCigar">
+    <cigar-detail (close)="close($event)"></cigar-detail>
 </div>
