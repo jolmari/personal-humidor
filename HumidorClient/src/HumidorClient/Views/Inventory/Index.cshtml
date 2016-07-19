@@ -4,48 +4,37 @@
     ViewData["Title"] = "Cigar Catalogue";
 }
 
-<nav>
-    <div class="nav-wrapper">
-        <a asp-controller="Home" asp-action="Index" class="navbar-brand left">Humidor-Boss</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Cigars</a></li>
-            <li><a asp-controller="Home" asp-action="About">About</a></li>
-            <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-        </ul>
+<header>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a asp-controller="Inventory" asp-action="Index">Inventory</a></li>
+        <li class="divider"></li>
+        <li><a asp-controller="Cigars" asp-action="Index">Admin</a></li>
+    </ul>
+
+    <div class="navbar">
+        <nav class="brown darken-2" role="navigation">
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Cigars</a></li>
+                    <li><a asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</nav>
+</header>
 
-<ul id="dropdown1" class="dropdown-content">
-    <li><a asp-controller="Inventory" asp-action="Index">Inventory</a></li>
-    <li class="divider"></li>
-    <li><a asp-controller="Cigars" asp-action="Index">Admin</a></li>
-</ul>
+<main>
 
-<div class="deep-orange lighten-2 z-depth-1">
-    <h2 class="grey-text text-lighten-5">
-        <strong>Current Catalogue of Cigars</strong>
-    </h2>
-    <h5 class="grey lighten-4 grey-text text-darken-1">
-        Here you can see your currently stored selection of cigars
-    </h5>
-</div>
+    <ul class="side-nav fixed brown">
+        <li><a href="#" class="brand-logo white-text">Humidor-Boss</a></li>
+        <li class="bold"><a href="#" class="white-text">Test1</a></li>
+        <li class="bold"><a href="#" class="white-text">Test2</a></li>
+        <li class="bold"><a href="#" class="white-text">Test3</a></li>
+        <li class="bold"><a href="#" class="white-text">Test4</a></li>
+    </ul>
 
-<div class="container">
-    <my-app>Loading...</my-app>
-    @*@foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col s4 m4 l2">
-                <div class="blue-grey white-text">
-                    This space for the image
-                </div>
-            </div>
-            <div class="col s8 m8 l4">
-                <h6>@Html.DisplayFor(modelItem => item.Cigar.Name)</h6>
-                <p>@Html.DisplayNameFor(model => model[0].Quantity): @Html.DisplayFor(modelItem => item.Quantity)</p>
-                <p>@Html.DisplayNameFor(model => model[0].PurchaseDate): @Html.DisplayFor(modelItem => item.Quantity)</p>
-                <a asp-controller="Cigars" asp-action="Details" asp-route-id="@item.Cigar.Id">Link to Details</a>
-            </div>
-        </div>
-    }*@
-</div>
+    <div class="container">
+        <my-app>Loading...</my-app>
+    </div>
+</main>

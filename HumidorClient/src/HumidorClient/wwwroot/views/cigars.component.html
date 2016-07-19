@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col s4">
+        <div class="error" *ngIf="error">{{error}}</div>
+        <button class="grey darken-1 waves-effect waves-light btn" (click)="addCigar()">Add new Cigar</button>
+        <div *ngIf="addingCigar">
+            <cigar-detail (close)="close($event)"></cigar-detail>
+        </div>    
+    </div>
+</div>
+
+<div class="divider grey lighten-1"></div>
+
+<div class="row">
+    <div *ngFor="let cigar of cigars" class="col s4">
+        <div class="card small brown lighten-1 z-depth-2">
+            <div class="card-content white-text">
+                <span class="card-title activator">{{cigar.name}}</span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title">Name: {{cigar.name}}</span>
+                <p><bold>ID: {{cigar.id}}</bold></p>
+                <p class="grey-text text-darken-1">Testestsetsettsetsetset</p>
+                <button class="grey waves-effect waves-light btn" (click)="goToDetail(cigar)">Details</button>
+                <button class="grey waves-effect waves-light btn" (click)="deleteCigar(cigar, $event)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

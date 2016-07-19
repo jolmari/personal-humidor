@@ -6,7 +6,6 @@ import { CigarService } from "../services/cigar.service";
 @Component({
     selector: "my-app",
     template: `
-        <h1>{{title}}</h1>
         <div>
             <a [routerLink]="['/dashboard']">Dashboard</a>
             <a [routerLink]="['/cigars']">Cigars</a>

@@ -6,7 +6,7 @@ import { CigarService } from "../services/cigar.service";
 
 @Component({
     selector: "my-dashboard",
-    templateUrl: "views/dashboard-component.html"
+    templateUrl: "views/dashboard.component.html"
 })
 
 export class DashboardComponent implements OnInit {

@@ -1,0 +1,34 @@
+/// <reference path="../_variables.scss" />
+
+body {
+	background-color: $main-background-color;
+    padding-top: 0 !important;
+}
+
+main,footer,header {
+    @media screen and (min-width: 992px) {
+        padding-left: $side-nav-width;
+    }
+}
+
+div.container {
+    width: 90%;
+}
+
+ul.side-nav {
+    width: $side-nav-width;
+}
+
+ul.side-nav li > a.logo {
+    text-align: center;
+    height: $logo-height;
+}
+
+ul.side-nav li {
+
+    a {
+        height: $side-nav-link-height;
+        line-height: $side-nav-link-height;
+    }
+
+}

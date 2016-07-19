@@ -7,15 +7,13 @@ import { CigarDetailComponent } from "./cigar-detail.component";
 
 @Component({
     selector: "my-cigars",
-    templateUrl: "views/cigars-component.html",
+    templateUrl: "views/cigars.component.html",
     directives: [ CigarDetailComponent ]
 })
 
 export class CigarsComponent implements OnInit {
-
-    title = "The contents of your Humidor";
+    
     cigars: Cigar[];
-    selectedCigar: Cigar;
     addingCigar: boolean = false;
     error: any;
 
@@ -32,7 +30,6 @@ export class CigarsComponent implements OnInit {
 
     addCigar():void {
         this.addingCigar = true;
-        this.selectedCigar = null;
     }
 
     deleteCigar(deletedCigar: Cigar, event: any): void {
@@ -51,13 +48,9 @@ export class CigarsComponent implements OnInit {
             this.getCigars();
         }
     }
-
-    onSelect(cigar: Cigar): void {
-        this.addingCigar = false;
-        this.selectedCigar = cigar;
-    }
-
-    goToDetail(): void {
-        this.router.navigate(["/details", this.selectedCigar.id]);
+    
+    goToDetail(cigar: Cigar): void {
+        const link: any = ["/details", cigar.id];
+        this.router.navigate(link);
     }
 }
