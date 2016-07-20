@@ -1,5 +1,9 @@
-<div>
-    <a [routerLink]="['/dashboard']">Dashboard</a>
-    <a [routerLink]="['/cigars']">Cigars</a>
+<ul class="side-nav fixed brown darken-2">
+    <li><a href="#" class="brand-logo white-text">Humidor-Boss</a></li>
+    <li><a class="white-text" [routerLink]="['/dashboard']">Dashboard</a></li>
+    <li><a class="white-text" [routerLink]="['/cigars']">Cigars</a></li>
+</ul>
+
+<div class="container main-content">
     <router-outlet></router-outlet>
 </div>
