@@ -5,13 +5,7 @@ import { CigarService } from "../services/cigar.service";
 
 @Component({
     selector: "my-app",
-    template: `
-        <div>
-            <a [routerLink]="['/dashboard']">Dashboard</a>
-            <a [routerLink]="['/cigars']">Cigars</a>
-            <router-outlet></router-outlet>
-        </div>
-    `,
+    templateUrl: "views/app.component.html",
     directives: [ROUTER_DIRECTIVES],
     providers: [CigarService]
 })

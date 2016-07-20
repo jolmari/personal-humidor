@@ -19,7 +19,7 @@
             <div class="card-reveal">
                 <span class="card-title">Name: {{cigar.name}}</span>
                 <p><bold>ID: {{cigar.id}}</bold></p>
-                <p class="grey-text text-darken-1">Testestsetsettsetsetset</p>
+                <p class="grey-text text-darken-1">{{cigar.description}}</p>
                 <button class="grey waves-effect waves-light btn" (click)="goToDetail(cigar)">Details</button>
                 <button class="grey waves-effect waves-light btn" (click)="deleteCigar(cigar, $event)">Delete</button>
             </div>
