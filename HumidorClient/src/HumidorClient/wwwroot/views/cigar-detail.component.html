@@ -1,0 +1,10 @@
+<div id="cigar-details" *ngIf="cigar">
+    <div><label>id:</label>{{cigar.id}}</div>
+    <div><label>name:</label>{{cigar.name}}</div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="cigar.name" placeholder="Name"/>
+    </div>
+    <button class="grey waves-effect waves-light btn" (click)="goBack()">Back</button>
+    <button class="grey waves-effect waves-light btn" (click)="save()">Save</button>
+</div>

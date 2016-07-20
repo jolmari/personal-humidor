@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -83,6 +84,7 @@ namespace HumidorClient
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
+            app.UseApplicationInsightsExceptionTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -94,21 +96,32 @@ namespace HumidorClient
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            
+            
+            app.UseIdentity();
+            
+            app.Use(async (context, next) =>
+            {
+                await next();
 
-            app.UseApplicationInsightsExceptionTelemetry();
+                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path))
+                {
+                    context.Request.Path = "/Inventory"; // Redirect to angular main page
+                    await next();
+                }
+            });
 
             app.UseStaticFiles();
-
-            app.UseIdentity();
+            app.UseMvcWithDefaultRoute();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
 
             seedData.InitializeDatabase();
         }

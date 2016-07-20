@@ -1,0 +1,16 @@
+/// <reference path="../_variables.scss" />
+
+body {
+	background-color: $main-background-color;
+    padding-top: 0 !important;
+}
+
+main,footer,header {
+    @media screen and (min-width: 992px) {
+        padding-left: $side-nav-width;
+    }
+}
+
+div.container {
+    width: 90%;
+}

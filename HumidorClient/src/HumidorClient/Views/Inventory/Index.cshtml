@@ -4,43 +4,28 @@
     ViewData["Title"] = "Cigar Catalogue";
 }
 
-<h2><strong>Current Catalogue of Cigars</strong></h2>
-<p>Here you can see your currently stored selection of cigars</p>
+<header>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a asp-controller="Inventory" asp-action="Index">Inventory</a></li>
+        <li class="divider"></li>
+        <li><a asp-controller="Cigars" asp-action="Index">Admin</a></li>
+    </ul>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Cigar.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].PurchaseDate)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    <a asp-controller="Cigars" asp-action="Details" asp-route-id="@item.Cigar.Id">@Html.DisplayFor(modelItem => item.Cigar.Name)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PurchaseDate)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="navbar">
+        <nav class="brown lighten-2" role="navigation">
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Cigars</a></li>
+                    <li><a asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div> 
+         <my-app>Loading...</my-app>
+    </div>    
+</main>
