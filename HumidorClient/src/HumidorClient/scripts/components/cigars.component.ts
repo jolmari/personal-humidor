@@ -12,7 +12,7 @@ import { CigarDetailComponent } from "./cigar-detail.component";
 })
 
 export class CigarsComponent implements OnInit {
-    
+
     cigars: Cigar[];
     addingCigar: boolean = false;
     error: any;

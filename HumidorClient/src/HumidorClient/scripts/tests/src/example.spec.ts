@@ -1,5 +1,5 @@
 describe("placeholder tests",
-() => {
-    it("true is true", () => expect(true).toEqual(true));
-    it("null does not equal undefined", () => expect(null).toEqual(undefined));
+    function() {
+        it("true is true", function() { expect(true).toEqual(true) });
+        it("null does not equal undefined", function() { expect(null).not.toEqual(undefined) });
 });

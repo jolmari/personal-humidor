@@ -1,7 +1,8 @@
-﻿/// <binding ProjectOpened='watch' />
+﻿/// <binding AfterBuild='karma' ProjectOpened='watch' />
 "use strict";
 
 var gulp = require("gulp"),
+    shell = require("gulp-shell"),
     sass = require("gulp-sass"),
     rimraf = require("gulp-rimraf"),
     concat = require("gulp-concat"),
@@ -124,4 +125,7 @@ gulp.task("clean:libs",
             .pipe(rimraf());
     });
 
-gulp.task("clean", ["clean:css", "clean:js","clean:libs"]);
+gulp.task("clean", ["clean:css", "clean:js", "clean:libs"]);
+
+// Karma tasks
+gulp.task("karma", shell.task('powershell -Command "./karma_run.ps1"'));

@@ -41,3 +41,6 @@ packages/
 
 # Log files
 *.log
+
+# Karma reports
+[Rr]eports/
