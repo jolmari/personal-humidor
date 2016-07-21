@@ -2,20 +2,57 @@
 // Generated on Wed Jul 20 2016 14:00:19 GMT+0300 (FLE Daylight Time)
 
 module.exports = function(config) {
-    config.set({
+
+    var dependencies = [
+        '@angular',
+        'rxjs',
+    ];
+
+    var configuration = {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '.',
+        basePath: './wwwroot',
 
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine', 'es6-shim'],
+        frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'wwwroot/app/tests/**/*.js'
+
+            // Polyfills.
+            //'lib/npmLibs/es6-shim/es6-shim.js',
+            'lib/npmlibs/reflect-metadata/Reflect.js',
+
+            // System.js for module loading
+            'lib/npmlibs/systemjs/system-polyfills.js',
+            'lib/npmlibs/systemjs/system.src.js',
+
+            // Zone.js dependencies
+            'lib/npmlibs/zone.js/zone.js',
+            'lib/npmlibs/zone.js/jasmine-patch.js',
+            'lib/npmlibs/zone.js/async-test.js',
+            'lib/npmlibs/zone.js/fake-async-test.js',
+
+            // RxJs.
+            { pattern: 'lib/npmlibs/rxjs/**/*.js', included: false, watched: false },
+            
+            // Karma
+            { pattern: 'config/karma-test-shim.js', included: true, watched: true },
+            
+            // paths loaded via module imports
+            // Angular itself
+            { pattern: 'lib/npmlibs/@angular/**/*.js', included: false, watched: true },
+            
+            // Our built application code
+            { pattern: 'app/**/*.js', included: false, watched: true },
+            
+            // paths loaded via Angular's component compiler
+            // (these paths need to be rewritten, see proxies section)
+            { pattern: 'views/**/*.html', included: false, watched: true },
+            { pattern: 'css/**/*.css', included: false, watched: true },
         ],
 
 
@@ -23,11 +60,16 @@ module.exports = function(config) {
         exclude: [
         ],
 
+        // proxied base paths
+        proxies: {
+            // required for component assests fetched by Angular's compiler
+            "/app/": "/base/app/"
+        },
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-    
+        
         },
 
 
@@ -38,14 +80,13 @@ module.exports = function(config) {
 
         plugins: [
             'karma-jasmine',
-            'karma-es6-shim',
-            'karma-phantomjs-launcher',
+            'karma-chrome-launcher',
             'karma-html-detailed-reporter'
         ],
 
         htmlDetailed: {
-            dir: "./Reports",
-            splitResults: false  
+            dir: "../Reports",
+            splitResults: false
         },
 
         // web server port
@@ -67,7 +108,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode
@@ -77,5 +118,7 @@ module.exports = function(config) {
         // Concurrency level
         // how many browser should be started simultaneous
         concurrency: Infinity
-    });
-}
+    };
+
+    config.set(configuration);
+};

@@ -1,4 +1,7 @@
-First iteration MVP:
+Web App implementation:
+- Angular 2 HTTP -> ASP.NET WebAPI connection
+
+Humidity implementation:
 - API to receive humidity data
 - UI that shows top 50 humidity measurements in a table
 - Python project that connects to the API and reads the sensor
