@@ -3,10 +3,12 @@ import { Router } from "@angular/router";
 
 import { Cigar } from "../models/cigar";
 import { CigarService } from "../services/cigar.service";
+import { CigarSearchComponent } from "./cigar-search.component";
 
 @Component({
     selector: "my-dashboard",
-    templateUrl: "views/dashboard.component.html"
+    templateUrl: "views/dashboard.component.html",
+    directives: [CigarSearchComponent ]
 })
 
 export class DashboardComponent implements OnInit {
