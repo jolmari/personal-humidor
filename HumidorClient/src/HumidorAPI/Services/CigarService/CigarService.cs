@@ -21,7 +21,7 @@ namespace HumidorAPI.Services.CigarService
         //    return await countries.ToList();
         //}
 
-        public async Task<Models.Cigar> GetCigarById(int id)
+        public async Task<Cigar> GetCigarById(int id)
         {
             return await unitOfWork.CigarRepository.GetById(id);
         }

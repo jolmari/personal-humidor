@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using HumidorAPI.Models;
+using HumidorAPI.Services.CigarService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumidorAPI.Controllers
@@ -9,18 +9,32 @@ namespace HumidorAPI.Controllers
     [Route("api/[controller]")]
     public class CigarsController : Controller
     {
-        // GET api/values
+        private readonly ICigarService cigarService;
+
+        public CigarsController(ICigarService cigarService)
+        {
+            this.cigarService = cigarService;
+        }
+
+        // GET api/cigars
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/cigars/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var item = await cigarService.GetCigarById(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return new ObjectResult(item);
         }
 
         // POST api/values
