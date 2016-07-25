@@ -1,3 +1,6 @@
+Metrics:
+- Use a JS chart library, ex. D3
+
 Web App implementation:
 - Angular 2 HTTP -> ASP.NET WebAPI connection
 - E2E testing with Protractor
