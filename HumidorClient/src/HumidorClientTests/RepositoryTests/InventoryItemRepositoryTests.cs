@@ -30,7 +30,7 @@ namespace HumidorClientTests.RepositoryTests
             repository = new InventoryItemRepository(mockContext.Object);
         }
 
-        [Fact]
+        [Fact(Skip = "The include method is not part of the IQueryableExtensions. Retry again when EF is released.")]
         public async void GetAllShouldReturnAllEntitiess()
         {
             var actual = await repository.GetAll().ToList();
