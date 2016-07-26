@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Threading;
 using System.Threading.Tasks;
 using HumidorAPI.Data;
 using HumidorAPI.Repositories.Interfaces;
@@ -24,9 +25,9 @@ namespace HumidorAPI.Services.UnitOfWork
         //public virtual ICountryRepository CountryRepository { get; }
         //public virtual IInventoryItemRepository InventoryItemRepository { get; }
 
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            return context.SaveChangesAsync(default(CancellationToken));
+            return await context.SaveChangesAsync(default(CancellationToken));
         }
     }
 }

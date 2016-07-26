@@ -74,12 +74,7 @@ namespace HumidorAPI
 
             app.UseApplicationInsightsRequestTelemetry();
             app.UseApplicationInsightsExceptionTelemetry();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            
             app.UseMvc();
             seedData.InitializeDatabase();
         }

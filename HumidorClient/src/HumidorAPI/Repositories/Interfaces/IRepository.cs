@@ -12,6 +12,6 @@ namespace HumidorAPI.Repositories.Interfaces
         Task<bool> Exists(int id);
         void Add(TEntity item);
         void Update(TEntity item);
-        void Delete(TEntity item);
+        void Delete(int id);
     }
 }

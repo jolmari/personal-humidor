@@ -50,8 +50,9 @@ namespace HumidorAPI.Repositories
             DbSet.Update(item);
         }
 
-        public void Delete(TEntity item)
+        public void Delete(int id)
         {
+            var item = DbSet.FirstOrDefault(i => i.Id == id);
             DbSet.Remove(item);
         }
         

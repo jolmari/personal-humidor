@@ -6,7 +6,8 @@
       "version": "1.0.0",
       "type": "platform"
     },
-    "HumidorAPI": "1.0.0", 
+    "FluentAssertions": "4.12.0",
+    "HumidorAPI": "1.0.0",
     "xunit": "2.2.0-beta2-build3300",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "moq.netcore": "4.4.0-beta8", /* Needs aspnet-contrib nuget repo connection */

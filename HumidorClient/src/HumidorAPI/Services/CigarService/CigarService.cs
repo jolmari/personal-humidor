@@ -31,6 +31,11 @@ namespace HumidorAPI.Services.CigarService
             return await unitOfWork.CigarRepository.Exists(id);
         }
 
+        public IAsyncEnumerable<Cigar> GetAllCigars()
+        {
+            return unitOfWork.CigarRepository.GetAll();
+        }
+
         public async Task<List<Cigar>> GetCigars(string searchString, string selectedCountry)
         {
             var cigars = unitOfWork.CigarRepository.GetFiltered(searchString, selectedCountry);
@@ -49,9 +54,9 @@ namespace HumidorAPI.Services.CigarService
             return await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<int> RemoveCigar(Cigar item)
+        public async Task<int> RemoveCigar(int id)
         {
-            unitOfWork.CigarRepository.Delete(item);
+            unitOfWork.CigarRepository.Delete(id);
             return await unitOfWork.SaveChangesAsync();
         }
     }

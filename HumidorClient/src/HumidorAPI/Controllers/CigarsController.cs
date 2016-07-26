@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HumidorAPI.Models;
 using HumidorAPI.Services.CigarService;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumidorAPI.Controllers
@@ -18,13 +21,14 @@ namespace HumidorAPI.Controllers
 
         // GET api/cigars
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var items = await cigarService.GetAllCigars().ToList();
+            return new ObjectResult(items);
         }
 
         // GET api/cigars/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCigar")]
         public async Task<IActionResult> Get(int id)
         {
             var item = await cigarService.GetCigarById(id);
@@ -37,22 +41,45 @@ namespace HumidorAPI.Controllers
             return new ObjectResult(item);
         }
 
-        // POST api/values
+        // POST api/cigars
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Create([FromBody] Cigar item)
         {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var id = await cigarService.AddNewCigar(item);
+            return CreatedAtRoute("GetCigar", new { id }, item);
         }
 
-        // PUT api/values/5
+        // PUT api/cigars/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Update(string id,[FromBody] Cigar item)
         {
+            if (item == null || item.Id != int.Parse(id))
+            {
+                return BadRequest();
+            }
+
+            if (!await cigarService.CigarExists(item.Id))
+            {
+                return NotFound();
+            }
+
+            await cigarService.EditCigar(item);
+            return NoContent();
         }
 
-        // DELETE api/values/5
+        // DELETE api/cigars/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await cigarService.RemoveCigar(id);
+            return NoContent();
         }
     }
 }

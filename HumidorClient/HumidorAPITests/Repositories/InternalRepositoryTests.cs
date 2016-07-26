@@ -16,10 +16,11 @@ namespace HumidorAPITests.RepositoryTests
         private readonly Mock<IApplicationDbContext> mockContext;
         private readonly Mock<DbSet<Cigar>> mockDbSet;
         private readonly IRepository<Cigar> repository;
+        private readonly IQueryable<Cigar> data;
 
         public InternalRepositoryTests()
         {
-            var data = new List<Cigar>
+            data = new List<Cigar>
             {
                 new Cigar {Id = 1},
                 new Cigar {Id = 2},
@@ -83,8 +84,18 @@ namespace HumidorAPITests.RepositoryTests
         [Fact]
         public void DeleteShouldInvokeDbSetDelete()
         {
-            repository.Delete(new Cigar {Id = 1});
-            mockDbSet.Verify(x => x.Remove(It.IsAny<Cigar>()));
+            var expected = data.First(x => x.Id == 1);
+
+            repository.Delete(1);
+
+            mockDbSet.Verify(x => x.Remove(expected));
+        }
+
+        [Fact]
+        public void DeleteNotExistingShouldNotThrowException()
+        {
+            repository.Delete(10);
+            mockDbSet.Verify(x => x.Remove(null));
         }
 
         [Fact]
