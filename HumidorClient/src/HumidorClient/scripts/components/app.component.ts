@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ROUTER_DIRECTIVES } from "@angular/router";
 
-import "../extensions/rxjs-extensions";
+import "../operators/rxjs-operators";
 import { CigarService } from "../services/cigar.service";
 
 @Component({

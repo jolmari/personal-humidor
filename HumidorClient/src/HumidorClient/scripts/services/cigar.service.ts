@@ -1,76 +1,77 @@
-import { Headers, Http } from "@angular/http";
 import { Injectable } from "@angular/core";
-import "rxjs/add/operator/toPromise";
+import { Headers, Http, Response } from "@angular/http";
 
 import { Cigar } from "../models/cigar";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class CigarService {
-    private cigarUrl = "app/cigars";
+    private cigarBaseUrl = "app/cigars";
+    private headers = new Headers({
+        "content-type": "application/json"
+    });
 
-    constructor(private http: Http) {}
+    constructor(private http: Http) { }
 
-    getCigars(): Promise<Cigar[]> {
-        return this.http.get(this.cigarUrl)
-            .toPromise()
-            .then((response: any) => response.json().data)
-            .catch(this.handleError);
+    getCigars(): Observable<Cigar[]> {
+        return this.getFromUrl(this.cigarBaseUrl);
     }
 
-    getCigar(id: number): any {
-        return Promise.resolve(this.getCigars()
-            .then((cigars: Cigar[]) => cigars.find((cigar: Cigar) => cigar.id === id)));
+    getCigar(id: number): Observable<Cigar> {
+        const url:string = `${this.cigarBaseUrl}/${id}`;
+        return this.getFromUrl(url);
     }
 
-    delete(cigar: Cigar): any {
-        const headers:Headers = new Headers({
-            "content-type": "application/json"
-        });
-
-        const url:string = `${this.cigarUrl}/${cigar.id}`;
-
-        return this.http
-            .delete(url, { headers: headers })
-            .toPromise()
-            .catch(this.handleError);
+    delete(cigar: Cigar): Observable<any> {
+        const url:string = `${this.cigarBaseUrl}/${cigar.id}`;
+        return this.deleteFromUrl(url);
     }
 
-    save(cigar: Cigar): Promise<Cigar> {
+    save(cigar: Cigar): Observable<Cigar> {
         if (cigar.id) {
-            return this.put(cigar);
+            const url: string = `${this.cigarBaseUrl}/${cigar.id}`;
+            return this.putToUrl(url, cigar);
         }
 
-        return this.post(cigar);
+        return this.postToUrl(this.cigarBaseUrl, cigar);
     }
 
-    private post(cigar: Cigar): Promise<Cigar> {
-        const headers:Headers = new Headers({
-            "content-type": "application/json"
-        });
-
+    private postToUrl(url:string, cigar:Cigar): Observable<Cigar> {
         return this.http
-            .post(this.cigarUrl, JSON.stringify(cigar), { headers: headers })
-            .toPromise()
-            .then((response:any) => response.json().data)
+            .post(url, JSON.stringify(cigar), { headers: this.headers })
+            .map(this.extractData)
             .catch(this.handleError);
     }
 
-    private put(cigar: Cigar): Promise<Cigar> {
-        const headers:Headers = new Headers({
-            "content-type": "application/json"
-        });
-
-        const url:string = `${this.cigarUrl}/${cigar.id}`;
-
+    private putToUrl(url:string, cigar: Cigar): Observable<Cigar> {
         return this.http
-            .put(url, JSON.stringify(cigar), { headers: headers })
-            .toPromise()
-            .then(() => cigar)
+            .put(url, JSON.stringify(cigar), { headers: this.headers })
             .catch(this.handleError);
     }
 
-    private handleError(error: any):Promise<any> {
-        console.error("An error occurred", error);
-        return Promise.reject(error.message || error);
+    private getFromUrl(url: string): Observable<any> {
+        return this.http
+            .get(url)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    private deleteFromUrl(url: string): Observable<any> {
+        return this.http
+            .delete(url, { headers: this.headers })
+            .catch(this.handleError);
+    }
+
+    private extractData(res: Response):any {
+        return res.json().data || { };
+    }
+
+    private handleError(error: any): Observable<any> {
+        const errorMsg:string = error.message
+            ? error.message
+            : error.status ? `${error.status} - ${error.message}` : "Server error";
+
+        console.error(errorMsg);
+        return Observable.throw(errorMsg);
     }
 }

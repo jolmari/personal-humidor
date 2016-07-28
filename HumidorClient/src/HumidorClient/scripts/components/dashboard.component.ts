@@ -13,15 +13,23 @@ import { CigarSearchComponent } from "./cigar-search.component";
 
 export class DashboardComponent implements OnInit {
     cigars: Cigar[] = [];
+    error: any;
 
     constructor(private router: Router, private cigarService: CigarService) {}
 
     ngOnInit(): any {
-        this.cigarService.getCigars().then((cigars: Cigar[]) => this.cigars = cigars.slice(1,5));
+        this.getTopFiveCigars();
     }
 
-    goToDetail(cigar: Cigar):void {
+    goToDetail(cigar: Cigar): void {
         const link:any = ["/details", cigar.id];
         this.router.navigate(link);
+    }
+
+    private getTopFiveCigars(): void {
+        this.cigarService.getCigars()
+            .subscribe(
+                (cigars: Cigar[]) => this.cigars = cigars.slice(1, 5),
+                (error:any) => this.error = error);
     }
 }

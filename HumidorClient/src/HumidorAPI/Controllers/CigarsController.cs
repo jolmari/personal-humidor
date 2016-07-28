@@ -65,6 +65,8 @@ namespace HumidorAPI.Controllers
                 return BadRequest();
             }
 
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+
             if (!await cigarService.CigarExists(item.Id))
             {
                 return NotFound();

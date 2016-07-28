@@ -24,8 +24,10 @@ export class CigarsComponent implements OnInit {
     }
 
     getCigars(): void {
-        // assign the value when the given promise is resolved
-        this.cigarService.getCigars().then((cigars: Cigar[]) => this.cigars = cigars);
+        this.cigarService.getCigars()
+            .subscribe(
+                (cigars: Cigar[]) => this.cigars = cigars,
+                (error:any) => this.error = error);
     }
 
     addCigar():void {
@@ -36,10 +38,9 @@ export class CigarsComponent implements OnInit {
         event.stopPropagation();
         this.cigarService
             .delete(deletedCigar)
-            .then((response: any) => {
-                this.cigars = this.cigars.filter((c: Cigar) => c !== deletedCigar);
-            })
-            .catch((error: any) => this.error = error);
+            .subscribe(
+                () => this.cigars = this.cigars.filter((c: Cigar) => c !== deletedCigar),
+                (error:any) => this.error = error);
     }
 
     close(savedCigar: Cigar):void {
@@ -48,7 +49,7 @@ export class CigarsComponent implements OnInit {
             this.getCigars();
         }
     }
-    
+
     goToDetail(cigar: Cigar): void {
         const link: any = ["/details", cigar.id];
         this.router.navigate(link);

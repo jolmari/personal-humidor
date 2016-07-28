@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild='karma' ProjectOpened='watch' />
+/// <binding ProjectOpened='watch' />
 "use strict";
 
 var gulp = require("gulp"),
