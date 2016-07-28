@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class CigarService {
-    private cigarBaseUrl = "app/cigars";
+    private cigarBaseUrl = "http://localhost:56069/api/cigars";
     private headers = new Headers({
         "content-type": "application/json"
     });
@@ -46,6 +46,7 @@ export class CigarService {
     private putToUrl(url:string, cigar: Cigar): Observable<Cigar> {
         return this.http
             .put(url, JSON.stringify(cigar), { headers: this.headers })
+            .map(this.extractData)
             .catch(this.handleError);
     }
 
