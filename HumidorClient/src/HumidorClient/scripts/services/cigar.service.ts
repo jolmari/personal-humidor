@@ -64,7 +64,7 @@ export class CigarService {
     }
 
     private extractData(res: Response):any {
-        return res.json().data || { };
+        return res.json() || { };
     }
 
     private handleError(error: any): Observable<any> {

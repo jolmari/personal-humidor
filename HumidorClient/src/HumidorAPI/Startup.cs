@@ -1,4 +1,5 @@
-﻿using HumidorAPI.Data;
+﻿using System;
+using HumidorAPI.Data;
 using HumidorAPI.Data.SeedData;
 using HumidorAPI.Models;
 using HumidorAPI.Repositories;
@@ -6,6 +7,7 @@ using HumidorAPI.Repositories.Interfaces;
 using HumidorAPI.Services.CigarService;
 using HumidorAPI.Services.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +56,23 @@ namespace HumidorAPI
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            AddCorsService(services);
+        }
+
+        private void AddCorsService(IServiceCollection services)
+        {
+            // TODO: allows everyone to connect to the API. Unsafe, restrict to only a trusted source.
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            corsBuilder.AllowCredentials();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", corsBuilder.Build());
+            });
         }
 
         private static void AddCustomServices(IServiceCollection services)
@@ -69,6 +88,8 @@ namespace HumidorAPI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
             ISeedData seedData)
         {
+            app.UseCors("AllowAll");
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -76,6 +97,7 @@ namespace HumidorAPI
             app.UseApplicationInsightsExceptionTelemetry();
             
             app.UseMvc();
+            
             seedData.InitializeDatabase();
         }
     }

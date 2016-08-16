@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { JSONP_PROVIDERS } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 
 import { WikipediaService } from "../../services/wikipedia/wikipedia.service";
 
@@ -20,11 +21,17 @@ import { WikipediaService } from "../../services/wikipedia/wikipedia.service";
 })
 
 export class WikipediaComponent {
-    items: Observable<string[]>;
 
     constructor(private wikipediaService: WikipediaService) { }
 
-    search(term: string):void {
-        this.items = this.wikipediaService.search(term);
+    private searchTermStream = new Subject<string>();
+
+    search(term: string): void {
+        this.searchTermStream.next(term);
     }
+
+    items: Observable<string[]> = this.searchTermStream
+        .debounceTime(300)
+        .distinctUntilChanged()
+        .switchMap((term:string) => this.wikipediaService.search(term));    
 }
