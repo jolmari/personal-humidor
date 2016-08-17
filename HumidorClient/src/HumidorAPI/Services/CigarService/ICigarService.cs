@@ -7,7 +7,7 @@ namespace HumidorAPI.Services.CigarService
     public interface ICigarService
     {
         IAsyncEnumerable<Cigar> GetAllCigars();
-        Task<List<Cigar>> GetCigars(string searchString, string selectedCountry);
+        IAsyncEnumerable<Cigar> SearchCigarsByName(string term);
         Task<Cigar> GetCigarById(int id);
         Task<bool> CigarExists(int id);
         Task<int> AddNewCigar(Cigar item);

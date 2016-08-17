@@ -14,13 +14,7 @@ namespace HumidorAPI.Services.CigarService
         {
             this.unitOfWork = unitOfWork;
         }
-
-        //public async Task<List<string>> GetCountries()
-        //{
-        //    var countries = unitOfWork.CountryRepository.GetAllDistinct();
-        //    return await countries.ToList();
-        //}
-
+        
         public async Task<Cigar> GetCigarById(int id)
         {
             return await unitOfWork.CigarRepository.GetById(id);
@@ -36,12 +30,11 @@ namespace HumidorAPI.Services.CigarService
             return unitOfWork.CigarRepository.GetAll();
         }
 
-        public async Task<List<Cigar>> GetCigars(string searchString, string selectedCountry)
+        public IAsyncEnumerable<Cigar> SearchCigarsByName(string term)
         {
-            var cigars = unitOfWork.CigarRepository.GetFiltered(searchString, selectedCountry);
-            return await cigars.ToList();
+            return unitOfWork.CigarRepository.GetFiltered(term);
         }
-
+        
         public async Task<int> AddNewCigar(Cigar item )
         {
             unitOfWork.CigarRepository.Add(item);

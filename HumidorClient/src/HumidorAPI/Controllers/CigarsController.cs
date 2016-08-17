@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using HumidorAPI.Models;
 using HumidorAPI.Services.CigarService;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumidorAPI.Controllers
@@ -21,9 +20,27 @@ namespace HumidorAPI.Controllers
 
         // GET api/cigars
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(string name = null)
         {
-            var items = await cigarService.GetAllCigars().ToList();
+            List<Cigar> items;
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                items = await cigarService.SearchCigarsByName(name).ToList();
+            }
+            else
+            {
+                items = await cigarService.GetAllCigars().ToList();
+            }
+            
+            return new ObjectResult(items);
+        }
+
+        // GET api/cigars?name=<name>
+        [HttpGet("{name}")]
+        public async Task<IActionResult> Search(string name)
+        {
+            var items = await cigarService.SearchCigarsByName(name).ToList();
             return new ObjectResult(items);
         }
 

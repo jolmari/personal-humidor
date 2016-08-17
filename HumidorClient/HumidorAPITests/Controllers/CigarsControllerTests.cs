@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using HumidorAPI.Controllers;
 using HumidorAPI.Models;
 using HumidorAPI.Services.CigarService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Moq;
 using Xunit;
 
@@ -56,6 +54,20 @@ namespace HumidorAPITests.Controllers
             mockCigarService.Setup(x => x.GetAllCigars()).Returns(expected);
 
             var actionResult = await controller.Get();
+
+            actionResult.Should().BeOfType<ObjectResult>()
+                .Which.Value.Should().BeAssignableTo<List<Cigar>>()
+                .Which.Should().BeEquivalentTo(await expected.ToList());
+        }
+
+        [Fact]
+        public async void GetWithNameQueryShouldReturnFilteredListOfCigars()
+        {
+            const string term = "sample";
+            var expected = GetTestCigars().Where(x => x.Name.Contains(term));
+            mockCigarService.Setup(x => x.SearchCigarsByName(term)).Returns(expected);
+
+            var actionResult = await controller.Get(term);
 
             actionResult.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeAssignableTo<List<Cigar>>()
@@ -178,9 +190,9 @@ namespace HumidorAPITests.Controllers
         {
             return new List<Cigar>
             {
-                new Cigar { Id = 1 },
-                new Cigar { Id = 2 },
-                new Cigar { Id = 3 }
+                new Cigar { Id = 1, Name = "Sample"},
+                new Cigar { Id = 2, Name = "Sample"},
+                new Cigar { Id = 3, Name = "Demo"}
             }.ToAsyncEnumerable();
         }
     }

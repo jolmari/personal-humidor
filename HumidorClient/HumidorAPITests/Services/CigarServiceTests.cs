@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using HumidorAPI.Models;
 using HumidorAPI.Repositories.Interfaces;
 using HumidorAPI.Services.CigarService;
@@ -15,16 +16,21 @@ namespace HumidorAPITests.Services
         private readonly ICigarService cigarService;
         private readonly Mock<IUnitOfWork> mockUnitOfWork;
         private readonly Mock<ICigarRepository> mockCigarRepository;
-        
+
+        private readonly List<Cigar> testData;
+
         public CigarServiceTests()
         {
+            testData = new List<Cigar>
+            {
+                new Cigar {Id=1, Name = "Sample Cigar 1"},
+                new Cigar {Id=2, Name = "Sample Cigar 2"},
+                new Cigar {Id=3, Name = "Demo Cigar"},
+            };
+
             mockCigarRepository = new Mock<ICigarRepository>();
             mockCigarRepository.Setup(x => x.GetFiltered(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new List<Cigar>
-            {
-                new Cigar(),
-                new Cigar()
-            }.ToAsyncEnumerable());
+                .Returns(testData.ToAsyncEnumerable());
             mockCigarRepository.Setup(x => x.Exists(It.IsAny<int>())).Returns(Task.FromResult(true));
             
             mockUnitOfWork = new Mock<IUnitOfWork>();
@@ -33,20 +39,6 @@ namespace HumidorAPITests.Services
             cigarService = new CigarService(mockUnitOfWork.Object);
         }
         
-        [Fact]
-        public void GetCigarsShouldInvokeGetFiltered()
-        {
-            cigarService.GetCigars(null,null);
-            mockCigarRepository.Verify(x => x.GetFiltered(null,null));
-        }
-
-        [Fact]
-        public async void GetCigarsShouldGetCigarsAsynchronically()
-        {
-            var result = await cigarService.GetCigars(null,null);
-            Assert.Equal(2, result.Count);
-        }
-
         [Fact]
         public void AddCigarShouldInvokeAdd()
         {
@@ -109,6 +101,16 @@ namespace HumidorAPITests.Services
             var actual = await cigarService.CigarExists(1);
             var expected = await mockCigarRepository.Object.Exists(1);
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public async void SearchCigarsByNameShouldReturnCigarsWithTermInName()
+        {
+            const string term = "Sample";
+            var expected = testData.Where(x => x.Name.Contains(term));
+
+            var actual = await cigarService.SearchCigarsByName(term).ToList();
+            actual.Should().Contain(expected);
         }
     }
 }
