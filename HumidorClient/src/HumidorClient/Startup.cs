@@ -1,19 +1,9 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using HumidorClient.Data;
-using HumidorClient.Models;
-using HumidorClient.Services;
-using HumidorClient.Services.CigarInventoryServices;
-using HumidorClient.Services.CigarServices;
-using HumidorClient.Services.Repositories;
-using HumidorClient.Services.Repositories.Interfaces;
-using HumidorClient.Services.UnitOfWorkService;
 
 namespace HumidorClient
 {
@@ -46,40 +36,12 @@ namespace HumidorClient
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
             services.AddMvc();
-
-            // Context
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-
-            // Add custom services
-            services.AddTransient<ISeedData, SeedData>();
-            services.AddScoped<ICigarService, CigarService>();
-            services.AddScoped<ICigarInventoryService, CigarInventoryService>();
-            
-            // data-access
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ICigarRepository, CigarRepository>();
-            services.AddScoped<ICountryRepository, CountryRepository>();
-            services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
         }
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ISeedData seedData)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            // TODO: Resolve how to enable fiddler.
-
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -94,11 +56,8 @@ namespace HumidorClient
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Shared/Error");
             }
-            
-            
-            app.UseIdentity();
             
             app.Use(async (context, next) =>
             {
@@ -106,24 +65,13 @@ namespace HumidorClient
 
                 if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path))
                 {
-                    context.Request.Path = "/Inventory"; // Redirect to angular main page
+                    context.Request.Path = "/Home"; // Redirect to angular main page
                     await next();
                 }
             });
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
-
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
-
-            seedData.InitializeDatabase();
         }
     }
 }
