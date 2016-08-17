@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 import { CigarSearchService } from "../services/cigar-search.service";
+import { CigarService } from "../services/cigar.service";
 import { Cigar } from "../models/cigar";
 
 @Component({
@@ -14,10 +15,12 @@ import { Cigar } from "../models/cigar";
 
 export class CigarSearchComponent implements OnInit {
     cigars: Observable<Cigar[]>;
-    searchSubject = new Subject<string>();
+    searchSubject = new BehaviorSubject<string>(" ");
 
     constructor(private cigarSearchService: CigarSearchService,
-        private router: Router) { }
+        private cigarService : CigarService,
+        private router: Router) {
+    }
 
     search(term: string) {
         this.searchSubject.next(term);
@@ -31,7 +34,7 @@ export class CigarSearchComponent implements OnInit {
             .switchMap(term => {
                 return term // only return latest, discard earlier HTTP requests
                     ? this.cigarSearchService.search(term)
-                    : Observable.of<Cigar[]>([]);
+                    : this.cigarService.getCigars();
             })
             .catch((error:any) => {
                 console.error(error);

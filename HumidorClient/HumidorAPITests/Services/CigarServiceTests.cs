@@ -112,5 +112,13 @@ namespace HumidorAPITests.Services
             var actual = await cigarService.SearchCigarsByName(term).ToList();
             actual.Should().Contain(expected);
         }
+
+        [Fact]
+        public async void SearchCigarsByEmptyNameShouldReturnAllCigars()
+        {
+            var expected = testData;
+            var actual = await cigarService.SearchCigarsByName("").ToList();
+            actual.Should().Contain(expected);
+        }
     }
 }
