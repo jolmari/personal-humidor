@@ -20,16 +20,19 @@ export class CigarDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.subscription =
-            this.route.params.subscribe((params: any) => {
-                if (params.id !== undefined) {
-                    this.navigated = true;
-                    const id: any = +params.id; // + operator does a type conversion from string to int
-                    this.cigarService.getCigar(id)
-                        .then((cigar: Cigar) => this.cigar = cigar);
-                } else {
-                    this.navigated = false;
-                    this.cigar = new Cigar();
-                }
+            this.route.params
+                .subscribe((params: any) => {
+                    if (params.id !== undefined) {
+                        this.navigated = true;
+                        const id: any = +params.id;
+                        this.cigarService.getCigar(id)
+                            .subscribe(
+                                (cigar: Cigar) => this.cigar = cigar,
+                                (error:any) => this.error = error);
+                    } else {
+                        this.navigated = false;
+                        this.cigar = new Cigar();
+                    }
             });
     }
 
@@ -40,11 +43,12 @@ export class CigarDetailComponent implements OnInit, OnDestroy {
     save():void {
         this.cigarService
             .save(this.cigar)
-            .then((cigar: Cigar) => {
-                this.cigar = cigar;
-                this.goBack(cigar);
-            })
-            .catch((error:any) => this.error = error);
+            .subscribe(
+                (cigar: Cigar) => {
+                    this.cigar = cigar;
+                    this.goBack(cigar);
+                },
+                (error: any) => this.error = error);
     }
 
     goBack(savedCigar: Cigar = null): void {
