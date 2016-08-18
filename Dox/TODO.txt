@@ -1,3 +1,24 @@
+Sikari-inventaario:
+1. Kaikkien listaaminen
+	* Nimi, Maa, Tyyppi, Tähdet
+2. Suodattaminen
+	* Nimi
+3. Lisääminen
+	* Stepeissä:
+		1 Nimi
+		1 Maa
+		1 Tyyppi
+		2 Haju
+		2 Maku
+		3 Kuva
+		4 Yhteenveto 
+4. Poistaminen
+5. Muokkaaminen
+6. Breadcrumbit
+	* Esim. Inventaario -> Lisäys -> 
+
+
+
 Metrics:
 - Use a JS chart library, ex. D3
 

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "typings install",
+    "postinstall": "typings install && gulp copy-deps && gulp clean:css && gulp clean:js",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
