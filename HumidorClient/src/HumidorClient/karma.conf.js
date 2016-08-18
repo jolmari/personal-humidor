@@ -24,27 +24,27 @@ module.exports = function(config) {
 
             // Polyfills.
             //'lib/npmLibs/es6-shim/es6-shim.js',
-            'lib/npmlibs/reflect-metadata/Reflect.js',
+            'lib/reflect-metadata/Reflect.js',
 
             // System.js for module loading
-            'lib/npmlibs/systemjs/system-polyfills.js',
-            'lib/npmlibs/systemjs/system.src.js',
+            'lib/systemjs/system-polyfills.js',
+            'lib/systemjs/system.src.js',
 
             // Zone.js dependencies
-            'lib/npmlibs/zone.js/zone.js',
-            'lib/npmlibs/zone.js/jasmine-patch.js',
-            'lib/npmlibs/zone.js/async-test.js',
-            'lib/npmlibs/zone.js/fake-async-test.js',
+            'lib/zone.js/zone.js',
+            'lib/zone.js/jasmine-patch.js',
+            'lib/zone.js/async-test.js',
+            'lib/zone.js/fake-async-test.js',
 
             // RxJs.
-            { pattern: 'lib/npmlibs/rxjs/**/*.js', included: false, watched: false },
+            { pattern: 'lib/rxjs/**/*.js', included: false, watched: false },
             
             // Karma
             { pattern: 'config/karma-test-shim.js', included: true, watched: true },
             
             // paths loaded via module imports
             // Angular itself
-            { pattern: 'lib/npmlibs/@angular/**/*.js', included: false, watched: true },
+            { pattern: 'lib/@angular/**/*.js', included: false, watched: true },
             
             // Our built application code
             { pattern: 'app/**/*.js', included: false, watched: true },

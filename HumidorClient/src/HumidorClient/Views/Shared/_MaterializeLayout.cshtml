@@ -10,29 +10,28 @@
 
     <environment names="Development">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="lib/materialize/dist/css/materialize.min.css" type="text/css"/>
-        <link rel="stylesheet" href="css/site.min.css" type="text/css"/>
+        <link rel="stylesheet" href="lib/materialize-css/css/materialize.css" type="text/css"/>
+        <link rel="stylesheet" href="css/site.css" type="text/css"/>
     </environment>
 
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
-              asp-fallback-href="lib/materialize/dist/css/materialize.min.css"
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"
+              asp-fallback-href="lib/materialize-css/css/materialize.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
         <link rel="stylesheet" href="css/site.min.css" asp-append-version="true"/>
     </environment>
 
     <environment names="Development">
-        <script src="lib/jquery/dist/jquery.js"></script>
-        <script src="lib/materialize/dist/js/materialize.js"></script>
-
-        <script src="lib/npmlibs/core-js/shim.js"></script>
-        <script src="lib/npmlibs/zone.js/zone.js"></script>
-        <script src="lib/npmlibs/reflect-metadata/Reflect.js"></script>
-        <script src="lib/npmlibs/systemjs/system.src.js"></script>
+        <script src="lib/jquery/jquery.min.js"></script>
+        <script src="lib/materialize-css/js/materialize.js"></script>
+        <script src="lib/core-js/shim.js"></script>
+        <script src="lib/zone.js/zone.js"></script>
+        <script src="lib/reflect-metadata/Reflect.js"></script>
+        <script src="lib/systemjs/system.src.js"></script>
 
         <script src="config/systemjs.config.js"></script>
         <script>
-            System.import('app').catch(function(err){ console.error(err); });
+            System.import('app').catch(function(err) { console.error(err); });
         </script>
     </environment>
 

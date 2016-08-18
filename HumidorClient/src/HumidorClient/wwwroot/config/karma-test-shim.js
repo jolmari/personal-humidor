@@ -31,8 +31,8 @@ System.config({
 System.config(
 {
     map: {
-        'rxjs': 'lib/npmlibs/rxjs',
-        '@angular': 'lib/npmlibs/@angular',
+        'rxjs': 'lib/rxjs',
+        '@angular': 'lib/@angular',
         'app': 'app'
     },
     packages: {
