@@ -13,6 +13,7 @@ export class CigarSearchService {
     search(term: string): Observable<Cigar[]> {
         return this.http
             .get(`${this.cigarBaseUrl}?name=${term}`)
-            .map((r: Response) => r.json() as Cigar[]);
+            .map((r: Response) => r.json() as Cigar[])
+            .share(); // Convert into hot observable to prevent double request
     }
 }

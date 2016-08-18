@@ -48,16 +48,32 @@ namespace HumidorAPITests.Controllers
         }
         
         [Fact]
-        public async void GetShouldReturnAListOfCigars()
+        public async void GetShouldReturnAListOfFiveCigarsByDefaultAmount()
         {
-            var expected = GetTestCigars();
-            mockCigarService.Setup(x => x.GetAllCigars()).Returns(expected);
+            mockCigarService.Setup(x => x.GetAllCigars()).Returns(GetTestCigars());
 
+            var expectedResult = GetTestCigars().Take(5);
             var actionResult = await controller.Get();
 
             actionResult.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeAssignableTo<List<Cigar>>()
-                .Which.Should().BeEquivalentTo(await expected.ToList());
+                .Which.Should().BeEquivalentTo(await expectedResult.ToList());
+        }
+
+        [Fact]
+        public async void GetShouldReturnAListOfCigarsWithAmountFromArgument()
+        {
+            const int amount = 3;
+
+            var expected = GetTestCigars();
+            mockCigarService.Setup(x => x.GetAllCigars()).Returns(expected);
+
+            var expectedResult = await expected.Take(amount).ToList();
+            var actionResult = await controller.Get(amount:amount);
+
+            actionResult.Should().BeOfType<ObjectResult>()
+                .Which.Value.Should().BeAssignableTo<List<Cigar>>()
+                .Which.Should().BeEquivalentTo(expectedResult);
         }
 
         [Fact]
@@ -192,7 +208,12 @@ namespace HumidorAPITests.Controllers
             {
                 new Cigar { Id = 1, Name = "Sample"},
                 new Cigar { Id = 2, Name = "Sample"},
-                new Cigar { Id = 3, Name = "Demo"}
+                new Cigar { Id = 3, Name = "Sample"},
+                new Cigar { Id = 4, Name = "Demo"},
+                new Cigar { Id = 5, Name = "Demo"},
+                new Cigar { Id = 6, Name = "Demo"},
+                new Cigar { Id = 7, Name = "Demo"},
+                new Cigar { Id = 8, Name = "Demo"}
             }.ToAsyncEnumerable();
         }
     }

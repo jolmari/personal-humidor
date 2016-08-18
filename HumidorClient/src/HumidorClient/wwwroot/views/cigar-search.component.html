@@ -6,7 +6,10 @@
             <li class="collection-header brown lighten-4 grey-text text-darken-4">
                 <h3>Top 5 cigars</h3>
             </li>
-            <li class="collection-item grey-text text-darken-1" *ngFor="let cigar of cigars | async" (click)="goToDetail(cigar)">
+            <li class="collection-item grey-text text-darken-1" *ngIf="!(cigars)?.length">
+                No results
+            </li>
+            <li class="collection-item grey-text text-darken-1" *ngFor="let cigar of cigars" (click)="goToDetail(cigar)">
                 {{cigar.name}}
             </li>
         </ul>

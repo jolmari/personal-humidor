@@ -20,30 +20,22 @@ namespace HumidorAPI.Controllers
 
         // GET api/cigars
         [HttpGet]
-        public async Task<IActionResult> Get(string name = null)
+        public async Task<IActionResult> Get(string name = null, int amount = 5)
         {
             List<Cigar> items;
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                items = await cigarService.SearchCigarsByName(name).ToList();
+                items = await cigarService.SearchCigarsByName(name).Take(amount).ToList();
             }
             else
             {
-                items = await cigarService.GetAllCigars().ToList();
+                items = await cigarService.GetAllCigars().Take(amount).ToList();
             }
             
             return new ObjectResult(items);
         }
-
-        // GET api/cigars?name=<name>
-        [HttpGet("{name}")]
-        public async Task<IActionResult> Search(string name)
-        {
-            var items = await cigarService.SearchCigarsByName(name).ToList();
-            return new ObjectResult(items);
-        }
-
+        
         // GET api/cigars/5
         [HttpGet("{id}", Name = "GetCigar")]
         public async Task<IActionResult> Get(int id)

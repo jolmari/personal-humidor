@@ -3,6 +3,7 @@ import { Headers, Http, Response } from "@angular/http";
 
 import { Cigar } from "../models/cigar";
 import { Observable } from "rxjs/Observable";
+import 'rxjs/add/observable/range';
 
 @Injectable()
 export class CigarService {
