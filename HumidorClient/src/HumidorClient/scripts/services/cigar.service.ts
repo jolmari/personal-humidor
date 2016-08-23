@@ -9,7 +9,7 @@ import 'rxjs/add/observable/range';
 export class CigarService {
     private cigarBaseUrl = "http://localhost:56069/api/cigars";
     private headers = new Headers({
-        "content-type": "application/json"
+        "Content-Type": "application/json"
     });
 
     constructor(private http: Http) { }
