@@ -1,10 +1,8 @@
 <div class="row">
     <div class="col s6">
-        <cigar-search></cigar-search>
+        <cigar-search (onSelected)="onSelected($event)"></cigar-search>
     </div>
-</div>
-<div class="row">
     <div class="col s6">
-        <wiki-search></wiki-search>
+        <cigar-details *ngIf="selectedCigar" [cigar]="selectedCigar" (close)="detailsClosed($event)"></cigar-details>
     </div>
 </div>

@@ -3,12 +3,12 @@ import { Router } from "@angular/router";
 
 import { Cigar } from "../models/cigar";
 import { CigarService } from "../services/cigar.service";
-import { CigarDetailComponent } from "./cigar-detail.component";
+import { CigarDetailsComponent } from "./cigar-details.component";
 
 @Component({
     selector: "my-cigars",
     templateUrl: "views/cigars.component.html",
-    directives: [ CigarDetailComponent ]
+    directives: [ CigarDetailsComponent ]
 })
 
 export class CigarsComponent implements OnInit {

@@ -1,15 +1,14 @@
 <div id="search-component">
-    <h4>Cigar search</h4>
-    <input #searchBox (keyup)="search(searchBox.value)"/>
     <div>
+        <div class="brown lighten-4 grey-text text-darken-4">
+            <h5>Humidor search</h5><input #searchBox (keyup)="search(searchBox.value)" />
+        </div>
+
         <ul class="collection with-header">
-            <li class="collection-header brown lighten-4 grey-text text-darken-4">
-                <h3>Top 5 cigars</h3>
-            </li>
             <li class="collection-item grey-text text-darken-1" *ngIf="!(cigars)?.length">
                 No results
             </li>
-            <li class="collection-item grey-text text-darken-1" *ngFor="let cigar of cigars" (click)="goToDetail(cigar)">
+            <li class="collection-item grey-text text-darken-1" *ngFor="let cigar of cigars" (click)="selectCigar(cigar)">
                 {{cigar.name}}
             </li>
         </ul>

@@ -1,0 +1,19 @@
+<div id="cigar-details">
+    <h4>Cigar information:</h4>
+    <div class="row">
+        <div class="input-field">
+            <input id="name" type="text" placeholder="Name" class="validate"
+                   [(ngModel)]="cigar.name" />
+            <label for="name">Name</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            <input id="country" type="text" placeholder="Country" class="validate"
+                   [(ngModel)]="cigar.country"/>
+            <label for="country">Country</label>
+        </div>
+    </div>
+    <button class="grey waves-effect waves-light btn" (click)="closePanel()">Close</button>
+    <button class="grey waves-effect waves-light btn" (click)="save()">Save</button>
+</div>

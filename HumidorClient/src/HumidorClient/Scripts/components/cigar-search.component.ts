@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -14,6 +14,8 @@ import { Cigar } from "../models/cigar";
 })
 
 export class CigarSearchComponent implements OnInit {
+    @Output() onSelected = new EventEmitter<Cigar>();
+
     cigars: Cigar[];
     private searchSubject = new BehaviorSubject<string>(" ");
 
@@ -32,11 +34,11 @@ export class CigarSearchComponent implements OnInit {
         });
     }
 
-    goToDetail(cigar: Cigar): void {
-        const link: any = ["/details", cigar.id];
-        this.router.navigate(link);
+    selectCigar(cigar: Cigar): void {
+        this.onSelected.emit(cigar);
+        console.info(`event:  ${cigar.name}`);
     }
-
+    
     private getCigarsFromSearchService(subject:BehaviorSubject<string>): Observable<Cigar[]> {
         return subject
             .asObservable() // -> observable

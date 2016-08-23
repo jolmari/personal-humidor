@@ -1,7 +1,7 @@
 import { provideRouter, RouterConfig } from "@angular/router";
 import { CigarsComponent } from "./components/cigars.component";
 import { DashboardComponent } from "./components/dashboard.component";
-import { CigarDetailComponent } from "./components/cigar-detail.component";
+import { CigarDetailsComponent } from "./components/cigar-details.component";
 
 const routes: RouterConfig = [
     {
@@ -19,7 +19,7 @@ const routes: RouterConfig = [
     },
     {
         path: "details/:id",
-        component: CigarDetailComponent
+        component: CigarDetailsComponent
     }
 ];
 
