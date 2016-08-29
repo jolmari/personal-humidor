@@ -17,7 +17,8 @@ Sikari-inventaario:
 6. Breadcrumbit
 	* Esim. Inventaario -> Lisäys -> 
 
-
+UI:
+- Angular2 material, remove materializecss to get rid of jquery dependency.
 
 Metrics:
 - Use a JS chart library, ex. D3

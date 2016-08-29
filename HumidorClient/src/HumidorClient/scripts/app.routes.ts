@@ -1,9 +1,11 @@
-import { provideRouter, RouterConfig } from "@angular/router";
+import { ModuleWithProviders } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+
 import { CigarsComponent } from "./components/cigars.component";
 import { DashboardComponent } from "./components/dashboard.component";
 import { CigarDetailsComponent } from "./components/cigar-details.component";
 
-const routes: RouterConfig = [
+const appRoutes: Routes = [
     {
         path: "",
         redirectTo: "/dashboard",
@@ -23,6 +25,7 @@ const routes: RouterConfig = [
     }
 ];
 
-export const appRouterProviders: RouterConfig[][] = [
-    provideRouter(routes)
+export const appRouteProviders: any = [
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
