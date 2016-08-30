@@ -12,6 +12,7 @@
 /// <reference path="app/main.js" />
 /// <reference path="app/models/cigar.js" />
 /// <reference path="app/models/cigar.spec.js" />
+/// <reference path="app/models/rating.js" />
 /// <reference path="app/modules/app.module.js" />
 /// <reference path="app/operators/rxjs-operators.js" />
 /// <reference path="app/services/cigar.service.js" />

@@ -10,7 +10,7 @@
             </li>
             <li class="collection-item grey-text text-darken-1" *ngFor="let cigar of cigars" (click)="selectCigar(cigar)">
                 {{cigar.name}}
-                <rating [max]="10"></rating>
+                <rating [rate]="3"></rating>
             </li>
         </ul>
     </div>

@@ -4,30 +4,36 @@
     selector: "rating",
     template: `
         <div class="rating-stars">
-            <template ngFor let-rating [ngForOf]="ratingRange">
-                <i class="material-icons">star</i>
+            <template ngFor let-starState [ngForOf]="starStates">
+                <i class="material-icons" *ngIf="starState.active">star</i>
             </template>
         </div>
     `
 })
 
 export class RatingComponent implements OnInit {
-    @Input() max:number;
-    private ratingRange: number[];
-
-    calculateMeanRating(meanFunction: (ratings:number[]) => number): number {
-        return meanFunction([1, 2, 3, 4]);
-    }
+    @Input() max: number = 5;
+    @Input() rate: number = 0;
+    private starStates: any;
 
     ngOnInit(): void {
-        this.ratingRange = ((range: number) => {
-            let resultArray: number[] = [];
+        this.starStates = this.updateRatings(this.max, this.rate);
+    }
 
-            for (let i = 1; i <= range; ++i) {
-                resultArray.push(i);
-            }
+    private updateRatings(max:number, rate:number):any {
+        const resultArray: any = [];
 
-            return resultArray;
-        })(this.max);
+        for (let i = 1; i <= max; ++i) {
+            resultArray.push({
+                value: i,
+                active: this.isStarActive(i, this.rate)
+            });
+        }
+
+        return resultArray;
+    }
+
+    private isStarActive(index:number, rate:number) {
+        return rate >= index;
     }
 }
