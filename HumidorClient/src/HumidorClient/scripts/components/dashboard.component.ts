@@ -9,8 +9,7 @@ import { CigarDetailsComponent } from "./cigar-details.component";
 @Component({
     selector: "my-dashboard",
     templateUrl: "views/dashboard.component.html",
-    directives: [CigarSearchComponent, CigarDetailsComponent],
-    providers: [CigarSearchService]
+    directives: [CigarSearchComponent, CigarDetailsComponent]
 })
 
 export class DashboardComponent {
@@ -19,16 +18,10 @@ export class DashboardComponent {
     constructor(private router: Router, private cigarSearchService: CigarSearchService) { }
 
     onSelected(cigar: Cigar) {
-        console.info(`intercepted:  ${cigar.name}`);
         this.selectedCigar = cigar;
     }
 
     detailsClosed(cigar: Cigar) {
-
-        if (cigar) {
-            console.info(`Closed:  ${cigar.name}`);    
-        }
-        
         this.selectedCigar = null;
     }
 }

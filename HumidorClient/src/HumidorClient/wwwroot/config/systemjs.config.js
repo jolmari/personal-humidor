@@ -11,7 +11,7 @@
     var map = {
         'app': 'app',
         '@angular': 'lib/@angular',
-        'rxjs': 'lib/rxjs',
+        'rxjs': 'lib/rxjs'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
@@ -30,7 +30,7 @@
       'platform-browser-dynamic',
       'router',
       'router-deprecated',
-      'upgrade',
+      'upgrade'
     ];
 
     // Individual files (~300 requests):

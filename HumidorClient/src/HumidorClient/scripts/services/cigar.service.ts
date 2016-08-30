@@ -47,7 +47,6 @@ export class CigarService {
     private putToUrl(url:string, cigar: Cigar): Observable<Cigar> {
         return this.http
             .put(url, JSON.stringify(cigar), { headers: this.headers })
-            .map(this.extractData)
             .catch(this.handleError);
     }
 
@@ -72,7 +71,7 @@ export class CigarService {
         const errorMsg:string = error.message
             ? error.message
             : error.status ? `${error.status} - ${error.message}` : "Server error";
-
+        
         console.error(errorMsg);
         return Observable.throw(errorMsg);
     }

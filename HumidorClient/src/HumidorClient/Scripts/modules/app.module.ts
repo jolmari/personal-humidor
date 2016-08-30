@@ -10,12 +10,15 @@ import { DashboardComponent } from "../components/dashboard.component";
 import { CigarDetailsComponent } from "../components/cigar-details.component";
 import { routing, appRouteProviders } from "../app.routes";
 
+import { CigarService } from "../services/cigar.service";
+import { CigarSearchService } from "../services/cigar-search.service";
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
         FormsModule,
-        routing 
+        routing
     ],
     declarations: [
         AppComponent,
@@ -25,6 +28,8 @@ import { routing, appRouteProviders } from "../app.routes";
         CigarDetailsComponent
     ],
     providers: [
+        CigarService,
+        CigarSearchService,
         appRouteProviders
     ],
     bootstrap: [

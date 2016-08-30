@@ -9,8 +9,7 @@ import { Cigar } from "../models/cigar";
 
 @Component({
     selector: "cigar-search",
-    templateUrl: "views/cigar-search.component.html",
-    providers: [CigarSearchService]
+    templateUrl: "views/cigar-search.component.html"
 })
 
 export class CigarSearchComponent implements OnInit {
@@ -36,7 +35,6 @@ export class CigarSearchComponent implements OnInit {
 
     selectCigar(cigar: Cigar): void {
         this.onSelected.emit(cigar);
-        console.info(`event:  ${cigar.name}`);
     }
     
     private getCigarsFromSearchService(subject:BehaviorSubject<string>): Observable<Cigar[]> {
