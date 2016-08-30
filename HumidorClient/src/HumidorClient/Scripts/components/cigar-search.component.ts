@@ -16,6 +16,8 @@ export class CigarSearchComponent implements OnInit {
     @Output() onSelected = new EventEmitter<Cigar>();
 
     cigars: Cigar[];
+    maxRating: number = 10;
+
     private searchSubject = new BehaviorSubject<string>(" ");
 
     constructor(private cigarSearchService: CigarSearchService,
