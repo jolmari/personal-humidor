@@ -1,0 +1,14 @@
+{
+  "globalDependencies": {
+    "body-parser": "registry:dt/body-parser",
+    "compression": "registry:dt/compression",
+    "cookie-parser": "registry:dt/cookie-parser",
+    "es6-shim": "registry:dt/es6-shim",
+    "express": "registry:dt/express",
+    "express-serve-static-core": "registry:dt/express-serve-static-core",
+    "jasmine": "registry:dt/jasmine",
+    "mime": "registry:dt/mime",
+    "node": "registry:dt/node",
+    "serve-static": "registry:dt/serve-static"
+  }
+}

@@ -29,7 +29,22 @@ var filePaths = {
     scssMain: projectPaths.projectRoot + "Styles/site.scss"
 };
 
-gulp.task("styles:sass", ["styles:site-full", "styles:site-min"]);
+
+// Compile SASS and sync browser on file changes
+gulp.task("watch",
+    function () {
+
+        browserSync.init({
+            //TODO: This has to be user-specific. Find a way to move it to some personal config file.
+            proxy: "http://localhost:56293/"
+        });
+
+        gulp.watch(filePaths.js).on("change", browserSync.reload);
+        gulp.watch(filePaths.css).on("change", browserSync.reload);
+        gulp.watch(filePaths.html).on("change", browserSync.reload);
+        gulp.watch(filePaths.scss, ["styles:sass"]);
+    });
+
 
 gulp.task("styles:site-min",
     function () {
@@ -48,21 +63,6 @@ gulp.task("styles:site-full",
             .pipe(gulp.dest("."));
     });
 
-// Compile SASS and sync browser on file changes
-gulp.task("watch",
-    function() {
-
-        browserSync.init({
-            //TODO: This has to be user-specific. Find a way to move it to some personal config file.
-            proxy: "http://localhost:56293/"
-        });
-
-        gulp.watch(filePaths.js).on("change", browserSync.reload);
-        gulp.watch(filePaths.css).on("change", browserSync.reload);
-        gulp.watch(filePaths.html).on("change", browserSync.reload);
-        gulp.watch(filePaths.scss, ["styles:sass"]);
-    });
-
 // Tasks to copy NPM dependencies to the frontend library folder
 gulp.task("copy-deps:@angular",
     function() {
@@ -74,13 +74,6 @@ gulp.task("copy-deps:rxjs",
     function() {
         return gulp.src(projectPaths.npmSrc + "/rxjs/**/*.js", { base: projectPaths.npmSrc + "/rxjs/" })
             .pipe(gulp.dest(projectPaths.npmLibs + "/rxjs/"));
-    });
-
-gulp.task("copy-deps:in-memory-webapi",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/angular2-in-memory-web-api/**/*.js",
-            { base: projectPaths.npmSrc + "/angular2-in-memory-web-api/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/angular2-in-memory-web-api/"));
     });
 
 gulp.task("copy-deps:systemjs",
@@ -124,13 +117,6 @@ gulp.task("copy-deps:jquery",
             .pipe(gulp.dest(projectPaths.npmLibs + "/jquery/"));
     });
 
-gulp.task("copy-deps", 
-[
-    "copy-deps:@angular", "copy-deps:rxjs", "copy-deps:in-memory-webapi",
-    "copy-deps:systemjs", "copy-deps:shim", "copy-deps:zonejs", "copy-deps:reflect-metadata",
-    "copy-deps:materialize-css", "copy-deps:jquery"
-]);
-
 // Cleaning scripts
 gulp.task("clean:css",
     function () {
@@ -151,6 +137,15 @@ gulp.task("clean:libs",
     });
 
 gulp.task("clean", ["clean:css", "clean:js", "clean:libs"]);
+gulp.task("styles:sass", ["styles:site-full", "styles:site-min"]);
+gulp.task("copy-deps",
+[
+    "copy-deps:@angular", "copy-deps:rxjs",
+    "copy-deps:systemjs", "copy-deps:shim", "copy-deps:zonejs", "copy-deps:reflect-metadata",
+    "copy-deps:materialize-css", "copy-deps:jquery"
+]);
+
+gulp.task("deploy", ["copy-deps", "styles:sass"]);
 
 // Karma tasks
 gulp.task("karma", shell.task('powershell -Command "./karma_run.ps1"'));

@@ -1,23 +1,55 @@
-Sikari-inventaario:
-1. Kaikkien listaaminen
-	* Nimi, Maa, Tyyppi, Tähdet
-2. Suodattaminen
-	* Nimi
-3. Lisääminen
-	* Stepeissä:
+Palvelun kuvaus:
+-> Tarkoituksena päästä näkemään tämän hetkinen tilauserä.
+-> Käyttäjä pääsee käyttämään palvelua luomalla henkilökohtaisen profiilin.
+-> Käyttäjä kirjautuu palveluun
+-> Käyttäjä voi aloittaa uuden erän, kun netistä tilataan uusi sikaripaketti.
+-> Käyttäjä voi lisätä uusia sikareita X-määrän tilauserään.
+-> Käyttäjä voi selata tallennettuja sikareita tilauserästä.
+-> Käyttäjä voi arvostella tilauserän sikarin.
+-> Käyttäjä voi muokata aikaisempaa arvostelua.
+-> Suljettu tilauserä tallentuu historiaan, voidaan avata readonly listaus.
+
+Tilauserä:
+1. Suodattaminen
+	-> Haku nimen osan perusteella
+		1. Ensimmäiset 10 tuloksen nimeä
+	-> Rivin painaminen avaa details paneelin
+	-> Rivillä 1-5 tähteä, jolla voi arvostella sikarin
+		1. Näyttää aikaisemman arvostelun
+		2. Hoveri previewaa valinnan
+		3. Klikkaus tallentaa valinnan kantaan
+2. Lisääminen
+	-> Dialogi
+	-> Stepeissä:
 		1 Nimi
 		1 Maa
 		1 Tyyppi
-		2 Haju
+		2 Kuva
+		3 Yhteenveto 
+	-> Breadcrumb
+	-> Edellinen
+3. Tietojen tarkempi katsominen
+	1. Nimi, Maa, Sikarityyppi, Väri
+	2. Validointiviestit API:sta
+	-> Arvostele?
+		1 Haju
 		2 Maku
-		3 Kuva
-		4 Yhteenveto 
-4. Poistaminen
-5. Muokkaaminen
-6. Breadcrumbit
-	* Esim. Inventaario -> Lisäys -> 
+4. Breadcrumbit
+	-> Esim. Inventaario -> Lisäys -> ... 
 
+Ylläpidolliset:
+1. Kaikkien listaaminen
+2. Muokkaus
+3. Poistaminen
 
+Nice to have:
+1. Custom-animoitu loading symboli. Esim. vasemmalta oikealle rakentuva sikari loading barin tapaan.
+2. Ohjesivu jossa vaiheet
+
+Nootit:
+
+UI:
+- Angular2 material, remove materializecss to get rid of jquery dependency.
 
 Metrics:
 - Use a JS chart library, ex. D3
@@ -31,3 +63,4 @@ Humidity implementation:
 - UI that shows top 50 humidity measurements in a table
 - Python project that connects to the API and reads the sensor
 - CI to deploy both the ASP.NET UI to Azure, Python app to RaspberryPI + run unit & integration tests.
+
