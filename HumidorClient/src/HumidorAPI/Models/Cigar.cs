@@ -20,13 +20,9 @@ namespace HumidorAPI.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-        [RegularExpression(@"^['*']+$", ErrorMessage = "Please give rating as 1-5 stars (*).")]
-        [StringLength(5)]
-        [Display(Prompt = "*-*****")]
-        public string Rating { get; set; }
+        [Range(1,5)]
+        public int? Rating { get; set; }
 
-        [Display(Name = "Manufacturing Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime ManufacturingDate { get; set; }
     }
