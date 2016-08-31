@@ -5,7 +5,7 @@
     template: `
         <div class="rating-stars">
             <template ngFor let-starState [ngForOf]="starStates">
-                <i class="material-icons" *ngIf="starState.active">star</i>
+                <i class="material-icons" [ngClass]="{active: starState.active == true}">star</i>
             </template>
         </div>
     `
