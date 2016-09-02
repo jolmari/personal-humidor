@@ -16,6 +16,8 @@ export class CigarSearchComponent implements OnInit {
     @Output() onSelected = new EventEmitter<Cigar>();
 
     cigars: Cigar[];
+    maxRating: number = 10;
+
     private searchSubject = new BehaviorSubject<string>(" ");
 
     constructor(private cigarSearchService: CigarSearchService,
@@ -23,26 +25,27 @@ export class CigarSearchComponent implements OnInit {
         private router: Router) {
     }
 
-    search(term: string) {
+    search(term: string):void {
         this.searchSubject.next(term);
     }
 
     ngOnInit(): void {
-        this.getCigarsFromSearchService(this.searchSubject).subscribe((result: Cigar[]) => {
-            this.cigars = result;
-        });
+        this.getCigarsFromSearchService(this.searchSubject)
+            .subscribe((result: Cigar[]) => {
+                this.cigars = result;
+            });
     }
 
     selectCigar(cigar: Cigar): void {
         this.onSelected.emit(cigar);
     }
-    
+
     private getCigarsFromSearchService(subject:BehaviorSubject<string>): Observable<Cigar[]> {
         return subject
             .asObservable() // -> observable
             .debounceTime(300) // delay events 300ms
             .distinctUntilChanged() // ignore if search term did not change
-            .switchMap(term => this.cigarSearchService.search(term)) // only return latest, discard earlier HTTP requests
+            .switchMap((term:string) => this.cigarSearchService.search(term)) // only return latest, discard earlier HTTP requests
             .catch((error: any) => {
                 console.error(error);
                 return Observable.of<Cigar[]>();

@@ -28,36 +28,9 @@ namespace HumidorAPI.Data.SeedData
                 }
 
                 PopulateCigars(context);
-                //PopulateInventoryItems(context);
             }
         }
-
-        //private static void PopulateInventoryItems(ApplicationDbContext context)
-        //{
-        //    context.InventoryItem.AddRange(
-        //        new InventoryItem
-        //        {
-        //            Quantity = 2,
-        //            PurchaseDate = new DateTime(2016, 6, 7),
-        //            Cigar = context.Cigar.First(x => x.Id == 1)
-        //        },
-        //        new InventoryItem
-        //        {
-        //            Quantity = 5,
-        //            PurchaseDate = new DateTime(2016, 6, 5),
-        //            Cigar = context.Cigar.First(x => x.Id == 3)
-        //        },
-        //        new InventoryItem
-        //        {
-        //            Quantity = 1,
-        //            PurchaseDate = new DateTime(2014, 2, 10),
-        //            Cigar = context.Cigar.First(x => x.Id == 2)
-        //        }
-        //        );
-
-        //    context.SaveChanges();
-        //}
-
+        
         private static void PopulateCigars(ApplicationDbContext context)
         {
             context.Cigar.AddRange(
@@ -67,7 +40,7 @@ namespace HumidorAPI.Data.SeedData
                     Country = "Nicaragua",
                     ManufacturingDate = new DateTime(2010, 4, 21),
                     Price = 87.20M,
-                    Rating = "*****"
+                    Rating = 0
                 },
                 new Cigar
                 {
@@ -75,7 +48,7 @@ namespace HumidorAPI.Data.SeedData
                     Country = "Cuba",
                     ManufacturingDate = new DateTime(2015, 2, 15),
                     Price = 14.00M,
-                    Rating = "***"
+                    Rating = 3
                 },
                 new Cigar
                 {
@@ -83,9 +56,34 @@ namespace HumidorAPI.Data.SeedData
                     Country = "Cuba",
                     ManufacturingDate = new DateTime(2013, 4, 1),
                     Price = 50.20M,
-                    Rating = "*****"
+                    Rating = 5
+                },
+                new Cigar
+                {
+                    Name = "Romeo y Julieta II",
+                    Country = "Cuba",
+                    ManufacturingDate = new DateTime(2013, 4, 1),
+                    Price = 15.20M,
+                    Rating = 3
+                },
+                new Cigar
+                {
+                    Name = "Romeo y Julieta Churchill",
+                    Country = "Cuba",
+                    ManufacturingDate = new DateTime(2013, 4, 1),
+                    Price = 25.70M,
+                    Rating = 4
+                },
+                new Cigar
+                {
+                    Name = "Joya de Nicaragua",
+                    Country = "Nicaragua",
+                    ManufacturingDate = new DateTime(2013, 4, 1),
+                    Price = 20.00M,
+                    Rating = 3
                 }
-                );
+
+            );
 
             context.SaveChanges();
         }
