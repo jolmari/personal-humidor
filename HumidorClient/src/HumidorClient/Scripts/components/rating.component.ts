@@ -5,7 +5,9 @@
     template: `
         <div class="rating-stars">
             <template ngFor let-starState [ngForOf]="starStates" let-i="index">
-                <i class="material-icons star" [ngClass]="{active: isStarActive(i) == true}">star</i>
+                <i class="material-icons star" 
+                   [ngClass]="{active: isStarActive(i) == true}"
+                   (click)="updateRating(i)">star</i>
             </template>
         </div>
     `
@@ -27,5 +29,9 @@ export class RatingComponent implements OnInit {
 
     private isStarActive(index:number) {
         return this.rate >= index;
+    }
+
+    private updateRating(rating: number) {
+        this.rate = rating;
     }
 }
