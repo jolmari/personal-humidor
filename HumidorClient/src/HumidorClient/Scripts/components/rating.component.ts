@@ -5,7 +5,7 @@
     template: `
         <div class="rating-stars">
             <template ngFor let-starState [ngForOf]="starStates">
-                <i class="material-icons" [ngClass]="{active: starState.active == true}">star</i>
+                <i class="material-icons star" [ngClass]="{active: starState.active == true}">star</i>
             </template>
         </div>
     `
@@ -25,7 +25,6 @@ export class RatingComponent implements OnInit {
 
         for (let i = 1; i <= max; ++i) {
             resultArray.push({
-                value: i,
                 active: this.isStarActive(i, this.rate)
             });
         }

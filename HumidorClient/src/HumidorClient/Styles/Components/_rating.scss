@@ -1,8 +1,13 @@
-﻿div.rating-stars {
-    color: #DDDDDD;
-    
-    .active {
-        color: #AAAAAA;
+﻿/// <reference path="../_variables.scss" />
+
+div.rating-stars {  
+    cursor: pointer;
+
+    .star {
+        color: $color-rating-star;
+    }
+
+    .star.active {
+        color: $color-rating-star-active;
     }
 }
-    
