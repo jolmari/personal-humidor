@@ -4,8 +4,8 @@
     selector: "rating",
     template: `
         <div class="rating-stars">
-            <template ngFor let-starState [ngForOf]="starStates">
-                <i class="material-icons star" [ngClass]="{active: starState.active == true}">star</i>
+            <template ngFor let-starState [ngForOf]="starStates" let-i="index">
+                <i class="material-icons star" [ngClass]="{active: isStarActive(i) == true}">star</i>
             </template>
         </div>
     `
@@ -17,22 +17,15 @@ export class RatingComponent implements OnInit {
     private starStates: any;
 
     ngOnInit(): void {
-        this.starStates = this.updateRatings(this.max, this.rate);
-    }
-
-    private updateRatings(max:number, rate:number):any {
-        const resultArray: any = [];
-
-        for (let i = 1; i <= max; ++i) {
-            resultArray.push({
-                active: this.isStarActive(i, this.rate)
-            });
+        var result: any[] = [];
+        for (let i = 1; i <= this.max; ++i) {
+            result.push(i);
         }
 
-        return resultArray;
+        this.starStates = result;
     }
 
-    private isStarActive(index:number, rate:number) {
-        return rate >= index;
+    private isStarActive(index:number) {
+        return this.rate >= index;
     }
 }
