@@ -14,6 +14,9 @@
             <label for="country" class="active">Country</label>
         </div>
     </div>
+    <div class="row">
+        <rating [(rate)]="cigar.rating"></rating>
+    </div>
     <button class="grey waves-effect waves-light btn" (click)="closePanel()">Close</button>
     <button class="grey waves-effect waves-light btn" (click)="save()">Save</button>
 </div>
