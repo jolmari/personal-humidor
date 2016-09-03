@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "typings install && npm run-script clean && npm run-script deploy",
+    "postinstall": "typings install --global && npm run-script clean && npm run-script deploy",
     "clean": "gulp clean",
     "deploy": "gulp deploy"  
   },
