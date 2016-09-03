@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 
 import { Cigar } from "../models/cigar";
 import { CigarService } from "../services/cigar.service";
-import { CigarDetailsComponent } from "./cigar-details.component";
 
 @Component({
     selector: "my-cigars",

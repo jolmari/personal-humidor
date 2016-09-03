@@ -32,7 +32,7 @@ packages/
 *.min.js
 
 # The JS references file
-_references.js
+*_references.js
 
 # Typings
 [Tt]ypings/

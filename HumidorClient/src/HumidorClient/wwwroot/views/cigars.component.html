@@ -3,7 +3,7 @@
         <div class="error" *ngIf="error">{{error}}</div>
         <button class="grey darken-1 waves-effect waves-light btn" (click)="addCigar()">Add new Cigar</button>
         <div *ngIf="addingCigar">
-            <cigar-detail (close)="close($event)"></cigar-detail>
+            <cigar-details (close)="close($event)"></cigar-details>
         </div>    
     </div>
 </div>
@@ -18,7 +18,7 @@
             </div>
             <div class="card-reveal">
                 <span class="card-title">Name: {{cigar.name}}</span>
-                <p><bold>ID: {{cigar.id}}</bold></p>
+                <p><b>ID: {{cigar.id}}</b></p>
                 <p class="grey-text text-darken-1">{{cigar.description}}</p>
                 <button class="grey waves-effect waves-light btn" (click)="goToDetail(cigar)">Details</button>
                 <button class="grey waves-effect waves-light btn" (click)="deleteCigar(cigar, $event)">Delete</button>
