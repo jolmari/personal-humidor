@@ -8,8 +8,7 @@ import { CigarDetailsComponent } from "./cigar-details.component";
 
 @Component({
     selector: "my-dashboard",
-    templateUrl: "views/dashboard.component.html",
-    directives: [CigarSearchComponent, CigarDetailsComponent]
+    templateUrl: "views/dashboard.component.html"
 })
 
 export class DashboardComponent {

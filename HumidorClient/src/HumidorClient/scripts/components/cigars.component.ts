@@ -7,8 +7,7 @@ import { CigarDetailsComponent } from "./cigar-details.component";
 
 @Component({
     selector: "my-cigars",
-    templateUrl: "views/cigars.component.html",
-    directives: [ CigarDetailsComponent ]
+    templateUrl: "views/cigars.component.html"
 })
 
 export class CigarsComponent implements OnInit {

@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { Headers, Http, Response } from "@angular/http";
 
 import { Cigar } from "../models/cigar";
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/observable/range';
+import { Observable } from "rxjs/Rx";
 
 @Injectable()
 export class CigarService {
@@ -28,7 +27,7 @@ export class CigarService {
         return this.deleteFromUrl(url);
     }
 
-    save(cigar: Cigar): Observable<Cigar> {
+    save(cigar: Cigar): Observable<any> {
         if (cigar.id) {
             const url: string = `${this.cigarBaseUrl}/${cigar.id}`;
             return this.putToUrl(url, cigar);
@@ -44,7 +43,7 @@ export class CigarService {
             .catch(this.handleError);
     }
 
-    private putToUrl(url:string, cigar: Cigar): Observable<Cigar> {
+    private putToUrl(url:string, cigar: Cigar): Observable<Response> {
         return this.http
             .put(url, JSON.stringify(cigar), { headers: this.headers })
             .catch(this.handleError);
@@ -71,7 +70,7 @@ export class CigarService {
         const errorMsg:string = error.message
             ? error.message
             : error.status ? `${error.status} - ${error.message}` : "Server error";
-        
+
         console.error(errorMsg);
         return Observable.throw(errorMsg);
     }
