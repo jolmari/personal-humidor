@@ -14,11 +14,11 @@ export class DashboardComponent {
 
     constructor(private router: Router, private cigarSearchService: CigarSearchService) { }
 
-    onSelected(cigar: Cigar) {
+    onSelected(cigar: Cigar):void {
         this.selectedCigar = cigar;
     }
 
-    detailsClosed(cigar: Cigar) {
+    detailsClosed(cigar: Cigar):void {
         this.selectedCigar = null;
     }
 }
