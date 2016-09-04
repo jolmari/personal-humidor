@@ -31,9 +31,6 @@ packages/
 *.css.map
 *.min.js
 
-# The JS references file
-*references.js
-
 # Typings
 [Tt]ypings/
 
