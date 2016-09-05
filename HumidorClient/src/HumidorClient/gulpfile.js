@@ -117,6 +117,13 @@ gulp.task("copy-deps:jquery",
             .pipe(gulp.dest(projectPaths.npmLibs + "/jquery/"));
     });
 
+gulp.task("copy-deps:angular2-materialize",
+    function () {
+        return gulp.src(projectPaths.npmSrc + "/angular2-materialize/dist/**/*.*",
+            { base: projectPaths.npmSrc + "/angular2-materialize/dist/" })
+            .pipe(gulp.dest(projectPaths.npmLibs + "/angular2-materialize/"));
+    });
+
 // Cleaning scripts
 gulp.task("clean:css",
     function () {
@@ -142,7 +149,7 @@ gulp.task("copy-deps",
 [
     "copy-deps:@angular", "copy-deps:rxjs",
     "copy-deps:systemjs", "copy-deps:shim", "copy-deps:zonejs", "copy-deps:reflect-metadata",
-    "copy-deps:materialize-css", "copy-deps:jquery"
+    "copy-deps:materialize-css", "copy-deps:jquery", "copy-deps:angular2-materialize"
 ]);
 
 gulp.task("deploy", ["copy-deps", "styles:sass"]);
