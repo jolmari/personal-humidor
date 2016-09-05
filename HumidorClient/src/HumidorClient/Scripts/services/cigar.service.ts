@@ -4,32 +4,34 @@ import { Headers, Http, Response } from "@angular/http";
 import { Cigar } from "../models/cigar";
 import { Observable } from "rxjs/Rx";
 
+import { EnvironmentService } from "../services/environment.service";
+
 @Injectable()
 export class CigarService {
-    private cigarBaseUrl = "http://localhost:56069/api/cigars";
+    private cigarBaseUrl = "/api/cigars";
     private headers = new Headers({
         "Content-Type": "application/json"
     });
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private environmentService: EnvironmentService) { }
 
     getCigars(): Observable<Cigar[]> {
-        return this.getFromUrl(this.cigarBaseUrl);
+        return this.getFromUrl(`${this.environmentService.getApiBase()}${this.cigarBaseUrl}`);
     }
 
     getCigar(id: number): Observable<Cigar> {
-        const url:string = `${this.cigarBaseUrl}/${id}`;
+        const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}/${id}`;
         return this.getFromUrl(url);
     }
 
     delete(cigar: Cigar): Observable<any> {
-        const url:string = `${this.cigarBaseUrl}/${cigar.id}`;
+        const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}/${cigar.id}`;
         return this.deleteFromUrl(url);
     }
 
     save(cigar: Cigar): Observable<any> {
         if (cigar.id) {
-            const url: string = `${this.cigarBaseUrl}/${cigar.id}`;
+            const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}/${cigar.id}`;
             return this.putToUrl(url, cigar);
         }
 

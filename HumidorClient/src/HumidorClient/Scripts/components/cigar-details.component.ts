@@ -11,12 +11,12 @@ import { Cigar } from "../models/cigar";
 export class CigarDetailsComponent {
 
     error: any;
-    
+
     constructor(private cigarService: CigarService) {}
 
     @Input() cigar: Cigar;
     @Output() close = new EventEmitter();
-    
+
     save():void {
         this.cigarService
             .save(this.cigar)

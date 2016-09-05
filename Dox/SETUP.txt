@@ -6,4 +6,5 @@
 6. Verify app & libs has been copied to wwwroot
 7. Verify that the typings folder has been created
 8. Verify that the angular2 services have the proper localhost port
-9. Build & Run
+9. Go to command line, /HumidorAPI. Run dotnet ef database update to run code first migration on dev environment.
+10. Build & Run

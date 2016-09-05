@@ -13,6 +13,7 @@ import { routing, appRouteProviders } from "../app.routes";
 
 import { CigarService } from "../services/cigar.service";
 import { CigarSearchService } from "../services/cigar-search.service";
+import { EnvironmentService } from "../services/environment.service";
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { CigarSearchService } from "../services/cigar-search.service";
     providers: [
         CigarService,
         CigarSearchService,
-        appRouteProviders
+        appRouteProviders,
+        EnvironmentService
     ],
     bootstrap: [
         AppComponent
