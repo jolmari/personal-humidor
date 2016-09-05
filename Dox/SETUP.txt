@@ -1,4 +1,4 @@
-1. Install latest Typescript
+1. Install latest Typescript (version 2.0 beta 05.09.2016)
 2. Update latest Resharper version
 3. Get source code
 4. Open solution in VS
