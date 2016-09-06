@@ -2,6 +2,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
+import { MaterializeDirective } from "angular2-materialize";
 
 import { AppComponent } from "../components/app.component";
 import { CigarsComponent } from "../components/cigars.component";
@@ -28,7 +29,8 @@ import { EnvironmentService } from "../services/environment.service";
         CigarSearchComponent,
         DashboardComponent,
         CigarDetailsComponent,
-        RatingComponent
+        RatingComponent,
+        MaterializeDirective
     ],
     providers: [
         CigarService,
