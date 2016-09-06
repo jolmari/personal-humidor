@@ -1,10 +1,11 @@
-1. Install latest Typescript (version 2.0 beta 05.09.2016)
-2. Update latest Resharper version
-3. Get source code
-4. Open solution in VS
-5. Install NPM dependencies
-6. Verify app & libs has been copied to wwwroot
-7. Verify that the typings folder has been created
-8. Verify that the angular2 services have the proper localhost port
-9. Go to command line, /HumidorAPI. Run dotnet ef database update to run code first migration on dev environment.
-10. Build & Run
+1. Update Visual Studio 2015 to latest version (Update 3)
+2. Install latest Typescript (version 2.0 beta 05.09.2016)
+3. Update latest Resharper version
+4. Get source code
+5. Open solution in VS
+6. Install NPM dependencies
+7. Verify app & libs has been copied to wwwroot
+8. Verify that the typings folder has been created
+9. Verify that the angular2 services have the proper localhost port
+10. Go to command line, /HumidorAPI. Run dotnet ef database update to run code first migration on dev environment.
+11. Build & Run
