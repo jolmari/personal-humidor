@@ -2,11 +2,7 @@
 
 @Component({
     selector: "add-cigar",
-    template: `
-        <div class="col s12">
-            <p>Create should be here...</p>
-        </div>
-    `
+    templateUrl: "views/addcigar/add-cigar.component.html"
 })
 
 export class AddCigarComponent {
