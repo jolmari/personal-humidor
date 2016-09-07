@@ -13,10 +13,12 @@ import { CigarService } from "../services/cigar.service";
 import { CigarSearchService } from "../services/cigar-search.service";
 import { EnvironmentService } from "../services/environment.service";
 
+import { cigarListingRouting } from "../routes/cigar-listing.routes";
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        cigarListingRouting
     ],
     declarations: [
         DashboardComponent,

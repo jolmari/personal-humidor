@@ -28,9 +28,10 @@ Tilauser‰:
 		3 Yhteenveto 
 	-> Breadcrumb
 	-> Edellinen
-	1. Tehd‰‰n dialogin sis‰inen reititys
-	2. Jokainen steppi on oma alin‰kym‰ns‰
-	3. Injektoidaan service joka pit‰‰ yll‰ n‰kym‰n tilaa
+	1. Tehd‰‰n lis‰‰misest‰ oma moduulinsa
+	2. Tehd‰‰n moduulin sis‰inen reititys
+	3. Jokainen steppi on oma alin‰kym‰ns‰
+	4. Injektoidaan service joka pit‰‰ yll‰ n‰kym‰n tilaa ja lopulta tallentaa uuden
 3. Tietojen tarkempi katsominen
 	1. Nimi, Maa, Sikarityyppi, V‰ri
 	2. Validointiviestit API:sta
