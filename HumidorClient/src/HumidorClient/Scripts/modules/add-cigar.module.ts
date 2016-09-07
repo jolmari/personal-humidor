@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 
 import { AddCigarComponent } from "../components/addcigar/add-cigar.component";
 import { AddCigarProfileComponent } from "../components/addcigar/add-cigar-profile.component";
+import { AddCigarCharacteristicsComponent } from "../components/addcigar/add-cigar-characteristics.component";
 import { addCigarRouting } from "../routes/add-cigar.routes";
 
 @NgModule({
@@ -14,7 +15,8 @@ import { addCigarRouting } from "../routes/add-cigar.routes";
     ],
     declarations: [
         AddCigarComponent,
-        AddCigarProfileComponent
+        AddCigarProfileComponent,
+        AddCigarCharacteristicsComponent
     ]
 })
 
