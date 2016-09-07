@@ -50,6 +50,10 @@ Nice to have:
 1. Custom-animoitu loading symboli. Esim. vasemmalta oikealle rakentuva sikari loading barin tapaan.
 2. Ohjesivu jossa vaiheet
 
+Suorituskyky:
+-> SystemJS to Webpack
+http://stackoverflow.com/questions/35280582/angular2-too-many-file-requests-on-load
+
 Nootit:
 
 UI:

@@ -5,7 +5,7 @@ import { FormsModule } from "@angular/forms";
 
 import { CigarListingModule } from "./cigar-listing.module";
 import { AppComponent } from "../components/app.component";
-import { routing, appRouteProviders } from "../app.routes";
+import { routing, appRouteProviders } from "../routes/app.routes";
 
 @NgModule({
     imports: [
