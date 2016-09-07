@@ -1,54 +1,18 @@
-﻿import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-
-import { Cigar } from "../models/cigar";
-import { CigarService } from "../services/cigar.service";
+﻿import { Component } from "@angular/core";
 
 @Component({
-    selector: "my-cigars",
+    selector: "cigars",
     templateUrl: "views/cigars.component.html"
 })
 
-export class CigarsComponent implements OnInit {
-    cigars: Cigar[];
-    addingCigar: boolean = false;
-    error: any;
+export class CigarsComponent {
+    selectedCigar: Cigar;
 
-    constructor(private router: Router, private cigarService: CigarService) { }
-
-    ngOnInit(): any {
-        this.getCigars();
+    onSelected(cigar: Cigar): void {
+        this.selectedCigar = cigar;
     }
 
-    getCigars(): void {
-        this.cigarService.getCigars()
-            .subscribe(
-                (cigars: Cigar[]) => this.cigars = cigars,
-                (error:any) => this.error = error);
-    }
-
-    addCigar():void {
-        this.addingCigar = true;
-    }
-
-    deleteCigar(deletedCigar: Cigar, event: any): void {
-        event.stopPropagation();
-        this.cigarService
-            .delete(deletedCigar)
-            .subscribe(
-                () => this.cigars = this.cigars.filter((c: Cigar) => c !== deletedCigar),
-                (error:any) => this.error = error);
-    }
-
-    close(savedCigar: Cigar):void {
-        this.addingCigar = false;
-        if (savedCigar) {
-            this.getCigars();
-        }
-    }
-
-    goToDetail(cigar: Cigar): void {
-        const link: any = ["/details", cigar.id];
-        this.router.navigate(link);
+    detailsClosed(cigar: Cigar): void {
+        this.selectedCigar = null;
     }
 }

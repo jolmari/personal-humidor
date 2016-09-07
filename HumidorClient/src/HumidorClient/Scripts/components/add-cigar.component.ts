@@ -1,7 +1,7 @@
 ﻿import { Component } from "@angular/core";
 
 @Component({
-    selector: "add-cigar-entry",
+    selector: "add-cigar",
     template: `
         <div class="col s12">
             <p>Create should be here...</p>
@@ -9,6 +9,6 @@
     `
 })
 
-export class AddCigarEntryComponent {
+export class AddCigarComponent {
     
 }

@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { MaterializeDirective } from "angular2-materialize";
 
-import { DashboardComponent } from "../components/dashboard.component";
+import { CigarInventoryComponent as DashboardComponent } from "../components/cigar-inventory.component";
 import { RatingComponent } from "../components/rating.component";
 import { CigarDetailsComponent } from "../components/cigar-details.component";
 import { CigarSearchComponent } from "../components/cigar-search.component";
@@ -13,12 +13,15 @@ import { CigarService } from "../services/cigar.service";
 import { CigarSearchService } from "../services/cigar-search.service";
 import { EnvironmentService } from "../services/environment.service";
 
-import { cigarListingRouting } from "../routes/cigar-listing.routes";
+import { AddCigarEntryModule } from "./add-cigar.module";
+import { cigarInventoryRouting } from "../routes/cigar-inventory.routes";
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        cigarListingRouting
+        AddCigarEntryModule,
+        cigarInventoryRouting
     ],
     declarations: [
         DashboardComponent,
@@ -35,4 +38,4 @@ import { cigarListingRouting } from "../routes/cigar-listing.routes";
     ]
 })
 
-export class CigarListingModule {}
+export class CigarInventoryModule {}
