@@ -16,7 +16,7 @@ const cigarInventoryRoutes: Routes = [
         component: CigarInventoryComponent,
         children: [
             { path: "", component: CigarsComponent },
-            { path: "new", component: AddCigarComponent },
+            { path: "add-cigar", component: AddCigarComponent },
         ]
     }
 ];
