@@ -28,6 +28,10 @@ Tilauserä:
 		3 Yhteenveto 
 	-> Breadcrumb
 	-> Edellinen
+	1. Tehdään lisäämisestä oma moduulinsa
+	2. Tehdään moduulin sisäinen reititys
+	3. Jokainen steppi on oma alinäkymänsä
+	4. Injektoidaan service joka pitää yllä näkymän tilaa ja lopulta tallentaa uuden
 3. Tietojen tarkempi katsominen
 	1. Nimi, Maa, Sikarityyppi, Väri
 	2. Validointiviestit API:sta
@@ -45,6 +49,10 @@ Ylläpidolliset:
 Nice to have:
 1. Custom-animoitu loading symboli. Esim. vasemmalta oikealle rakentuva sikari loading barin tapaan.
 2. Ohjesivu jossa vaiheet
+
+Suorituskyky:
+-> SystemJS to Webpack
+http://stackoverflow.com/questions/35280582/angular2-too-many-file-requests-on-load
 
 Nootit:
 
