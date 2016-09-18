@@ -136,7 +136,7 @@ gulp.task("copy-deps",
     "copy-deps:@angular", "copy-deps:rxjs",
     "copy-deps:systemjs", "copy-deps:shim",
     "copy-deps:zonejs", "copy-deps:reflect-metadata",
-    "copy-deps:boostrap"
+    "copy-deps:bootstrap"
 ]);
 
 gulp.task("deploy", ["copy-deps", "styles:sass"]);
