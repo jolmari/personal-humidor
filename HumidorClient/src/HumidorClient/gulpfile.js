@@ -103,6 +103,13 @@ gulp.task("copy-deps:reflect-metadata",
             .pipe(gulp.dest(projectPaths.npmLibs + "/reflect-metadata/"));
     });
 
+gulp.task("copy-deps:bootstrap",
+    function () {
+        return gulp.src(projectPaths.npmSrc + "/bootstrap/dist/**/*.*",
+            { base: projectPaths.npmSrc + "/bootstrap/dist/" })
+            .pipe(gulp.dest(projectPaths.npmLibs + "/bootstrap/"));
+    });
+
 // Cleaning scripts
 gulp.task("clean:css",
     function () {
@@ -127,7 +134,9 @@ gulp.task("styles:sass", ["styles:site-full", "styles:site-min"]);
 gulp.task("copy-deps",
 [
     "copy-deps:@angular", "copy-deps:rxjs",
-    "copy-deps:systemjs", "copy-deps:shim", "copy-deps:zonejs", "copy-deps:reflect-metadata"
+    "copy-deps:systemjs", "copy-deps:shim",
+    "copy-deps:zonejs", "copy-deps:reflect-metadata",
+    "copy-deps:boostrap"
 ]);
 
 gulp.task("deploy", ["copy-deps", "styles:sass"]);
