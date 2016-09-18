@@ -1,17 +1,17 @@
 <div id="search-component">
-    <div>
-        <div class="brown lighten-4 grey-text text-darken-4">
-            <h5>Humidor search</h5><input #searchBox (keyup)="search(searchBox.value)" />
-        </div>
-
-        <ul class="collection with-header">
-            <li class="collection-item grey-text text-darken-1" *ngIf="!(cigars)?.length">
-                No results
-            </li>
-            <li class="collection-item grey-text text-darken-1" *ngFor="let cigar of cigars" (click)="selectCigar(cigar)">
-                {{cigar.name}}
-                <rating [(rate)]="cigar.rating"></rating>
-            </li>
-        </ul>
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item disabled">
+            <div class="input-group">
+                <label for="searchbox">Search cigars</label>
+                <input id="seachbox" placeholder="Cigar name" #searchBox (keyup)="search(searchBox.value)" />
+            </div>                
+        </li>
+        <li class="list-group-item" *ngIf="!(cigars)?.length">
+            No results
+        </li>
+        <li class="list-group-item" *ngFor="let cigar of cigars" (click)="selectCigar(cigar)">
+            {{cigar.name}}
+            <rating [(rate)]="cigar.rating"></rating>
+        </li>
+    </ul>
 </div>

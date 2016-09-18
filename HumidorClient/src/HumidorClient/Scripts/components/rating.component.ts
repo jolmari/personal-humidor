@@ -2,15 +2,7 @@
 
 @Component({
     selector: "rating",
-    template: `
-        <div class="rating-stars">
-            <template ngFor [ngForOf]="starStates" let-i="index">
-                <i class="material-icons star" 
-                   [ngClass]="{active: isStarActive(i) == true}"
-                   (click)="updateRating(i)">star</i>
-            </template>
-        </div>
-    `
+    templateUrl: "views/rating.component.html"
 })
 
 export class RatingComponent implements OnInit {
