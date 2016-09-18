@@ -26,9 +26,7 @@
             // other libraries
             'rxjs': 'vendor:rxjs',
             'angular2-in-memory-web-api': 'vendor:angular2-in-memory-web-api',
-            'materialize-css': 'vendor:materialize-css',
-            'angular2-materialize': 'vendor:angular2-materialize',
-            'jquery': 'vendor:jquery'
+            
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -42,15 +40,6 @@
             'angular2-in-memory-web-api': {
                 main: './index.js',
                 defaultExtension: 'js'
-            },
-            'materialize-css': {
-                "format": "global",
-                "main": "/js/materialize",
-                "defaultExtension": "js"
-            },
-            'angular2-materialize': {
-                "main": "/index",
-                "defaultExtension": "js"
             }
         }
     });

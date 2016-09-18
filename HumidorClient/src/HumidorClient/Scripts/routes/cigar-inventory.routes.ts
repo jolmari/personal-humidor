@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { CigarInventoryComponent } from "../components/cigar-inventory.component";
 import { CigarsComponent } from "../components/cigars.component";
-import { AddCigarComponent } from "../components/add-cigar.component";
+import { AddCigarComponent } from "../components/addcigar/add-cigar.component";
 
 const cigarInventoryRoutes: Routes = [
     {

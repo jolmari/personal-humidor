@@ -1,7 +1,6 @@
 ﻿import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { MaterializeDirective } from "angular2-materialize";
 
 import { CigarInventoryComponent as DashboardComponent } from "../components/cigar-inventory.component";
 import { RatingComponent } from "../components/rating.component";
@@ -28,8 +27,7 @@ import { cigarInventoryRouting } from "../routes/cigar-inventory.routes";
         CigarDetailsComponent,
         CigarSearchComponent,
         RatingComponent,
-        CigarsComponent,
-        MaterializeDirective
+        CigarsComponent
     ],
     providers: [
         CigarService,
