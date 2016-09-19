@@ -140,6 +140,3 @@ gulp.task("copy-deps",
 ]);
 
 gulp.task("deploy", ["copy-deps", "styles:sass"]);
-
-// Karma tasks
-gulp.task("karma", shell.task('powershell -Command "./karma_run.ps1"'));
