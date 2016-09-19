@@ -34,6 +34,14 @@ packages/
 # Typings
 [Tt]ypings/
 
+# WWWRoot
+[Ww]wwroot/
+
+# Typescript generated files
+[Ss]cripts/**/*.js
+[Ss]cripts/**/*.map.js
+![Ss]cripts/config/*.js
+
 # Client-side libraries and compiled files
 [Ll]ib/
 [Aa]pp/
