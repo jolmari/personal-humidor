@@ -1,13 +1,15 @@
-﻿var webpack = require("webpack");
+﻿var Webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var helpers = require("./helpers");
+var Path = require("path");
+
+var RootDir = Path.resolve(__dirname, "..");
 
 module.exports = {
     entry: {
-        "polyfills": "../polyfills.ts",
-        "vendor": "../vendor.ts",
-        "app": "../main.ts"
+        "polyfills": Path.resolve(RootDir, "polyfills.ts"),
+        "vendor": Path.resolve(RootDir, "vendor"),
+        "app": Path.resolve(RootDir, "main")
     },
 
     resolve: {
@@ -34,19 +36,18 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                include: helpers.root("src", "app"),
+                include: Path.resolve(RootDir, "src", "app"),
                 loader: "raw"
             }
         ]
     },
 
     plugins: [
-        new webpack.optimize.CommonChunksPlugin({
+        new Webpack.optimize.CommonsChunkPlugin({
             name: ["app", "vendor", "polyfills"]
         }),
-
         new HtmlWebpackPlugin({
-            template: "../views/index.html"
+            template: Path.resolve(RootDir, "views/index.html")
         })
     ]
 }
