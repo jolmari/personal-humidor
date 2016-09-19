@@ -3,7 +3,7 @@ import { Cigar } from "../models/cigar";
 
 @Component({
     selector: "cigars",
-    templateUrl: "views/cigars.component.html"
+    templateUrl: "../views/cigars.component.html"
 })
 
 export class CigarsComponent {

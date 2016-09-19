@@ -4,7 +4,7 @@ import "../operators/rxjs-operators";
 
 @Component({
     selector: "my-app",
-    templateUrl: "views/app.component.html"
+    templateUrl: "../views/app.component.html"
 })
 
 export class AppComponent {

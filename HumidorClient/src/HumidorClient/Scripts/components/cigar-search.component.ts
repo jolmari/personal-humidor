@@ -9,7 +9,7 @@ import { Cigar } from "../models/cigar";
 
 @Component({
     selector: "cigar-search",
-    templateUrl: "views/cigar-search.component.html"
+    templateUrl: "../views/cigar-search.component.html"
 })
 
 export class CigarSearchComponent implements OnInit {

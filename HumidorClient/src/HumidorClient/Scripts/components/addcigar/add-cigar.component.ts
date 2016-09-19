@@ -2,7 +2,7 @@
 
 @Component({
     selector: "add-cigar",
-    templateUrl: "views/addcigar/add-cigar.component.html"
+    templateUrl: "../../views/addcigar/add-cigar.component.html"
 })
 
 export class AddCigarComponent {

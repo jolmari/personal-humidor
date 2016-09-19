@@ -1,0 +1,17 @@
+<div id="search-component">
+    <ul class="list-group">
+        <li class="list-group-item disabled">
+            <div class="input-group">
+                <label for="searchbox">Search cigars</label>
+                <input id="seachbox" placeholder="Cigar name" #searchBox (keyup)="search(searchBox.value)" />
+            </div>                
+        </li>
+        <li class="list-group-item" *ngIf="!(cigars)?.length">
+            No results
+        </li>
+        <li class="list-group-item" *ngFor="let cigar of cigars" (click)="selectCigar(cigar)">
+            {{cigar.name}}
+            <rating [(rate)]="cigar.rating"></rating>
+        </li>
+    </ul>
+</div>

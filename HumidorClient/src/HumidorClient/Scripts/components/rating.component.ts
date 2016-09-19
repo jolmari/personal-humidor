@@ -2,7 +2,7 @@
 
 @Component({
     selector: "rating",
-    templateUrl: "views/rating.component.html"
+    templateUrl: "../views/rating.component.html"
 })
 
 export class RatingComponent implements OnInit {
