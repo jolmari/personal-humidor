@@ -63,46 +63,6 @@ gulp.task("styles:site-full",
             .pipe(gulp.dest("."));
     });
 
-// Tasks to copy NPM dependencies to the frontend library folder
-gulp.task("copy-deps:@angular",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/@angular/**/*.js", { base: projectPaths.npmSrc + "/@angular/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/@angular/"));
-    });
-
-gulp.task("copy-deps:rxjs",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/rxjs/**/*.js", { base: projectPaths.npmSrc + "/rxjs/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/rxjs/"));
-    });
-
-gulp.task("copy-deps:systemjs",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/systemjs/dist/**/*.*",
-            { base: projectPaths.npmSrc + "/systemjs/dist/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/systemjs/"));
-    });
-
-gulp.task("copy-deps:shim",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/core-js/client/**/*.*",
-            { base: projectPaths.npmSrc + "/core-js/client/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/core-js/"));
-    });
-
-gulp.task("copy-deps:zonejs",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/zone.js/dist/**/*.*", { base: projectPaths.npmSrc + "/zone.js/dist/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/zone.js/"));
-    });
-
-gulp.task("copy-deps:reflect-metadata",
-    function() {
-        return gulp.src(projectPaths.npmSrc + "/reflect-metadata/*.js",
-            { base: projectPaths.npmSrc + "/reflect-metadata/" })
-            .pipe(gulp.dest(projectPaths.npmLibs + "/reflect-metadata/"));
-    });
-
 gulp.task("copy-deps:bootstrap",
     function () {
         return gulp.src(projectPaths.npmSrc + "/bootstrap/dist/**/*.*",
@@ -123,19 +83,10 @@ gulp.task("clean:js",
             .pipe(rimraf());
     });
 
-gulp.task("clean:libs",
-    function () {
-        return gulp.src(projectPaths.npmLibs, {read:false})
-            .pipe(rimraf());
-    });
-
-gulp.task("clean", ["clean:css", "clean:js", "clean:libs"]);
+gulp.task("clean", ["clean:css", "clean:js"]);
 gulp.task("styles:sass", ["styles:site-full", "styles:site-min"]);
 gulp.task("copy-deps",
 [
-    "copy-deps:@angular", "copy-deps:rxjs",
-    "copy-deps:systemjs", "copy-deps:shim",
-    "copy-deps:zonejs", "copy-deps:reflect-metadata",
     "copy-deps:bootstrap"
 ]);
 
