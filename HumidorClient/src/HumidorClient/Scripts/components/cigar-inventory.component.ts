@@ -6,7 +6,7 @@ import { CigarSearchService } from "../services/cigar-search.service";
 
 @Component({
     selector: "cigar-inventory",
-    templateUrl: "views/cigar-inventory.component.html"
+    templateUrl: "../views/cigar-inventory.component.html"
 })
 
 export class CigarInventoryComponent {

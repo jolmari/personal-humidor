@@ -16,6 +16,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ApplicationInsightsResourceId>/subscriptions/1658412f-ed80-4e62-a9ce-ec5b150b6cd7/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/HumidorClient</ApplicationInsightsResourceId>
   </PropertyGroup>
+  <PropertyGroup>
+	<TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
+  </PropertyGroup>
   <ItemGroup>
     <DnxInvisibleContent Include=".bowerrc" />
     <DnxInvisibleContent Include="package.json" />

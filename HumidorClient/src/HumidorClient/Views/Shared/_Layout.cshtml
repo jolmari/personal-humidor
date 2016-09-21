@@ -10,25 +10,17 @@
     <base href="/Home"/>
     
     <environment names="Development">
-        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" type="text/css" />
-        <link rel="stylesheet" href="css/site.css" type="text/css" />
-    </environment>
-
-    <environment names="Development">
-        <script src="lib/core-js/shim.js"></script>
-        <script src="lib/zone.js/zone.js"></script>
-        <script src="lib/reflect-metadata/Reflect.js"></script>
-        <script src="lib/systemjs/system.src.js"></script>
-
-        <script src="config/systemjs.config.js"></script>
-        <script>
-            System.import('app').catch(function(err) { console.error(err); });
-        </script>
+        <link rel="stylesheet" href="http://localhost:8000/dist/vendor.css" type="text/css"/>
     </environment>
 
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
     @RenderBody()
+    <environment names="Development">
+        <script type="text/javascript" src="http://localhost:8000/dist/polyfills.js"></script>
+        <script type="text/javascript" src="http://localhost:8000/dist/vendor.js"></script>
+        <script type="text/javascript" src="http://localhost:8000/dist/app.js"></script>
+    </environment>
 </body>
 </html>

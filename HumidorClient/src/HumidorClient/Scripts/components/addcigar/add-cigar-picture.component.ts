@@ -2,7 +2,7 @@
 
 @Component({
     selector: "add-cigar-picture",
-    templateUrl: "views/addcigar/add-cigar-picture.component.html"
+    templateUrl: "../../views/addcigar/add-cigar-picture.component.html"
 })
 
 export class AddCigarPictureComponent {
