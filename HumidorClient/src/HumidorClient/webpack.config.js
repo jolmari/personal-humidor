@@ -14,9 +14,12 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: appRootDir,
-        host: "localhost",
-        port: 9000
+        proxy: {
+            "/": {
+                target: "http://localhost:8000/Home",
+                secure: false
+            }
+        }
     },
 
     output: {
