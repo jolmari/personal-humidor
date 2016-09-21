@@ -1,4 +1,5 @@
-﻿var webpack = require("webpack");
+﻿/// <binding ProjectOpened='Watch - Development, Cold' />
+var webpack = require("webpack");
 var extractTextPlugin = require("extract-text-webpack-plugin");
 var webpackNotifierPlugin = require("webpack-notifier");
 var path = require("path");
@@ -47,6 +48,11 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
                 loader: "file?name=assets/[name].[hash].[ext]"
+            },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                loader: 'raw-loader!sass-loader'
             },
             {
                 test: /\.css$/,

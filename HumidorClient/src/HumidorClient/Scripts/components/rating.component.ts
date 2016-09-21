@@ -2,7 +2,8 @@
 
 @Component({
     selector: "rating",
-    templateUrl: "../views/rating.component.html"
+    templateUrl: "../views/rating.component.html",
+    styles: [ require("../styles/_rating.component.scss") ]
 })
 
 export class RatingComponent implements OnInit {
