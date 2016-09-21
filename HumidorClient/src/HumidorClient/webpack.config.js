@@ -1,5 +1,6 @@
 ﻿var webpack = require("webpack");
 var extractTextPlugin = require("extract-text-webpack-plugin");
+var webpackNotifierPlugin = require("webpack-notifier");
 var path = require("path");
 
 var appRootDir = path.resolve(__dirname, "Scripts");
@@ -58,6 +59,7 @@ module.exports = {
 
     plugins: [
         new extractTextPlugin("[name].css"),
+        new webpackNotifierPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ["app", "vendor", "polyfills"]
         }),
