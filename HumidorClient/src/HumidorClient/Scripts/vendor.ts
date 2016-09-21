@@ -8,3 +8,8 @@ import "@angular/router";
 
 // RxJS
 import "rxjs";
+
+// Bootstrap
+import "jquery";
+import "bootstrap/dist/js/bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";

@@ -10,13 +10,16 @@
     <base href="/Home"/>
     
     <environment names="Development">
-        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" type="text/css" />
-        <link rel="stylesheet" href="css/site.css" type="text/css" />
+        <link rel="stylesheet" href="dist/vendor.css" type="text/css"/>
+        <link rel="stylesheet" href="css/site.css" type="text/css"/>
     </environment>
 
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
     @RenderBody()
+    <script type="text/javascript" src="dist/polyfills.js"></script>
+    <script type="text/javascript" src="dist/vendor.js"></script>
+    <script type="text/javascript" src="dist/app.js"></script>
 </body>
 </html>
