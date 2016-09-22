@@ -4,6 +4,7 @@ import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 
 import { Ng2BootstrapModule } from "ng2-bootstrap";
+import { SelectModule } from "ng2-select";
 
 import { CigarInventoryModule } from "./cigar-inventory.module";
 import { AppComponent } from "../components/app.component";
@@ -16,7 +17,8 @@ import { routing, appRouteProviders } from "../routes/app.routes";
         FormsModule,
         CigarInventoryModule,
         routing,
-        Ng2BootstrapModule
+        Ng2BootstrapModule,
+        SelectModule
     ],
     declarations: [
         AppComponent
