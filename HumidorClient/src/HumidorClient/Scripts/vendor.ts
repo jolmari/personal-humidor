@@ -13,3 +13,6 @@ import "rxjs";
 import "jquery";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+// Angular2 bootstrap
+import "ng2-bootstrap/bundles/ng2-bootstrap";
