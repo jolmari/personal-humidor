@@ -11,7 +11,7 @@ import { Cigar } from "../../models/cigar";
 
 export class AddCigarProfileComponent {
 
-    model = new Cigar(1,"Cigar II", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
+    model = new Cigar(1,"Cigar II but this field is just way too long to display!", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
     colors = ["Very light", "Light", "Neutral", "Dark", "Very dark"];
     countries = [
         "Cuba", "Nicaragua", "Dominican Republic", "Honduras",
