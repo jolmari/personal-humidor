@@ -17,10 +17,22 @@ export class AddCigarProfileComponent {
         "Cuba", "Nicaragua", "Dominican Republic", "Honduras",
         "Ecuador", "Mexico", "Brazil", "USA", "Jamaica",
         "Cameroon"];
+
     submitted = false;
+    active = true;
 
     onSubmit() {
         this.submitted = true;
+    }
+
+    newCigar() {
+        this.resetFormState();
+    }
+
+    private resetFormState() {
+        this.model = new Cigar(42, "", "", null, null, null, null, null);
+        this.active = false;
+        setTimeout(() => this.active = true, 0)
     }
 
     get diagnostic() { return JSON.stringify(this.model); }
