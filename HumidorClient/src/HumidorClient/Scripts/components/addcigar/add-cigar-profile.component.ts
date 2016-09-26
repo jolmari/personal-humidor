@@ -5,7 +5,8 @@ import { Cigar } from "../../models/cigar";
 
 @Component({
     selector: "add-cigar-profile",
-    templateUrl: "../../views/addcigar/add-cigar-profile.component.html"
+    templateUrl: "../../views/addcigar/add-cigar-profile.component.html",
+    styleUrls: ["../../styles/_add-cigar-profile.component.scss"]
 })
 
 export class AddCigarProfileComponent {
