@@ -32,13 +32,19 @@ export class AddCigarProfileComponent implements AfterViewChecked {
 
     private validationMessages = {
         "name": {
-            "required": "Name is required",
-            "minlength": "Name must be at least 4 characters long.",
-            "maxlength": "Name cannot be more than 24 characters long.",
-            "forbiddenName": "Something named 'Tobacco' cannot be a cigar."
+            "required": { "message": "Name is required" },
+            "minlength": {
+                "message": "Name must be at least {value} characters long.", 
+                "field": "requiredLength"
+            },
+            "maxlength": {
+                "message": "Name cannot be more than {value} characters long.",
+                "field": "requiredLength"
+            },
+            "forbiddenName": { "message": "Something named 'Tobacco' cannot be a cigar." }
         },
         "country": {
-            "required": "Country is required"
+            "required": { "message": "Country is required" }
         }
     }
 
@@ -86,7 +92,7 @@ export class AddCigarProfileComponent implements AfterViewChecked {
         const form = this.cigarForm.form;
 
         for (const field in this.formErrors) {
-
+            
             // clear field errors
             this.formErrors[field] = "";
             const control = form.get(field);
@@ -97,10 +103,22 @@ export class AddCigarProfileComponent implements AfterViewChecked {
                 // get field related errors messages
                 const messages = this.validationMessages[field];
 
+
                 for (const key in control.errors) {
 
-                    // add each related error message to the current field
-                    this.formErrors[field] += messages[key] + " ";
+                    const error = control.errors[key];
+                    const errorMessage = messages[key];
+
+                    if (errorMessage) {
+
+                        var errorArgumentKey = errorMessage.field;
+                        var errorArgumentValue = error[errorArgumentKey];
+                        var errorText:string = errorMessage.message;
+
+                        this.formErrors[field] += errorArgumentValue
+                            ? errorText.replace("{value}", errorArgumentValue)
+                            : errorText;
+                    }
                 }
             }
         }
