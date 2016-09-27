@@ -1,4 +1,5 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, AfterViewChecked, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
 
 import { AddCigarWizardService } from "../../services/add-cigar-wizard.service";
 import { Cigar } from "../../models/cigar";
@@ -9,7 +10,7 @@ import { Cigar } from "../../models/cigar";
     styleUrls: ["../../styles/_add-cigar-profile.component.scss"]
 })
 
-export class AddCigarProfileComponent {
+export class AddCigarProfileComponent implements AfterViewChecked {
 
     model = new Cigar(1,"Cigar II but this field is just way too long to display!", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
     colors = ["Very light", "Light", "Neutral", "Dark", "Very dark"];
@@ -20,14 +21,36 @@ export class AddCigarProfileComponent {
 
     submitted = false;
     active = true;
+    
+    cigarForm: NgForm;
+    @ViewChild("cigarForm") currentForm: NgForm;
 
-    onSubmit() {
-        this.submitted = true;
+    formErrors = {
+        "name": "",
+        "country": ""
+    }
+
+    private validationMessages = {
+        "name": {
+            "required": "Name is required",
+            "minlength": "Name must be at least 4 characters long.",
+            "maxlength": "Name cannot be more than 24 characters long.",
+            "forbiddenName": "Something named 'Tobacco' cannot be a cigar."
+        },
+        "country": {
+            "required": "Country is required"
+        }
     }
 
     newCigar() {
         this.resetFormState();
     }
+
+    onSubmit() {
+        this.submitted = true;
+    }
+
+    get diagnostic() { return JSON.stringify(this.model); }
 
     private resetFormState() {
         this.model = new Cigar(42, "", "", null, null, null, null, null);
@@ -35,5 +58,51 @@ export class AddCigarProfileComponent {
         setTimeout(() => this.active = true, 0)
     }
 
-    get diagnostic() { return JSON.stringify(this.model); }
+    ngAfterViewChecked() {
+        this.formChanged();
+    }
+
+    private formChanged() {
+
+        if (this.currentForm === this.cigarForm) {
+            return;
+        }
+
+        this.cigarForm = this.currentForm;
+
+        if (this.cigarForm) {
+
+            // Set method call when form data changes
+            this.cigarForm.valueChanges
+                .subscribe(data => this.onValueChanged(data));
+        }
+    }
+
+    private onValueChanged(data?: any) {
+        if (!this.cigarForm) {
+            return;
+        }
+
+        const form = this.cigarForm.form;
+
+        for (const field in this.formErrors) {
+
+            // clear field errors
+            this.formErrors[field] = "";
+            const control = form.get(field);
+
+            // check control input validity
+            if (control && control.dirty && !control.valid) {
+
+                // get field related errors messages
+                const messages = this.validationMessages[field];
+
+                for (const key in control.errors) {
+
+                    // add each related error message to the current field
+                    this.formErrors[field] += messages[key] + " ";
+                }
+            }
+        }
+    }
 }

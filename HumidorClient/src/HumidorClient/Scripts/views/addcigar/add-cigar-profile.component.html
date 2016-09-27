@@ -2,38 +2,32 @@
     <div [hidden]="submitted">
         <form *ngIf="active"
               (ngSubmit)="onSubmit()"
-              #heroForm="ngForm"
+              #cigarForm="ngForm"
               novalidate>
             <div class="form-group">
+                
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name"
                        required minlength="4" maxlength="24"
-                       [(ngModel)]="model.name" name="name"
-                       #name="ngModel"/>
-                <div *ngIf="name.errors && (name.dirty || name.touched)"
-                     class="alert alert-danger">
-                    
-                    <div [hidden]="!name.errors.required">
-                        Name is required.
-                    </div>
-                    
-                    <div [hidden]="!name.errors.minlength">
-                        Name must be at least 4 letters long.
-                    </div>
-                    
-                    <div [hidden]="!name.errors.maxlength">
-                        Name must be less than 25 letters long.
-                    </div>
+                       [(ngModel)]="model.name" name="name"/>
 
+                <div *ngIf="formErrors.name"
+                     class="alert alert-danger">
+                    {{formErrors.name}}
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="country">Country</label>
                 <select class="form-control" id="country"
+                        required
                         [(ngModel)]="model.country" name="country">
                     <option *ngFor="let country of countries">{{country}}</option>
                 </select>
+                <div *ngIf="formErrors.country"
+                     class="alert alert-danger">
+                    {{formErrors.country}}
+                </div>
             </div>
 
             <div class="form-group">
@@ -54,7 +48,7 @@
             <div class="form-group">
                 <label for="number">Price</label>
                 <input class="form-control" id="price"
-                       type=""
+                       type="number"
                        [(ngModel)]="model.price" name="price"/>
             </div>
 
@@ -65,7 +59,7 @@
             </div>
 
             <button type="submit" class="btn btn-default"
-                    [disabled]="!heroForm.form.valid">Submit</button>
+                    [disabled]="!cigarForm.form.valid">Submit</button>
             <button type="button" class="btn btn-default"
                     (click)="newCigar()">New Cigar</button>
         </form>
