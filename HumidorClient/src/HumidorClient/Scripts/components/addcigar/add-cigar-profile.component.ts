@@ -1,7 +1,10 @@
-﻿import { Component, AfterViewChecked, ViewChild } from "@angular/core";
+﻿import { Component, AfterViewChecked, AfterViewInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { Observable } from "rxjs";
 
 import { AddCigarWizardService } from "../../services/add-cigar-wizard.service";
+import { FormHelpers} from "../../services/helpers/form-helpers";
+
 import { Cigar } from "../../models/cigar";
 
 @Component({
@@ -10,7 +13,7 @@ import { Cigar } from "../../models/cigar";
     styleUrls: ["../../styles/_add-cigar-profile.component.scss"]
 })
 
-export class AddCigarProfileComponent implements AfterViewChecked {
+export class AddCigarProfileComponent implements AfterViewChecked, AfterViewInit {
 
     model = new Cigar(1,"Cigar II but this field is just way too long to display!", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
     colors = ["Very light", "Light", "Neutral", "Dark", "Very dark"];
@@ -18,12 +21,13 @@ export class AddCigarProfileComponent implements AfterViewChecked {
         "Cuba", "Nicaragua", "Dominican Republic", "Honduras",
         "Ecuador", "Mexico", "Brazil", "USA", "Jamaica",
         "Cameroon"];
+    statuses = ["Bought", "Not bought", "Considering purchase"]
 
     submitted = false;
     active = true;
     
     cigarForm: NgForm;
-    @ViewChild("cigarForm") currentForm: NgForm;
+    @ViewChild("cigarFormRef") currentForm: NgForm;
 
     formErrors = {
         "name": "",
@@ -48,6 +52,9 @@ export class AddCigarProfileComponent implements AfterViewChecked {
         }
     }
 
+    constructor(private formHelpers: FormHelpers) {
+    }
+
     newCigar() {
         this.resetFormState();
     }
@@ -55,13 +62,15 @@ export class AddCigarProfileComponent implements AfterViewChecked {
     onSubmit() {
         this.submitted = true;
     }
-
-    get diagnostic() { return JSON.stringify(this.model); }
-
+    
     private resetFormState() {
         this.model = new Cigar(42, "", "", null, null, null, null, null);
         this.active = false;
         setTimeout(() => this.active = true, 0)
+    }
+
+    ngAfterViewInit() {
+        this.formHelpers.logFormStatusAndValues(this.currentForm);
     }
 
     ngAfterViewChecked() {
@@ -80,47 +89,9 @@ export class AddCigarProfileComponent implements AfterViewChecked {
 
             // Set method call when form data changes
             this.cigarForm.valueChanges
-                .subscribe(data => this.onValueChanged(data));
-        }
-    }
-
-    private onValueChanged(data?: any) {
-        if (!this.cigarForm) {
-            return;
-        }
-
-        const form = this.cigarForm.form;
-
-        for (const field in this.formErrors) {
-            
-            // clear field errors
-            this.formErrors[field] = "";
-            const control = form.get(field);
-
-            // check control input validity
-            if (control && control.dirty && !control.valid) {
-
-                // get field related errors messages
-                const messages = this.validationMessages[field];
-
-
-                for (const key in control.errors) {
-
-                    const error = control.errors[key];
-                    const errorMessage = messages[key];
-
-                    if (errorMessage) {
-
-                        var errorArgumentKey = errorMessage.field;
-                        var errorArgumentValue = error[errorArgumentKey];
-                        var errorText:string = errorMessage.message;
-
-                        this.formErrors[field] += errorArgumentValue
-                            ? errorText.replace("{value}", errorArgumentValue)
-                            : errorText;
-                    }
-                }
-            }
+                .subscribe(data =>
+                    this.formHelpers.onValueChanged(
+                        this.cigarForm, this.formErrors, this.validationMessages));
         }
     }
 }

@@ -13,6 +13,7 @@ import { AddCigarSummaryComponent } from "../components/addcigar/add-cigar-summa
 import { addCigarRouting } from "../routes/add-cigar.routes";
 
 import { AddCigarWizardService } from "../services/add-cigar-wizard.service";
+import { FormHelpers } from "../services/helpers/form-helpers";
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { AddCigarWizardService } from "../services/add-cigar-wizard.service";
         AddCigarSummaryComponent
     ],
     providers: [
-        AddCigarWizardService
+        AddCigarWizardService,
+        FormHelpers
     ]
 })
 
