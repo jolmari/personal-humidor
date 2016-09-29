@@ -7,12 +7,12 @@ import { CigarService } from "../../services/cigar.service";
 import { Cigar } from "../../models/cigar";
 
 @Component({
-    selector: "add-cigar-profile",
-    templateUrl: "../../views/addcigar/add-cigar-profile.component.html",
+    selector: "add-cigar-form",
+    templateUrl: "../../views/addcigarform/add-cigar-form.component.html",
     styleUrls: ["../../styles/_add-cigar-profile.component.scss"]
 })
 
-export class AddCigarProfileComponent implements AfterViewChecked {
+export class AddCigarFormComponent implements AfterViewChecked {
 
     model = new Cigar(1,"Cigar II but this field is just way too long to display!", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
     colors = ["Very light", "Light", "Neutral", "Dark", "Very dark"];

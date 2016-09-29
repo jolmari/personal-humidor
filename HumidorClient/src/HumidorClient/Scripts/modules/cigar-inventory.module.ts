@@ -12,14 +12,14 @@ import { CigarService } from "../services/cigar.service";
 import { CigarSearchService } from "../services/cigar-search.service";
 import { EnvironmentService } from "../services/environment.service";
 
-import { AddCigarEntryModule } from "./add-cigar.module";
+import { AddCigarModule } from "./add-cigar.module";
 import { cigarInventoryRouting } from "../routes/cigar-inventory.routes";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        AddCigarEntryModule,
+        AddCigarModule,
         cigarInventoryRouting
     ],
     declarations: [
