@@ -1,4 +1,8 @@
 ﻿<div class="container">
+    <alert *ngFor="let alert of alerts" [type]="alert.type" dismissible="true">
+        {{alert?.msg}}
+    </alert>
+
     <div [hidden]="submitted">
         <form *ngIf="active"
               (ngSubmit)="onSubmit()"

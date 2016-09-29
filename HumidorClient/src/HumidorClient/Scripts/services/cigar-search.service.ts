@@ -7,7 +7,7 @@ import { Cigar } from "../models/cigar";
 
 @Injectable()
 export class CigarSearchService {
-    private cigarBaseUrl = "api/cigars";
+    private cigarBaseUrl = "/api/cigars";
 
     constructor(private http: Http, private environmentService: EnvironmentService) { }
 

@@ -15,11 +15,11 @@ export class CigarService {
 
     constructor(private http: Http, private environmentService: EnvironmentService) { }
 
-    getCigars(): Observable<Cigar[]> {
+    getAll(): Observable<Cigar[]> {
         return this.getFromUrl(`${this.environmentService.getApiBase()}${this.cigarBaseUrl}`);
     }
 
-    getCigar(id: number): Observable<Cigar> {
+    get(id: number): Observable<Cigar> {
         const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}/${id}`;
         return this.getFromUrl(url);
     }
@@ -29,13 +29,15 @@ export class CigarService {
         return this.deleteFromUrl(url);
     }
 
-    save(cigar: Cigar): Observable<any> {
-        if (cigar.id) {
-            const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}/${cigar.id}`;
-            return this.putToUrl(url, cigar);
-        }
+    create(cigar: Cigar): Observable<any> {
+        cigar.id = 0;
+        const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}`;
+        return this.postToUrl(url, cigar);
+    }
 
-        return this.postToUrl(this.cigarBaseUrl, cigar);
+    edit(cigar: Cigar): Observable<any> {
+        const url: string = `${this.environmentService.getApiBase()}${this.cigarBaseUrl}/${cigar.id}`;
+        return this.putToUrl(url, cigar);
     }
 
     private postToUrl(url:string, cigar:Cigar): Observable<Cigar> {

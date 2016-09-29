@@ -1,9 +1,8 @@
-﻿import { Component, AfterViewChecked, AfterViewInit, ViewChild } from "@angular/core";
+﻿import { Component, AfterViewChecked, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { Observable } from "rxjs";
 
-import { AddCigarWizardService } from "../../services/add-cigar-wizard.service";
-import { FormHelpers} from "../../services/helpers/form-helpers";
+import { FormHelpers } from "../../services/helpers/form-helpers";
+import { CigarService } from "../../services/cigar.service";
 
 import { Cigar } from "../../models/cigar";
 
@@ -13,7 +12,7 @@ import { Cigar } from "../../models/cigar";
     styleUrls: ["../../styles/_add-cigar-profile.component.scss"]
 })
 
-export class AddCigarProfileComponent implements AfterViewChecked, AfterViewInit {
+export class AddCigarProfileComponent implements AfterViewChecked {
 
     model = new Cigar(1,"Cigar II but this field is just way too long to display!", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
     colors = ["Very light", "Light", "Neutral", "Dark", "Very dark"];
@@ -52,7 +51,11 @@ export class AddCigarProfileComponent implements AfterViewChecked, AfterViewInit
         }
     }
 
-    constructor(private formHelpers: FormHelpers) {
+    alerts:any = [];
+
+    constructor(
+        private formHelpers: FormHelpers,
+        private cigarService: CigarService) {
     }
 
     newCigar() {
@@ -60,19 +63,22 @@ export class AddCigarProfileComponent implements AfterViewChecked, AfterViewInit
     }
 
     onSubmit() {
-        this.submitted = true;
+        this.cigarService.create(this.model)
+            .subscribe(
+                (result: Cigar) => {
+                    console.log(JSON.stringify(result));
+                    this.alerts.push({type:"success", msg:"Form submitted succesfully!"})
+                },
+                (error:any) => console.log(error));
+        //this.submitted = true;
     }
     
     private resetFormState() {
-        this.model = new Cigar(42, "", "", null, null, null, null, null);
+        this.model = new Cigar(0, "", "", null, null, null, null, null);
         this.active = false;
         setTimeout(() => this.active = true, 0)
     }
-
-    ngAfterViewInit() {
-        this.formHelpers.logFormStatusAndValues(this.currentForm);
-    }
-
+    
     ngAfterViewChecked() {
         this.formChanged();
     }

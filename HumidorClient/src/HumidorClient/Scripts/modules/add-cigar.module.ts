@@ -2,7 +2,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 
-import { Ng2BootstrapModule } from "ng2-bootstrap";
+import { AlertModule } from "ng2-bootstrap/ng2-bootstrap";
 import { SelectModule } from "ng2-select";
 
 import { AddCigarComponent } from "../components/addcigar/add-cigar.component";
@@ -12,7 +12,7 @@ import { AddCigarPictureComponent } from "../components/addcigar/add-cigar-pictu
 import { AddCigarSummaryComponent } from "../components/addcigar/add-cigar-summary.component";
 import { addCigarRouting } from "../routes/add-cigar.routes";
 
-import { AddCigarWizardService } from "../services/add-cigar-wizard.service";
+import { CigarService } from "../services/cigar.service";
 import { FormHelpers } from "../services/helpers/form-helpers";
 
 @NgModule({
@@ -20,7 +20,7 @@ import { FormHelpers } from "../services/helpers/form-helpers";
         BrowserModule,
         FormsModule,
         addCigarRouting,
-        Ng2BootstrapModule,
+        AlertModule,
         SelectModule
     ],
     declarations: [
@@ -31,7 +31,7 @@ import { FormHelpers } from "../services/helpers/form-helpers";
         AddCigarSummaryComponent
     ],
     providers: [
-        AddCigarWizardService,
+        CigarService,
         FormHelpers
     ]
 })
