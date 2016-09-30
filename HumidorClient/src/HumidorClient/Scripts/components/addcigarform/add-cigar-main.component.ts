@@ -22,6 +22,10 @@ export class AddCigarMainComponent {
         this.edit = false;
     }
 
+    onCancel() {
+        this.edit = true;
+    }
+
     // Submit, launches on event
     onSubmit() {
         this.cigarService.create(this.model)

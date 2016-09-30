@@ -1,4 +1,4 @@
-﻿import { Component, Input } from "@angular/core";
+﻿import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 import { Cigar } from "../../models/cigar";
 
@@ -10,4 +10,10 @@ import { Cigar } from "../../models/cigar";
 export class AddCigarSummaryComponent {
 
     @Input() cigar: Cigar;
+    @Output() onCancel = new EventEmitter();
+
+    cancel() {
+        this.onCancel.emit();
+    }
+
 }

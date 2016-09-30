@@ -1,5 +1,7 @@
 ﻿<div class="row">
     <h4>Add new Cigar</h4>
-    <add-cigar-form [hidden]="!edit" (onSummarize)="onSummarize($event)"></add-cigar-form>
-    <add-cigar-summary [hidden]="edit" [cigar]="model"></add-cigar-summary>
+    <add-cigar-form [hidden]="!edit" 
+                    (onSummarize)="onSummarize($event)"></add-cigar-form>
+    <add-cigar-summary [hidden]="edit" [cigar]="model"
+                       (onCancel)="onCancel($event)"></add-cigar-summary>
 </div>
