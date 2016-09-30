@@ -56,7 +56,7 @@ namespace HumidorAPI.Controllers
         {
             if (item == null)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             if (!ModelState.IsValid) return BadRequest(ModelState);

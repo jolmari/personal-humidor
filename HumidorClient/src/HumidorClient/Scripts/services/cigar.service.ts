@@ -71,11 +71,9 @@ export class CigarService {
     }
 
     private handleError(error: any): Observable<any> {
-        const errorMsg:string = error.message
-            ? error.message
-            : error.status ? `${error.status} - ${error.message}` : "Server error";
+        const errorMsg:string = (error.message || error.status) ?
+            `${error.status} - ${error.message}` : "Unknown server error";
 
-        console.error(errorMsg);
         return Observable.throw(errorMsg);
     }
 }

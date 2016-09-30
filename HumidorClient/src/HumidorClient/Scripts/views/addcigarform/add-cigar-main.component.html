@@ -1,7 +1,11 @@
 ﻿<div class="row">
-    <h4>Add new Cigar</h4>
-    <add-cigar-form [hidden]="!edit" 
+    <alert *ngFor="let alert of alerts" [type]="alert.type" dismissible="true">
+        {{alert?.msg}}
+    </alert>
+    <add-cigar-form [hidden]="!edit"
+                    [cigar]="model"
                     (onSummarize)="onSummarize($event)"></add-cigar-form>
-    <add-cigar-summary [hidden]="edit" [cigar]="model"
-                       (onCancel)="onCancel($event)"></add-cigar-summary>
+    <add-cigar-summary [hidden]="edit" 
+                       [cigar]="model"
+                       (onClosed)="onClosed($event)"></add-cigar-summary>
 </div>

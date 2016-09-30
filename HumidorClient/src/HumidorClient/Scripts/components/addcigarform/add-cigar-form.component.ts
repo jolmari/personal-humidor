@@ -1,4 +1,4 @@
-﻿import { Component, EventEmitter, Output, AfterViewChecked, ViewChild } from "@angular/core";
+﻿import { Component, EventEmitter, Input, Output, AfterViewChecked, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Location } from "@angular/common";
 
@@ -13,7 +13,6 @@ import { Cigar } from "../../models/cigar";
 
 export class AddCigarFormComponent implements AfterViewChecked {
 
-    model = new Cigar(1,"Cigar II but this field is just way too long to display!", "Cuba", 21.50, 2011, "Goddamn good cigar!", "Dark", 5);
     colors = ["Very light", "Light", "Neutral", "Dark", "Very dark"];
     countries = [
         "Cuba", "Nicaragua", "Dominican Republic", "Honduras",
@@ -21,6 +20,9 @@ export class AddCigarFormComponent implements AfterViewChecked {
         "Cameroon"];
     statuses = ["Bought", "Not bought", "Considering purchase"]
 
+    alerts:any = [];
+
+    @Input() cigar: Cigar; 
     @Output() onSummarize = new EventEmitter<Cigar>();
     
     cigarForm: NgForm;
@@ -28,7 +30,9 @@ export class AddCigarFormComponent implements AfterViewChecked {
 
     formErrors = {
         "name": "",
-        "country": ""
+        "country": "",
+        "price": "",
+        "year": ""
     }
 
     private validationMessages = {
@@ -46,13 +50,24 @@ export class AddCigarFormComponent implements AfterViewChecked {
         },
         "country": {
             "required": { "message": "Country is required" }
+        },
+        "price": {
+            "required": { "message": "Price is required" }
+        },
+        "year": {
+            "required": { "message": "Manufacturing year is required" },
+            "pattern": { "message": "Please input year in yyyy format" }  
         }
     }
 
     constructor(private formHelpers: FormHelpers, private location: Location) {}
 
     summarize() {
-        this.onSummarize.emit(this.model);
+        if (this.currentForm.valid) {
+            this.onSummarize.emit(this.cigar);
+        } else {
+            this.alerts.push({type:"danger", msg: "Form is not valid.", dismissible:true});
+        }
     }
 
     back() {

@@ -10,10 +10,13 @@ import { Cigar } from "../../models/cigar";
 export class AddCigarSummaryComponent {
 
     @Input() cigar: Cigar;
-    @Output() onCancel = new EventEmitter();
-
-    cancel() {
-        this.onCancel.emit();
+    @Output() onClosed = new EventEmitter<boolean>();
+    
+    back() {
+        this.onClosed.emit(false);
     }
 
+    confirm() {
+        this.onClosed.emit(true);
+    }
 }
