@@ -7,6 +7,8 @@ var path = require("path");
 var appRootDir = path.resolve(__dirname, "Scripts");
 var wwwRootDir = path.resolve(__dirname, "wwwroot");
 
+var distDir = path.resolve(wwwRootDir, "dist");
+
 module.exports = {
     entry: {
         "polyfills": path.resolve(appRootDir, "polyfills"),
@@ -14,17 +16,20 @@ module.exports = {
         "app": path.resolve(appRootDir, "main")
     },
 
+    // Content served from localhost:8080/webpack-dev-server with this config.
     devServer: {
+        contentBase: distDir,
+        port: 8080,
         proxy: {
             "/": {
-                target: "http://localhost:8000/Home",
+                target: "http://localhost:8000/",
                 secure: false
             }
         }
     },
 
     output: {
-        path: path.resolve(wwwRootDir, "dist"),
+        path: distDir,
         publicPath: "",
         filename: "[name].js",
         chunkFilename: "[id].chunk.js"
@@ -46,13 +51,17 @@ module.exports = {
                 loader: "html"
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+                test: /\.(png|jpe?g|gif|ico)$/,
                 loader: "file?name=assets/[name].[hash].[ext]"
+            },
+            {
+                test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+                loader: "url-loader"
             },
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
-                loader: 'raw-loader!sass-loader'
+                loader: "raw-loader!sass-loader"
             },
             {
                 test: /\.css$/,

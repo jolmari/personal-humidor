@@ -56,13 +56,13 @@ namespace HumidorAPI.Controllers
         {
             if (item == null)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            var id = await cigarService.AddNewCigar(item);
-            return CreatedAtRoute("GetCigar", new { id }, item);
+            
+            await cigarService.AddNewCigar(item);
+            return CreatedAtRoute("GetCigar", new { item.Id }, item);
         }
 
         // PUT api/cigars/5

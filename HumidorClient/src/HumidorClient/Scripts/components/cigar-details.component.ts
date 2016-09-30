@@ -19,7 +19,7 @@ export class CigarDetailsComponent {
 
     save():void {
         this.cigarService
-            .save(this.cigar)
+            .edit(this.cigar)
             .subscribe(
                 (cigar: Cigar) => {
                     this.cigar = cigar;

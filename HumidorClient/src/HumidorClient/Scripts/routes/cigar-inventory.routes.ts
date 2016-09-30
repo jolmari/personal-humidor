@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { CigarInventoryComponent } from "../components/cigar-inventory.component";
 import { CigarsComponent } from "../components/cigars.component";
-import { AddCigarComponent } from "../components/addcigar/add-cigar.component";
+import { AddCigarMainComponent } from "../components/addcigarform/add-cigar-main.component";
 
 const cigarInventoryRoutes: Routes = [
     {
@@ -16,7 +16,6 @@ const cigarInventoryRoutes: Routes = [
         component: CigarInventoryComponent,
         children: [
             { path: "", component: CigarsComponent },
-            { path: "add-cigar", component: AddCigarComponent },
         ]
     }
 ];
