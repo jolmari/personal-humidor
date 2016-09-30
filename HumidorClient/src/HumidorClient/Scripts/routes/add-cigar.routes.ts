@@ -7,10 +7,7 @@ import { AddCigarFormComponent } from "../components/addcigarform/add-cigar-form
 const addCigarRoutes: Routes = [
     {
         path: "add-cigar",
-        component: AddCigarMainComponent,
-        children: [
-            { path: "", component: AddCigarFormComponent },
-        ]
+        component: AddCigarMainComponent
     }
 ];
 

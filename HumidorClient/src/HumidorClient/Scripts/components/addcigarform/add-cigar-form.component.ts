@@ -1,9 +1,8 @@
-﻿import { Component, AfterViewChecked, ViewChild } from "@angular/core";
+﻿import { Component, EventEmitter, Output, AfterViewChecked, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { Location } from "@angular/common";
 
 import { FormHelpers } from "../../services/helpers/form-helpers";
-import { CigarService } from "../../services/cigar.service";
-
 import { Cigar } from "../../models/cigar";
 
 @Component({
@@ -22,8 +21,7 @@ export class AddCigarFormComponent implements AfterViewChecked {
         "Cameroon"];
     statuses = ["Bought", "Not bought", "Considering purchase"]
 
-    submitted = false;
-    active = true;
+    @Output() onSummarize = new EventEmitter<Cigar>();
     
     cigarForm: NgForm;
     @ViewChild("cigarFormRef") currentForm: NgForm;
@@ -51,34 +49,16 @@ export class AddCigarFormComponent implements AfterViewChecked {
         }
     }
 
-    alerts:any = [];
+    constructor(private formHelpers: FormHelpers, private location: Location) {}
 
-    constructor(
-        private formHelpers: FormHelpers,
-        private cigarService: CigarService) {
-    }
-
-    newCigar() {
-        this.resetFormState();
+    summarize() {
+        this.onSummarize.emit(this.model);
     }
 
-    onSubmit() {
-        this.cigarService.create(this.model)
-            .subscribe(
-                (result: Cigar) => {
-                    console.log(JSON.stringify(result));
-                    this.alerts.push({type:"success", msg:"Form submitted succesfully!"})
-                },
-                (error:any) => console.log(error));
-        //this.submitted = true;
+    back() {
+        this.location.back();
     }
-    
-    private resetFormState() {
-        this.model = new Cigar(0, "", "", null, null, null, null, null);
-        this.active = false;
-        setTimeout(() => this.active = true, 0)
-    }
-    
+
     ngAfterViewChecked() {
         this.formChanged();
     }

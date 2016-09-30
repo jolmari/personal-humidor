@@ -1,4 +1,5 @@
 ﻿<div class="row">
     <h4>Add new Cigar</h4>
-    <router-outlet></router-outlet>
+    <add-cigar-form [hidden]="!edit" (onSummarize)="onSummarize($event)"></add-cigar-form>
+    <add-cigar-summary [hidden]="edit" [cigar]="model"></add-cigar-summary>
 </div>
