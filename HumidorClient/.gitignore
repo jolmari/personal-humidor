@@ -11,6 +11,7 @@
 
 # Other local files
 .vs/**
+_references.js
 
 # Build and published files
 [Pp]roperties/
@@ -50,5 +51,9 @@ packages/
 # Log files
 *.log
 
-# Karma reports
+# Reports
 [Rr]eports/
+stats.json
+
+# Temporary files
+*.[Tt][Mm][Pp]

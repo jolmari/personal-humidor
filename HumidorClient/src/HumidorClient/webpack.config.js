@@ -16,9 +16,9 @@ module.exports = {
         "app": path.resolve(appRootDir, "main")
     },
 
-    // Content served from localhost:8080/webpack-dev-server with this config.
+    // This config is broken. Need to get rid of the proxying and set up this kind of setup
+    // http://blog.2mas.xyz/react-hot-load-and-asp-net-5/
     devServer: {
-        contentBase: distDir,
         port: 8080,
         proxy: {
             "/": {
