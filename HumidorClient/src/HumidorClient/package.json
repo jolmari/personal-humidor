@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "lint": "tslint ./Scripts/**/*.ts",
+    "watch": "webpack -w --config ./Webpack/webpack.dev.js",
     "postinstall": "typings install"
   },
   "dependencies": {
@@ -44,6 +46,7 @@
     "phantomjs-prebuilt": "^2.1.12",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
+    "node-sass": "3.10.1", 
     "sass-loader": "4.0.2",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
