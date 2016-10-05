@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 const path = require("path");
-const webpack = require("webpack");
+var appRootDir = path.resolve(__dirname, "..", "Scripts");
 
 module.exports = {
     devtool: "inline-source-map",
@@ -16,7 +16,7 @@ module.exports = {
         resolve: {
             extensions: ["", ".js", ".ts"],
             modulesDirectories: ["node_modules"],
-            root: path.resolve(".", "Scripts")
+            root: appRootDir
         },
         tslint: {
             emitErrors: true

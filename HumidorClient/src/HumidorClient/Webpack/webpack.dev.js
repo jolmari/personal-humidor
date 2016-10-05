@@ -42,6 +42,13 @@ module.exports = {
     },
 
     module: {
+        preLoaders: [
+            {
+                test: /\.ts$/,
+                loader: "tslint",
+                exclude: /node_modules/
+            }
+        ],
         loaders: [
             {
                 test: /\.ts$/,
@@ -87,5 +94,10 @@ module.exports = {
             $: "jquery",
             jquery: "jquery"
         })
-    ]
-}
+    ],
+
+    tslint: {
+        emitErrors: false,
+        failOnHint: false
+    }
+};
