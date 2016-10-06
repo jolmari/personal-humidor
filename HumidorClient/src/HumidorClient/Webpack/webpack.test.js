@@ -9,22 +9,22 @@ module.exports = {
         loaders: [
             {
                 exclude: /node_modules/,
-                loader: "ts",
-                test: /\.ts$/
+                test: /\.ts$/,
+                loaders: ["awesome-typescript-loader", "angular2-template-loader"]
             },
             {
                 test: /\.(css|scss|html)$/,
                 loader: "raw"
             }
-        ],
-        resolve: {
-            extensions: ["", ".js", ".ts"],
-            modulesDirectories: ["node_modules"],
-            root: path.resolve("Scripts")
-        },
-        stats: {
-            errorDetails: true
-        }
+        ]
+    },
+    resolve: {
+        extensions: ["", ".js", ".ts"],
+        modulesDirectories: ["node_modules"],
+        root: path.resolve("Scripts")
+    },
+    stats: {
+        errorDetails: true
     }
 };
 
