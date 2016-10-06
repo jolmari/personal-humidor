@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D5825FE-0FEA-485E-9232-873DA7084BCE}"
-	ProjectSection(SolutionItems) = preProject
-		tslint.json = tslint.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E27B59C3-DB66-4109-A9A0-E5AF65C4FB99}"
 	ProjectSection(SolutionItems) = preProject

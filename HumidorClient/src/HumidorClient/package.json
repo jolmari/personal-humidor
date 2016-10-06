@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "lint": "tslint ./Scripts/**/*.ts", 
+    "lint": "tslint ./Scripts/**/*.ts",
     "watch": "webpack -w --config ./Webpack/webpack.dev.js",
+    "watch2": "webpack --config ./Webpack/webpack.test.js",
     "postinstall": "typings install",
     "test": "karma start ./Tests/karma.conf.js --browsers Chrome",
     "test:headless": "karma start ./Tests/karma.conf.js --browsers PhantomJS"

@@ -1,25 +1,29 @@
 ﻿"use strict";
 
 const path = require("path");
-var appRootDir = path.resolve(__dirname, "..", "Scripts");
 
 module.exports = {
     devtool: "inline-source-map",
+
     module: {
-        preLoaders: [
-            { exclude: /node_modules/, loader: "tslint", test: /\.ts$/ }
-        ],
         loaders: [
-            { loader: "raw", test: /\.(css|scss|html)$/ },
-            { exclude: /node_modules/, loader: "ts", test: /\.ts$/ }
+            {
+                exclude: /node_modules/,
+                loader: "ts",
+                test: /\.ts$/
+            },
+            {
+                test: /\.(css|scss|html)$/,
+                loader: "raw"
+            }
         ],
         resolve: {
             extensions: ["", ".js", ".ts"],
             modulesDirectories: ["node_modules"],
-            root: appRootDir
+            root: path.resolve("Scripts")
         },
-        tslint: {
-            emitErrors: true
+        stats: {
+            errorDetails: true
         }
     }
 };
