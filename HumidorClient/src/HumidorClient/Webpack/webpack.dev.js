@@ -1,15 +1,16 @@
-﻿/// <binding ProjectOpened='Watch - Development, Cold' />
-var webpack = require("webpack");
+﻿var webpack = require("webpack");
 var extractTextPlugin = require("extract-text-webpack-plugin");
 var webpackNotifierPlugin = require("webpack-notifier");
 var path = require("path");
 
-var appRootDir = path.resolve(__dirname, "Scripts");
-var wwwRootDir = path.resolve(__dirname, "wwwroot");
+var appRootDir = path.resolve(__dirname, "..", "Scripts");
+var wwwRootDir = path.resolve(__dirname, "..", "wwwroot");
 
 var distDir = path.resolve(wwwRootDir, "dist");
 
 module.exports = {
+    debug: true,
+
     entry: {
         "polyfills": path.resolve(appRootDir, "polyfills"),
         "vendor": path.resolve(appRootDir, "vendor"),
@@ -41,6 +42,13 @@ module.exports = {
     },
 
     module: {
+        preLoaders: [
+            {
+                test: /\.ts$/,
+                loader: "tslint",
+                exclude: /node_modules/
+            }
+        ],
         loaders: [
             {
                 test: /\.ts$/,
@@ -86,5 +94,10 @@ module.exports = {
             $: "jquery",
             jquery: "jquery"
         })
-    ]
-}
+    ],
+
+    tslint: {
+        emitErrors: false,
+        failOnHint: false
+    }
+};
