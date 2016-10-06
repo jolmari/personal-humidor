@@ -2,7 +2,7 @@
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
-import { RatingComponent } from "./rating.component.ts";
+import { RatingComponent } from "./rating.component";
 
 let fixture: ComponentFixture<RatingComponent>;
 let comp: RatingComponent;

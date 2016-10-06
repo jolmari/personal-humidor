@@ -5,9 +5,9 @@ import { FormsModule } from "@angular/forms";
 
 import { Observable } from "rxjs/Observable";
 
-import { CigarDetailsComponent } from "./cigar-details.component.ts";
-import { RatingComponent } from "./rating.component.ts";
-import { CigarService } from "../services/cigar.service.ts";
+import { CigarDetailsComponent } from "./cigar-details.component";
+import { RatingComponent } from "./rating.component";
+import { CigarService } from "../services/cigar.service";
 
 import { Cigar } from "../models/cigar";
 

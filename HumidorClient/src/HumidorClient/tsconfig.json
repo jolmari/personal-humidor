@@ -10,6 +10,12 @@
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
   },
+  "types": [
+    "core-js",
+    "node",
+    "jasmine",
+    "moment"
+  ],
   "exclude": [
     "node_modules"
   ]
