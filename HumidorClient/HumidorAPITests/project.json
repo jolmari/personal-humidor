@@ -2,23 +2,16 @@
   "version": "1.0.0-*",
   "testRunner": "xunit",
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
-    },
-    "FluentAssertions": "4.12.0",
     "HumidorAPI": "1.0.0",
     "xunit": "2.2.0-beta2-build3300",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "moq.netcore": "4.4.0-beta8", /* Needs aspnet-contrib nuget repo connection */
-    "System.Diagnostics.TraceSource": "4.0.0",
-    "Microsoft.EntityFrameworkCore": "1.0.0" /* moq has a bug related to referring this package, remove after bug is fixed */
+    "FluentAssertions": "4.18.0"
   },
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
+        "dnxcore50"
       ]
     }
   }
