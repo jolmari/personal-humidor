@@ -1,34 +1,33 @@
-﻿import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
+﻿import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import { AlertModule } from "ng2-bootstrap/ng2-bootstrap";
+import { SharedModule } from '../shared/shared.module';
 
-import { AddCigarMainComponent } from "../components/addcigarform/add-cigar-main.component";
-import { AddCigarFormComponent } from "../components/addcigarform/add-cigar-form.component";
-import { addCigarRouting } from "../routes/add-cigar.routes";
-import { AddCigarSummaryComponent } from "../components/addcigarform/add-cigar-summary.component";
+import { AddCigarComponent } from './add-cigar.component';
+import { AddCigarFormComponent } from './add-cigar-form/add-cigar-form.component';
+import { AddCigarSummaryComponent } from './add-cigar-summary/add-cigar-summary.component';
+import { AddCigarRouting } from './add-cigar-routing.module';
 
-import { CigarService } from "../services/cigar.service";
-import { FormHelpers } from "../services/helpers/form-helpers";
+import { StoreCigarService } from './services/store-cigar.service';
 
 @NgModule({
     imports: [
+        SharedModule,
         BrowserModule,
         FormsModule,
-        addCigarRouting,
-        AlertModule,
-        CommonModule
+        HttpModule,
+        AddCigarRouting
     ],
     declarations: [
-        AddCigarMainComponent,
+        AddCigarComponent,
         AddCigarFormComponent,
         AddCigarSummaryComponent,
     ],
     providers: [
-        CigarService,
-        FormHelpers
+        StoreCigarService
     ]
 })
 

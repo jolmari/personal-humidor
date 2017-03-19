@@ -1,0 +1,8 @@
+﻿<div class="row">
+    <humi-add-cigar-form [hidden]="!edit"
+                    [cigar]="model"
+                    (onSummarize)="onSummarize($event)"></humi-add-cigar-form>
+    <humi-add-cigar-summary [hidden]="edit" 
+                       [cigar]="model"
+                       (onClosed)="onClosed($event)"></humi-add-cigar-summary>
+</div>
