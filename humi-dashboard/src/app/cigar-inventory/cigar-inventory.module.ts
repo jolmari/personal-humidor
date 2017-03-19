@@ -1,8 +1,10 @@
-﻿import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+﻿import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { CigarInventoryComponent as DashboardComponent } from "./cigar-inventory/cigar-inventory.component";
+import { CigarInventoryRouting } from './cigar-inventory-routing.module';
+import { CigarInventoryComponent } from './cigar-inventory.component';
+
 //import { RatingComponent } from "../components/rating.component";
 //import { CigarDetailsComponent } from "../components/cigar-details.component";
 //import { CigarSearchComponent } from "../components/cigar-search.component";
@@ -19,11 +21,12 @@ import { CigarInventoryComponent as DashboardComponent } from "./cigar-inventory
     imports: [
         CommonModule,
         FormsModule,
+        CigarInventoryRouting
         //AddCigarModule,
         //cigarInventoryRouting
     ],
     declarations: [
-        DashboardComponent,
+        CigarInventoryComponent,
         //CigarDetailsComponent,
         //CigarSearchComponent,
         //RatingComponent,
