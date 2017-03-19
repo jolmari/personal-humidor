@@ -1,7 +1,10 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
+
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
 //import { Ng2BootstrapModule } from "ng2-bootstrap";
 
@@ -13,8 +16,8 @@ import { AppComponent } from "./app.component";
 @NgModule({
     imports: [
         BrowserModule,
-        HttpModule,
-        FormsModule,
+        SharedModule,
+        CoreModule.forRoot()
         //CigarInventoryModule,
         //AddCigarModule,
         //routing,
