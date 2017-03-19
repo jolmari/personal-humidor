@@ -1,20 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpModule } from "@angular/http";
+import { FormsModule } from "@angular/forms";
 
-import { AppComponent } from './app.component';
+//import { Ng2BootstrapModule } from "ng2-bootstrap";
+
+//import { CigarInventoryModule } from "./cigar-inventory.module";
+//import { AddCigarModule } from "./add-cigar.module";
+import { AppComponent } from "./app.component";
+//import { routing, appRouteProviders } from "../routes/app.routes";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        HttpModule,
+        FormsModule,
+        //CigarInventoryModule,
+        //AddCigarModule,
+        //routing,
+        //Ng2BootstrapModule
+    ],
+    declarations: [
+        AppComponent
+    ],
+    providers: [
+        //appRouteProviders,
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
-export class AppModule { }
+
+export class AppModule {}
