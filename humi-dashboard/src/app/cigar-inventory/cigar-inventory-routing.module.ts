@@ -5,7 +5,7 @@ import { CigarInventoryComponent } from './cigar-inventory.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
-    { path: 'inventory', component: CigarInventoryComponent }
+    { path: '', component: CigarInventoryComponent }
   ])],
   exports: [RouterModule]
 })

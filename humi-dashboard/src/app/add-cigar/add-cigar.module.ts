@@ -16,7 +16,6 @@ import { StoreCigarService } from './services/store-cigar.service';
 @NgModule({
     imports: [
         SharedModule,
-        BrowserModule,
         FormsModule,
         HttpModule,
         AddCigarRouting

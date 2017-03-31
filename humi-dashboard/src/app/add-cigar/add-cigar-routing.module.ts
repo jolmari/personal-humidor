@@ -5,7 +5,7 @@ import { AddCigarComponent } from './add-cigar.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
-    { path: 'new', component: AddCigarComponent }
+    { path: '', component: AddCigarComponent }
   ])],
   exports: [RouterModule]
 })
