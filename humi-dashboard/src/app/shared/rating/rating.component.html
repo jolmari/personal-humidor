@@ -1,7 +1,7 @@
 ﻿<div class="rating-stars">
-    <template ngFor [ngForOf]="starStates" let-i="index">
+    <ng-template ngFor [ngForOf]="starStates" let-i="index">
         <i class="glyphicon"
            [ngClass]="{'glyphicon-star': isStarActive(i) == true, 'glyphicon-star-empty': isStarActive(i) == false}"
            (click)="updateRating(i)"></i>
-    </template>
+    </ng-template>
 </div>
