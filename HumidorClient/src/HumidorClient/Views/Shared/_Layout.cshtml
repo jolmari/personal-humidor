@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>@ViewBag.Title</title>
     <base href="/Home"/>
-    
+
     <environment names="Development">
         <link rel="stylesheet" href="http://localhost:8000/dist/vendor.css" type="text/css"/>
     </environment>
@@ -16,11 +16,10 @@
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-    @RenderBody()
-    <environment names="Development">
-        <script type="text/javascript" src="http://localhost:8000/dist/polyfills.js"></script>
-        <script type="text/javascript" src="http://localhost:8000/dist/vendor.js"></script>
-        <script type="text/javascript" src="http://localhost:8000/dist/app.js"></script>
-    </environment>
+@RenderBody()
+    <script type="text/javascript" src="~/inline.bundle.js"></script>
+<script type="text/javascript" src="~/polyfills.bundle.js"></script>
+<script type="text/javascript" src="~/vendor.bundle.js"></script>
+<script type="text/javascript" src="~/main.bundle.js"></script>
 </body>
 </html>

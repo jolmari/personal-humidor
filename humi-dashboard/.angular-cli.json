@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "../HumidorClient/src/HumidorClient/wwwroot",
       "assets": [
         "assets",
         "favicon.ico"

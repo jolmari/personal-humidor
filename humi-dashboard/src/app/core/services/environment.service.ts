@@ -5,7 +5,4 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class EnvironmentService {
 
-    getApiBase(): string {
-        return environment.apiUrl;
-    }
 };
