@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { CigarSearchRouting } from './cigar-search-routing.module';
@@ -8,7 +9,8 @@ import { CigarSearchComponent } from "./cigar-search.component";
 @NgModule({
   imports: [
     SharedModule,
-    CigarSearchRouting
+    CigarSearchRouting,
+    ReactiveFormsModule
   ],
   declarations: [
     CigarSearchComponent

@@ -3,13 +3,14 @@
         <li class="list-group-item disabled">
             <div class="input-group">
                 <label for="searchbox">Search cigars</label>
-                <input id="seachbox" placeholder="Cigar name" #searchBox (keyup)="search(searchBox.value)" />
+                <input id="searchbox" placeholder="Cigar name" 
+                        [formControl]="searchControl" />
             </div>                
         </li>
-        <li class="list-group-item" *ngIf="!(cigars)?.length">
+        <!--<li class="list-group-item" *ngIf="!(cigars)?.length">
             No results
-        </li>
-        <li class="list-group-item" *ngFor="let cigar of cigars" (click)="selectCigar(cigar)">
+        </li>-->
+        <li class="list-group-item" *ngFor="let cigar of (cigars$ | async)" (click)="selectCigar(cigar)">
             {{cigar.name}}
             <humi-rating [(rate)]="cigar.rating"></humi-rating>
         </li>

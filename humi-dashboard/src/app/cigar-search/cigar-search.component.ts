@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { FormControl } from '@angular/forms';
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 import { CigarService } from "app/core/services/cigar.service";
 import { Cigar } from "app/models/cigar";
@@ -16,39 +16,36 @@ import { CigarSearchService } from "./services/cigar-search.service";
 export class CigarSearchComponent implements OnInit {
     @Output() onSelected = new EventEmitter<Cigar>();
 
-    cigars: Cigar[];
+    cigars$: Observable<Cigar[]>;
     maxRating: number = 10;
 
-    private searchSubject = new BehaviorSubject<string>(" ");
+    searchControl = new FormControl();
 
     constructor(private cigarSearchService: CigarSearchService,
         private cigarService : CigarService,
         private router: Router) {
     }
 
-    search(term: string):void {
-        this.searchSubject.next(term);
-    }
-
     ngOnInit(): void {
-        this.getCigarsFromSearchService(this.searchSubject)
-            .subscribe((result: Cigar[]) => {
-                this.cigars = result;
-            });
+        this.cigars$ = this.searchControl
+            .valueChanges
+            .debounceTime(300)
+            .distinctUntilChanged()
+            .switchMap((term:string) => this.cigarSearchService.search(term));
     }
 
     selectCigar(cigar: Cigar): void {
         this.onSelected.emit(cigar);
     }
 
-    private getCigarsFromSearchService(subject:BehaviorSubject<string>): Observable<Cigar[]> {
-        return subject
-            .debounceTime(300) // delay events 300ms
-            .distinctUntilChanged() // ignore if search term did not change
-            .switchMap((term:string) => this.cigarSearchService.search(term)) // only return latest, discard earlier HTTP requests
-            .catch((error: any) => {
-                console.error(error);
-                return Observable.of<Cigar[]>();
-            });
-    }
+    // private getCigarsFromSearchService(subject:BehaviorSubject<string>): Observable<Cigar[]> {
+    //     return subject
+    //         .debounceTime(300) // delay events 300ms
+    //         .distinctUntilChanged() // ignore if search term did not change
+    //         .switchMap((term:string) => this.cigarSearchService.search(term)) // only return latest, discard earlier HTTP requests
+    //         .catch((error: any) => {
+    //             console.error(error);
+    //             return Observable.of<Cigar[]>();
+    //         });
+    // }
 }

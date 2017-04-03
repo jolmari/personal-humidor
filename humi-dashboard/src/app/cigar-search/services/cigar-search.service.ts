@@ -7,13 +7,12 @@ import { Cigar } from "app/models/cigar";
 
 @Injectable()
 export class CigarSearchService {
-    private cigarBaseUrl = "/api/cigars";
 
-    constructor(private http: Http, private environmentService: EnvironmentService) { }
+    constructor(private http: Http) { }
 
     search(term: string): Observable<Cigar[]> {
         return this.http
-            .get(`${this.environmentService.getApiBase()}${this.cigarBaseUrl}?name=${term}&amount=10`)
-            .map((r: Response) => r.json() as Cigar[]);
+            .get(`/api/cigars?name=${term}`)
+            .map((r: Response) => r.json());
     }
 }

@@ -4,12 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.config.json",
+    "hmr": "ng serve --proxy-config proxy.config.json --hmr -e=hmr",
+    "json-server": "json-server ./json-server/db.json -r ./json-server/routes.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "hmr": "ng serve --hmr -e=hmr"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

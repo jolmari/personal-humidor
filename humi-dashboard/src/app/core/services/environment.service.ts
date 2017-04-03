@@ -1,10 +1,11 @@
-﻿import {Injectable} from '@angular/core';
+﻿import { Injectable } from '@angular/core';
+
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class EnvironmentService {
-    private apiServerUrl: string = 'http://localhost:55396';
 
     getApiBase(): string {
-        return this.apiServerUrl;
+        return environment.apiUrl;
     }
 };
