@@ -1,6 +1,8 @@
 ﻿using System.IO;
+using HumidorClient.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,6 +11,8 @@ namespace HumidorClient
 {
     public class Startup
     {
+        private IConfigurationRoot Configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -29,22 +33,20 @@ namespace HumidorClient
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
+
+            // Application services
+            services.AddCustomServices();
         }
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             app.UseApplicationInsightsRequestTelemetry();
             app.UseApplicationInsightsExceptionTelemetry();
 
@@ -52,26 +54,32 @@ namespace HumidorClient
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/Shared/Error");
             }
-            
+
             app.Use(async (context, next) =>
             {
                 await next();
 
-                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path))
+                if (context.Response.StatusCode == StatusCodes.Status404NotFound &&
+                    !Path.HasExtension(context.Request.Path.Value))
                 {
-                    context.Request.Path = "/Home"; // Redirect to angular main page
+                    context.Request.Path = "/"; // Redirect to angular main page
                     await next();
                 }
             });
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "api/{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
