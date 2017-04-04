@@ -102,7 +102,7 @@ namespace HumidorClientTests.Controllers
         {
             var actionResult = await controller.Create(null);
 
-            actionResult.Should().BeOfType<BadRequestResult>();
+            actionResult.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]
