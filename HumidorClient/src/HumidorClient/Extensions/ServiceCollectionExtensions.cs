@@ -10,14 +10,19 @@ namespace HumidorClient.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddCustomServices(this IServiceCollection services)
+        /// <summary>
+        /// Used to add custom services to the default IoC container.
+        /// </summary>
+        /// <param name="serviceCollection">IoC container</param>
+        /// <returns>Altered IoC container</returns>
+        public static IServiceCollection AddCustomServices(this IServiceCollection serviceCollection)
         {
-            services.AddTransient<ISeedData, SeedData>();
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
-            services.AddScoped<ICigarRepository, CigarRepository>();
-            services.AddScoped<ICigarService, CigarService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            return services;
+            serviceCollection.AddTransient<ISeedData, SeedData>();
+            serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            serviceCollection.AddScoped<ICigarRepository, CigarRepository>();
+            serviceCollection.AddScoped<ICigarService, CigarService>();
+            serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
+            return serviceCollection;
         }
     }
 }

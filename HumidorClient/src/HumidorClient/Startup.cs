@@ -1,11 +1,5 @@
 ﻿using System.IO;
-using HumidorClient.Data;
-using HumidorClient.Data.SeedData;
 using HumidorClient.Extensions;
-using HumidorClient.Repositories;
-using HumidorClient.Repositories.Interfaces;
-using HumidorClient.Services.CigarService;
-using HumidorClient.Services.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +11,7 @@ namespace HumidorClient
 {
     public class Startup
     {
-        public IConfigurationRoot Configuration { get; }
+        private IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
