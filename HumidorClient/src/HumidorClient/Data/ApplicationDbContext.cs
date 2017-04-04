@@ -1,9 +1,8 @@
-﻿using HumidorAPI.Models;
-using HumidorClient.Data;
+﻿using HumidorClient.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace HumidorAPI.Data
+namespace HumidorClient.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {

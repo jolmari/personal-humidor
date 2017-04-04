@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HumidorAPI.Data.Migrations
+namespace HumidorClient.Data.Migrations
 {
     public partial class Initial : Migration
     {

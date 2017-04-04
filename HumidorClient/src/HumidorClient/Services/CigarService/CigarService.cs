@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using HumidorAPI.Models;
-using HumidorAPI.Services.UnitOfWork;
-using System.Linq;
+using HumidorClient.Models;
+using HumidorClient.Services.UnitOfWork;
 
-namespace HumidorAPI.Services.CigarService
+namespace HumidorClient.Services.CigarService
 {
     public class CigarService : ICigarService
     {

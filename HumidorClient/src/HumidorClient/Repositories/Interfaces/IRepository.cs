@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HumidorAPI.Models.Interfaces;
+using HumidorClient.Models.Interfaces;
 
-namespace HumidorAPI.Repositories.Interfaces
+namespace HumidorClient.Repositories.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : IEntity
     {

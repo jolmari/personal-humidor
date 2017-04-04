@@ -1,4 +1,4 @@
-﻿namespace HumidorAPI.Models.Interfaces
+﻿namespace HumidorClient.Models.Interfaces
 {
     public interface IEntity
     {

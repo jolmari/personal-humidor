@@ -1,11 +1,9 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using HumidorAPI.Data;
-using HumidorAPI.Repositories.Interfaces;
 using HumidorClient.Data;
+using HumidorClient.Repositories.Interfaces;
 
-namespace HumidorAPI.Services.UnitOfWork
+namespace HumidorClient.Services.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {

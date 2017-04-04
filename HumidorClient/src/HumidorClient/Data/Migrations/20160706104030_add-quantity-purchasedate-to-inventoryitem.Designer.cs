@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HumidorAPI.Data.Migrations
+namespace HumidorClient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20160706104030_add-quantity-purchasedate-to-inventoryitem")]

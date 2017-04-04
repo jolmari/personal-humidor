@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HumidorAPI.Models;
-using HumidorAPI.Services.CigarService;
+using HumidorClient.Models;
+using HumidorClient.Services.CigarService;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HumidorAPI.Controllers
+namespace HumidorClient.Controllers
 {
     [Route("api/[controller]")]
     public class CigarsController : Controller

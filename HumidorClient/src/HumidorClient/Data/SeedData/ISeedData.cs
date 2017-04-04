@@ -1,4 +1,4 @@
-﻿namespace HumidorAPI.Data.SeedData
+﻿namespace HumidorClient.Data.SeedData
 {
     public interface ISeedData
     {

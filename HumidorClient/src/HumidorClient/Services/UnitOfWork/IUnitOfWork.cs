@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using HumidorAPI.Repositories.Interfaces;
+using HumidorClient.Repositories.Interfaces;
 
-namespace HumidorAPI.Services.UnitOfWork
+namespace HumidorClient.Services.UnitOfWork
 {
     public interface IUnitOfWork
     {

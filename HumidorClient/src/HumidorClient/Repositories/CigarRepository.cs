@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using HumidorAPI.Models;
 using System.Linq;
-using HumidorAPI.Data;
-using HumidorAPI.Repositories.Interfaces;
 using HumidorClient.Data;
+using HumidorClient.Models;
+using HumidorClient.Repositories.Interfaces;
 
-namespace HumidorAPI.Repositories
+namespace HumidorClient.Repositories
 {
     public class CigarRepository : Repository<Cigar>, ICigarRepository
     {

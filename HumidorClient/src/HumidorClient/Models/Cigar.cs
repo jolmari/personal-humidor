@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using HumidorAPI.Models.Interfaces;
+using HumidorClient.Models.Interfaces;
 
-namespace HumidorAPI.Models
+namespace HumidorClient.Models
 {
     // TODO: Country and rating should not be insertable. Replace with pre-generated datasets from which to pick the wanted option.
     public class Cigar : IEntity

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HumidorAPI.Data;
-using HumidorAPI.Models.Interfaces;
-using HumidorAPI.Repositories.Interfaces;
 using HumidorClient.Data;
+using HumidorClient.Models.Interfaces;
+using HumidorClient.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace HumidorAPI.Repositories
+namespace HumidorClient.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {

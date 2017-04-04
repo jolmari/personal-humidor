@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using HumidorAPI.Models;
+using HumidorClient.Models;
 
-namespace HumidorAPI.Repositories.Interfaces
+namespace HumidorClient.Repositories.Interfaces
 {
     public interface ICigarRepository : IRepository<Cigar>
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using HumidorAPI.Models;
+using HumidorClient.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HumidorAPI.Data.SeedData
+namespace HumidorClient.Data.SeedData
 {
     public class SeedData : ISeedData
     {

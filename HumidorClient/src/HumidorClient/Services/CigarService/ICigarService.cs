@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using HumidorAPI.Models;
+using HumidorClient.Models;
 
-namespace HumidorAPI.Services.CigarService
+namespace HumidorClient.Services.CigarService
 {
     public interface ICigarService
     {

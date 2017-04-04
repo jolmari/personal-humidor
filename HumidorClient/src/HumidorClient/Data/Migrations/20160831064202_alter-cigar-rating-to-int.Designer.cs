@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using HumidorAPI.Data;
 
-namespace HumidorAPI.Data.Migrations
+namespace HumidorClient.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20160831064202_alter-cigar-rating-to-nullable-int")]
