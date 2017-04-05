@@ -1,9 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+
+import { CigarService } from 'app/core/services/cigar.service';
+import { Cigar } from 'app/models/cigar';
 
 @Component({
     selector: 'humi-cigar-inventory',
     templateUrl: './cigar-inventory.component.html'
 })
 
-export class CigarInventoryComponent {}
+export class CigarInventoryComponent implements OnInit {
+
+    public cigars: Observable<Cigar[]>;
+
+    constructor(private cigarService: CigarService) {}
+
+    public ngOnInit(): void {
+        this.cigars = this.cigarService
+            .getAll();
+    }
+}

@@ -1,3 +1,20 @@
 <div class="row">
-fewoifkjweofijwefoiwej
+    <table id="cigars-listing">
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Price</th>
+            <th>Year</th>
+            <th>Color</th>
+            <th>Rating</th>            
+        </tr>
+        <tr *ngFor="let cigar of (cigars | async)">
+            <td>{{cigar.name}}</td>
+            <td>{{cigar.country}}</td>
+            <td>{{cigar.price}}</td>
+            <td>{{cigar.year}}</td>
+            <td>{{cigar.color}}</td>
+            <td>{{cigar.rating}}</td>            
+        </tr>
+    </table>
 </div>
