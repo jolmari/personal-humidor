@@ -16,9 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
         BrowserModule,
         SharedModule,
         CoreModule.forRoot(),
-        AppRoutingModule,
         CigarInventoryModule,
         AddCigarModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent
