@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Cigar } from '../../models/cigar';
+import { Cigar } from 'app/shared/models/cigar';
 import { EnvironmentService } from '../../core/services/environment.service';
 
 @Injectable()

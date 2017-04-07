@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { CigarService } from 'app/core/services/cigar.service';
-import { Cigar } from 'app/models/cigar';
+import { Cigar } from 'app/shared/models/cigar';
 
 @Component({
     selector: 'humi-cigar-inventory',

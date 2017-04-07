@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { Headers, Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Rx";
 
-import { Cigar } from "app/models/cigar";
 import { EnvironmentService } from "./environment.service";
+import { Cigar } from 'app/shared/models/cigar';
 
 @Injectable()
 export class CigarService {

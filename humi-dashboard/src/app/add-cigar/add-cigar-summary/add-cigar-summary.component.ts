@@ -1,6 +1,6 @@
 ﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Cigar } from '../../models/cigar';
+import { Cigar } from 'app/shared/models/cigar';
 
 @Component({
     selector: 'humi-add-cigar-summary',

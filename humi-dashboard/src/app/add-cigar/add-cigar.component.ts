@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 
 import { StoreCigarService } from './services/store-cigar.service';
-import { Cigar } from '../models/cigar';
+import { Cigar } from 'app/shared/models/cigar';
 
 @Component({
     selector: 'humi-add-cigar',

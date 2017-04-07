@@ -2,7 +2,7 @@
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import { Cigar } from '../../models/cigar';
+import { Cigar } from 'app/shared/models/cigar';
 
 @Component({
     selector: 'humi-add-cigar-form',

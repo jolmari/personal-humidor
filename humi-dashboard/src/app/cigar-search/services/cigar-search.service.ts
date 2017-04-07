@@ -3,7 +3,7 @@ import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import { EnvironmentService } from "app/core/services/environment.service";
-import { Cigar } from "app/models/cigar";
+import { Cigar } from 'app/shared/models/cigar';
 
 @Injectable()
 export class CigarSearchService {

@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 
 import { CigarService } from "app/core/services/cigar.service";
-import { Cigar } from "app/models/cigar";
 
 import { CigarSearchService } from "./services/cigar-search.service";
 
