@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { CigarInventoryRouting } from './cigar-inventory-routing.module';
 import { CigarInventoryComponent } from './cigar-inventory.component';
+import { CigarDetailsComponent } from './cigar-details/cigar-details.component';
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { CigarInventoryComponent } from './cigar-inventory.component';
         CigarInventoryRouting
     ],
     declarations: [
-        CigarInventoryComponent
+        CigarInventoryComponent,
+        CigarDetailsComponent
     ]
 })
 

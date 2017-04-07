@@ -8,13 +8,15 @@
             <th>Color</th>
             <th>Rating</th>            
         </tr>
-        <tr *ngFor="let cigar of (cigars | async)">
+        <tr *ngFor="let cigar of cigars">
             <td>{{cigar.name}}</td>
             <td>{{cigar.country}}</td>
             <td>{{cigar.price}}</td>
             <td>{{cigar.year}}</td>
             <td>{{cigar.color}}</td>
-            <td>{{cigar.rating}}</td>            
+            <td>{{cigar.rating}}</td>
+            <td><a [routerLink]="['/inventory', cigar.id]">Details</a></td>
         </tr>
     </table>
+    <router-outlet></router-outlet>
 </div>

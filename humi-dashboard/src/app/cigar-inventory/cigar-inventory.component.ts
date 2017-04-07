@@ -11,12 +11,13 @@ import { Cigar } from 'app/shared/models/cigar';
 
 export class CigarInventoryComponent implements OnInit {
 
-    public cigars: Observable<Cigar[]>;
+    public cigars: Cigar[];
 
     constructor(private cigarService: CigarService) {}
 
     public ngOnInit(): void {
-        this.cigars = this.cigarService
-            .getAll();
+        this.cigarService
+            .getAll()
+            .subscribe(result => this.cigars = result);
     }
 }

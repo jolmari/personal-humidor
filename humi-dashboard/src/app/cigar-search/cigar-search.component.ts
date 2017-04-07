@@ -1,22 +1,23 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from "@angular/router";
-import { Observable } from "rxjs/Observable";
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
-import { CigarService } from "app/core/services/cigar.service";
+import { CigarService } from 'app/core/services/cigar.service';
+import { Cigar } from 'app/shared/models/cigar';
 
-import { CigarSearchService } from "./services/cigar-search.service";
+import { CigarSearchService } from './services/cigar-search.service';
 
 @Component({
-    selector: "cigar-search",
-    templateUrl: "./cigar-search.component.html"
+    selector: 'humi-cigar-search',
+    templateUrl: './cigar-search.component.html'
 })
 
 export class CigarSearchComponent implements OnInit {
     @Output() onSelected = new EventEmitter<Cigar>();
 
     cigars$: Observable<Cigar[]>;
-    maxRating: number = 10;
+    maxRating = 10;
 
     searchControl = new FormControl();
 
@@ -30,7 +31,7 @@ export class CigarSearchComponent implements OnInit {
             .valueChanges
             .debounceTime(300)
             .distinctUntilChanged()
-            .switchMap((term:string) => this.cigarSearchService.search(term));
+            .switchMap((term: string) => this.cigarSearchService.search(term));
     }
 
     selectCigar(cigar: Cigar): void {
