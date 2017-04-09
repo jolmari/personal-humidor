@@ -1,4 +1,8 @@
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Cigar } from 'app/shared/models/cigar';
+import { CigarService } from '../../core/services/cigar.service';
 
 @Component({
   selector: 'humi-cigar-details',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CigarDetailsComponent implements OnInit {
 
-  constructor() { }
+  private cigar: Cigar;
+
+  constructor(private cigarService: CigarService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) => this.cigarService.get(+params['id']))
+      .subscribe((cigar: Cigar) => {
+        console.log("fewfwefw");
+        this.cigar = cigar;
+      });
   }
-
 }

@@ -65,9 +65,10 @@ export class CigarService {
     }
 
     private extractData(res: Response): any {
-        return res
-            .json()
-            .map(raw => new Cigar().fromJson(raw));
+        const json = res.json();
+        return Array.isArray(json) ?
+            json.map(raw => new Cigar().fromJson(raw)) :
+            new Cigar().fromJson(json);
     }
 
     private handleError(error: any): Observable<any> {

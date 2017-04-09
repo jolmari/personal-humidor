@@ -4,31 +4,31 @@
             "id": 1,
             "name": "Cigar 1",
             "country": "us",
-            "price": 12.99,
+            "priceAvg": 12.99,
             "year": 2017,
             "description": "Nunc id sapien elit. Vestibulum imperdiet vulputate scelerisque. Etiam ac ullamcorper quam. Pellentesque ullamcorper sit amet purus id ultricies. Cras a mauris laoreet, luctus ex sed, ullamcorper augue.",
             "color": "dark",
-            "rating": 4
+            "ratingAvg": 4
         },
         {
             "id": 2,
             "name": "Cigar 2",
             "country": "us",
-            "price": 5.00,
+            "priceAvg": 5.00,
             "year": 2016,
             "description": "Etiam congue quam vitae lorem dictum, sit amet mattis enim feugiat. Suspendisse odio odio, fermentum non felis ac, egestas vehicula dui.",
             "color": "light",
-            "rating": 2
+            "Avg": 2
         },
         {
             "id": 3,
             "name": "Cigar 3",
             "country": "ven",
-            "price": 7.5,
+            "priceAvg": 7.5,
             "year": 2016,
             "description": "Morbi a viverra magna, eu sollicitudin turpis. Morbi ex urna, finibus varius ornare eu, porta quis orci. Mauris quis facilisis nulla, at laoreet mi.",
             "color": "medium",
-            "rating": 4
+            "ratingAvg": 4
         }
     ]
 }

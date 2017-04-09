@@ -11,10 +11,10 @@
         <tr *ngFor="let cigar of cigars">
             <td>{{cigar.name}}</td>
             <td>{{cigar.country}}</td>
-            <td>{{cigar.price}}</td>
+            <td>{{cigar.priceAvg}}</td>
             <td>{{cigar.year}}</td>
             <td>{{cigar.color}}</td>
-            <td><humi-rating rate="3"></humi-rating></td>
+            <td><humi-rating [rate]="cigar.ratingAvg"></humi-rating></td>
             <td><a [routerLink]="['/inventory', cigar.id]">Details</a></td>
         </tr>
     </table>
