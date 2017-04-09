@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { CigarInventoryModule } from './cigar-inventory/cigar-inventory.module';
 import { AddCigarModule } from './add-cigar/add-cigar.module';
 import { AppComponent } from './app.component';
+import { MyHumidorModule } from './my-humidor/my-humidor.module';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
         CoreModule.forRoot(),
         CigarInventoryModule,
         AddCigarModule,
+        MyHumidorModule,
         AppRoutingModule
     ],
     declarations: [
