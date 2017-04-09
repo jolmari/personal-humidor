@@ -14,7 +14,7 @@
             <td>{{cigar.price}}</td>
             <td>{{cigar.year}}</td>
             <td>{{cigar.color}}</td>
-            <td>{{cigar.rating}}</td>
+            <td><humi-rating rate="3"></humi-rating></td>
             <td><a [routerLink]="['/inventory', cigar.id]">Details</a></td>
         </tr>
     </table>

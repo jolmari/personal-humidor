@@ -1,14 +1,14 @@
 ﻿import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { SharedModule } from '../shared/shared.module';
 import { CigarInventoryRouting } from './cigar-inventory-routing.module';
 import { CigarInventoryComponent } from './cigar-inventory.component';
 import { CigarDetailsComponent } from './cigar-details/cigar-details.component';
 
 @NgModule({
     imports: [
-        CommonModule,
+        SharedModule,
         FormsModule,
         CigarInventoryRouting
     ],
