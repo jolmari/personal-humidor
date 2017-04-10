@@ -1,16 +1,23 @@
-nav a {
-    display: inline-block;
+nav {
+    background-color: saddlebrown;
     padding: 0.5em;
-    margin-right: 0.5em;
-    background-color: lightblue;
-    border-radius: 4px;
 
-    &.active {
-        background-color: cornflowerblue;
+    & a {
+        display: inline-block;
+        padding: 0.5em;
+        margin-right: 0.5em;
+        background-color: #D3D3D3;
+        border-radius: 4px;
+        &.active {
+            background-color: #B0B0B0;
+        }
     }
 }
 
-a:hover, a:visited, a:link, a:active {
+a:hover,
+a:visited,
+a:link,
+a:active {
     text-decoration: none;
 }
 
