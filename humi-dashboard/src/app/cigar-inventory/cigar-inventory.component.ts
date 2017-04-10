@@ -6,6 +6,7 @@ import { Cigar } from 'app/shared/models/cigar';
 
 @Component({
     selector: 'humi-cigar-inventory',
+    styleUrls: ['./cigar-inventory.component.scss'],
     templateUrl: './cigar-inventory.component.html'
 })
 

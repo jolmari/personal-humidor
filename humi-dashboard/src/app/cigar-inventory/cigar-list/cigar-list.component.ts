@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'humi-cigar-list',
@@ -9,6 +10,9 @@ export class CigarListComponent implements Input {
 
   @Input() cigars;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  public setClickedRow(index: string, id: string): void {
+    this.router.navigate(['/inventory', id]);
+  }
 }
