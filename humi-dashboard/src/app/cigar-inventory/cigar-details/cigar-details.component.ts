@@ -20,9 +20,6 @@ export class CigarDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.cigarService.get(+params['id']))
-      .subscribe((cigar: Cigar) => {
-        console.log("fewfwefw");
-        this.cigar = cigar;
-      });
+      .subscribe((cigar: Cigar) => this.cigar = cigar);
   }
 }

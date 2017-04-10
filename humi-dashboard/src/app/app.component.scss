@@ -1,0 +1,19 @@
+nav a {
+    display: inline-block;
+    padding: 0.5em;
+    margin-right: 0.5em;
+    background-color: lightblue;
+    border-radius: 4px;
+
+    &.active {
+        background-color: cornflowerblue;
+    }
+}
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
+.main-container {
+    padding: 0 1em 0 1em;
+}

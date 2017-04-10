@@ -1,18 +1,32 @@
-<table id="cigars-listing">
-  <tr>
-    <th>Name</th>
-    <th>Country</th>
-    <th>Price</th>
-    <th>Year</th>
-    <th>Color</th>
-    <th>Rating</th>            
-  </tr>
-  <tr>
-    <td>{{cigar?.name}}</td>
-    <td>{{cigar?.country}}</td>
-    <td>{{cigar?.priceAvg}}</td>
-    <td>{{cigar?.year}}</td>
-    <td>{{cigar?.color}}</td>
-    <td><humi-rating [rate]="cigar?.ratingAvg"></humi-rating></td>
-  </tr>
-  </table>
+<div id="cigar-details">
+  <h1>{{cigar?.brand}} {{cigar?.Name}}</h1>
+  <div class="info">
+    <p><b>Name: </b>{{cigar?.name}}</p>
+    <p><b>Country: </b>{{cigar?.country}}</p>
+    <p><b>Year: </b>{{cigar?.year}}</p>
+    <p><b>Color: </b>{{cigar?.color}}</p>
+    <p><b>Average Price: </b>{{cigar?.priceAvg}}</p>
+    <humi-rating [rate]="cigar?.ratingAvg"></humi-rating>
+  </div>
+  <div id="links">
+    <a routerLink="/inventory">Back</a>
+  </div>
+  <div id="cigar-reviews">
+    <h2>What other users have to say</h2>
+    <div class="review">
+      <h3 class="title">John Doe</h3>
+      <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut diam elementum, rhoncus leo vel, eleifend ligula. In
+        lacinia mattis gravida. Fusce id ipsum non diam varius molestie nec id lacus. Proin vitae libero consequat, mollis
+        erat ornare, vestibulum velit. Nulla sit amet vehicula ligula. Aliquam congue sem tortor</p>
+      <humi-rating rate="3"></humi-rating>
+    </div>
+    <hr />
+    <div class="review">
+      <h3 class="title">Mike Massive</h3>
+      <p class="content">Quisque aliquam, mi quis laoreet porttitor, nisi nisl mollis nisi, sit amet ultrices justo sapien eget lectus. Integer
+        vel placerat sapien. Sed mollis ipsum risus, eu iaculis ligula viverra a. Praesent pellentesque sodales orci ut volutpat.
+        Nullam accumsan dui ut magna tristique, faucibus mattis nulla tempor. Donec sodales convallis dictum. Quisque at
+        venenatis elit. Morbi id aliquam arcu. Vestibulum id facilisis risus, id vulputate nunc.</p>
+      <humi-rating rate="4"></humi-rating>
+    </div>
+  </div>
