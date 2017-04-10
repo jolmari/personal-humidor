@@ -6,8 +6,12 @@ import { CigarDetailsComponent } from './cigar-details/cigar-details.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
-    { path: '', component: CigarInventoryComponent },
-    { path: 'inventory/:id', component: CigarDetailsComponent }
+    { path: '', redirectTo: 'inventory', pathMatch: 'full' },
+    { path: 'inventory', component: CigarInventoryComponent,
+      children: [
+        { path: ':id', component: CigarDetailsComponent}
+      ]
+    }
   ])],
   exports: [RouterModule]
 })
