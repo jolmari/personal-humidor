@@ -1,20 +1,2 @@
-    <table id="cigars-listing">
-        <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Price</th>
-            <th>Year</th>
-            <th>Color</th>
-            <th>Rating</th>            
-        </tr>
-        <tr *ngFor="let cigar of cigars">
-            <td>{{cigar.name}}</td>
-            <td>{{cigar.country}}</td>
-            <td>{{cigar.priceAvg}}</td>
-            <td>{{cigar.year}}</td>
-            <td>{{cigar.color}}</td>
-            <td><humi-rating [rate]="cigar.ratingAvg"></humi-rating></td>
-            <td><a [routerLink]="['/inventory', cigar.id]">Details</a></td>
-        </tr>
-    </table>
-    <router-outlet></router-outlet>
+<humi-cigar-list [cigars]="cigars"></humi-cigar-list>
+<router-outlet></router-outlet>
