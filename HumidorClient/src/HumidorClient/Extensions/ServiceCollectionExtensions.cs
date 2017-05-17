@@ -4,6 +4,7 @@ using HumidorClient.Repositories;
 using HumidorClient.Repositories.Interfaces;
 using HumidorClient.Services.CigarService;
 using HumidorClient.Services.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HumidorClient.Extensions
